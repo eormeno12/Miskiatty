@@ -9,23 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Miskiatty">
-        <activity android:name=".view.activities.OrderAddSummaryActivity"></activity>
-        <activity android:name=".view.activities.OrderAddActiviy" />
-        <activity android:name=".view.activities.ProductDetailsActivity" />
-        <activity android:name=".view.activities.ProductAddActivity" />
-        <activity android:name=".view.activities.ClientsAddInfoActivity" />
-        <activity android:name=".view.activities.ClientsAddActivity" />
-        <activity android:name=".view.activities.ClientDetailsActivity" />
-        <activity android:name=".view.activities.StatisticDetailsActivity" />
-        <activity android:name=".view.activities.LoginActivity" />
-        <activity android:name=".view.activities.SplashScreenActivity">
+        <activity android:name=".view.ui.activities.OrderAddSummaryActivity" />
+        <activity android:name=".view.ui.activities.OrderAddActiviy" />
+        <activity android:name=".view.ui.activities.ProductDetailsActivity" />
+        <activity android:name=".view.ui.activities.ProductAddActivity" />
+        <activity android:name=".view.ui.activities.ClientsAddInfoActivity" />
+        <activity android:name=".view.ui.activities.ClientsAddActivity" />
+        <activity android:name=".view.ui.activities.ClientDetailsActivity" />
+        <activity android:name=".view.ui.activities.StatisticDetailsActivity" />
+        <activity android:name=".view.ui.activities.LoginActivity" />
+        <activity android:name=".view.ui.activities.SplashScreenActivity"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.MainActivity">
+        <activity android:name=".view.ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

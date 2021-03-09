@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/color_dark"/>
+    <item
+        android:width="125dp"
+        android:height="125dp"
+        android:gravity="center"
+        android:drawable="@drawable/logo_miskiatty_blanco" />
+
+    <item
+        android:width="175dp"
+        android:height="175dp"
+        android:gravity="center"
+        android:drawable="@drawable/sp_oval_white" />
+</layer-list>

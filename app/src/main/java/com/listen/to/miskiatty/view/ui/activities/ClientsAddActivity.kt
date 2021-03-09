@@ -1,12 +1,12 @@
-package com.listen.to.miskiatty.view.activities
+package com.listen.to.miskiatty.view.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.listen.to.miskiatty.R
 
-class ClientDetailsActivity : AppCompatActivity() {
+class ClientsAddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_client_details)
+        setContentView(R.layout.activity_clients_add)
     }
 }
