@@ -1,6 +1,7 @@
-package com.listen.to.miskiatty.model
+package com.listen.to.miskiatty.model.observables
 
 import androidx.databinding.BaseObservable
+import com.listen.to.miskiatty.model.DataValidation
 
 class LoginObservable: BaseObservable(){
 

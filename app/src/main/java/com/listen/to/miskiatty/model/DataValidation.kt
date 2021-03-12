@@ -7,6 +7,8 @@ class DataValidation {
     fun validateLogin(email: String, password: String): Boolean = (validateEmail(email) &&
                                                                     validatePassword(password))
 
+    fun validatePinLogin(pin: String): Boolean = validatePin(pin)
+
 
     private fun validateEmail(email: String): Boolean{
 
@@ -31,4 +33,16 @@ class DataValidation {
 
         return true
     }
+
+    private fun validatePin(pin: String): Boolean{
+
+        if(pin.isEmpty()){
+            return false
+        }else if(pin.length != 6){
+            return false
+        }
+
+        return true
+    }
+
 }

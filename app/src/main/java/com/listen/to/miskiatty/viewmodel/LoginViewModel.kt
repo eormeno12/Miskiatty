@@ -3,7 +3,7 @@ package com.listen.to.miskiatty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.listen.to.miskiatty.model.LoginObservable
+import com.listen.to.miskiatty.model.observables.LoginObservable
 
 class LoginViewModel: ViewModel() {
 
