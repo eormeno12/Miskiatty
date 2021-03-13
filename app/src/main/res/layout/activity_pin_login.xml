@@ -23,6 +23,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
@@ -37,7 +38,6 @@
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/pin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberPassword"
@@ -55,7 +55,7 @@
                 android:scaleType="centerCrop"
                 android:rotation="90"
                 android:backgroundTint="@color/white"
-                android:onClick="@{ () -> pinLoginViewModel.onClickPinLoginListener(pin.getText().toString())}"/>
+                android:onClick="@{ () -> pinLoginViewModel.onClickPinLoginListener(pin)}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

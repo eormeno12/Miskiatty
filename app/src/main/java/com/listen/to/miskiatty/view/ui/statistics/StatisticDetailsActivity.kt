@@ -1,12 +1,12 @@
-package com.listen.to.miskiatty.view.ui.activities
+package com.listen.to.miskiatty.view.ui.statistics
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.listen.to.miskiatty.R
 
-class ProductAddActivity : AppCompatActivity() {
+class StatisticDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_add)
+        setContentView(R.layout.activity_statistic_details)
     }
 }

@@ -3,16 +3,16 @@ package com.listen.to.miskiatty.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.listen.to.miskiatty.model.observables.LoginObservable
+import com.google.android.material.textfield.TextInputLayout
+import com.listen.to.miskiatty.model.repository.login.LoginObservable
 
 class LoginViewModel: ViewModel() {
 
-    private var loginObservable = LoginObservable()
     private var _successLogin = MutableLiveData<Boolean>()
     val successLogin: LiveData<Boolean> = _successLogin
 
-    fun onClickLoginListener(user: String, password: String){
-        _successLogin.value = loginObservable.userLogin(user, password)
+    fun onClickLoginListener(tl_email: TextInputLayout, tl_password: TextInputLayout){
+        _successLogin.value = LoginObservable().loginValidation(tl_email, tl_password)
     }
 
 }

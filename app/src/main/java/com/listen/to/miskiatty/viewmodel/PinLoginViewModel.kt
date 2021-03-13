@@ -1,15 +1,19 @@
 package com.listen.to.miskiatty.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.listen.to.miskiatty.model.observables.PinLoginObservable
+import com.google.android.material.textfield.TextInputLayout
+import com.listen.to.miskiatty.model.repository.login.PinLoginObservable
 
 class PinLoginViewModel: ViewModel() {
 
-    private var _successPinLogin = MutableLiveData<Boolean>()
-    val successPinLogin = _successPinLogin
+    private var _pinValid = MutableLiveData<Boolean>()
+    val pinValid: LiveData<Boolean> = _pinValid
 
-    fun onClickPinLoginListener(pin: String){
-        _successPinLogin.value = PinLoginObservable().pinLogin(pin)
+    val pinError = MutableLiveData<String>()
+
+    fun onClickPinLoginListener(tl_pin: TextInputLayout){
+        _pinValid.value = PinLoginObservable().validatePin(tl_pin)
     }
 }

@@ -1,12 +1,12 @@
-package com.listen.to.miskiatty.view.ui.activities
+package com.listen.to.miskiatty.view.ui.clients
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.listen.to.miskiatty.R
 
-class OrderAddActiviy : AppCompatActivity() {
+class ClientsAddInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_order_add_activiy)
+        setContentView(R.layout.activity_clients_add_info)
     }
 }

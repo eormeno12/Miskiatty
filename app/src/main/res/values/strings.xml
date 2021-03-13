@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Miskiatty</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ERRORES -->
+    <string name="EMPTY_FIELD">Este campo no puede estar vacío</string>
+    <string name="INVALID_EMAIL">Email no válido</string>
+    <string name="INCORRECT_EMAIL">Email incorrecto</string>
+    <string name="INVALID_PASSWORD">Contraseña no válida</string>
+    <string name="INCORRECT_PASSWORD">Contraseña Incorrecta</string>
+    <string name="INVALID_PIN">PIN no válido</string>
+    <string name="INCORRECT_PIN">PIN incorrecto</string>
+    <string name="DIFFERENT_PINS">Los PIN deben de ser iguales</string>
 </resources>

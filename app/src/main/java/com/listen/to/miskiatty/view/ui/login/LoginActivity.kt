@@ -1,8 +1,6 @@
-package com.listen.to.miskiatty.view.ui.activities
+package com.listen.to.miskiatty.view.ui.login
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -10,7 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityLoginBinding
-import com.listen.to.miskiatty.model.utils.edit
+import com.listen.to.miskiatty.model.provider.PreferenceProvider
+import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -22,20 +21,23 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         setupBinding()
 
-        val sharedPreferences = getSharedPreferences("loginPref", Context.MODE_PRIVATE)
+        val preferenceProvider = PreferenceProvider(this)
 
         loginViewModel?.successLogin?.observe(this, Observer {
             if (it) {
-                sharedPreferences.edit{
-                    putBoolean("logged", true)
-                }
+                preferenceProvider.saveLogin()
 
-                startActivity(Intent(this, MainActivity::class.java))
+                if(preferenceProvider.isPinLoginSaved()){
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else {
+                    startActivity(Intent(this, SetPinLoginActivity::class.java))
+                }
             }
         })
     }
 
-    fun setupBinding(){
+    private fun setupBinding(){
         val activityLoginBinding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         activityLoginBinding.loginViewModel = loginViewModel
