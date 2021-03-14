@@ -3,12 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+       <com.google.android.material.appbar.AppBarLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <com.google.android.material.appbar.CollapsingToolbarLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:elevation="8dp">
+
+               <androidx.appcompat.widget.Toolbar
+                   android:layout_width="match_parent"
+                   android:layout_height="?attr/actionBarSize"
+                   android:background="@color/white"
+                   style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+                   app:menu="@menu/menu_products"/>
+
+           </com.google.android.material.appbar.CollapsingToolbarLayout>
+       </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

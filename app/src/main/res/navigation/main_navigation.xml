@@ -7,32 +7,32 @@
 
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.listen.to.miskiatty.view.ui.fragments.StatisticsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.statistics.StatisticsFragment"
         android:label="StatisticsFragment" >
-        <action
-            android:id="@+id/action_statisticsFragment_to_productsFragment"
-            app:destination="@id/productsFragment" />
         <action
             android:id="@+id/action_statisticsFragment_to_statisticDetailsActivity"
             app:destination="@id/statisticDetailsActivity" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_clientsFragment"
+            app:destination="@id/clientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.listen.to.miskiatty.view.ui.fragments.ProductsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.products.ProductsFragment"
         android:label="ProductsFragment" >
-        <action
-            android:id="@+id/action_productsFragment_to_clientsFragment"
-            app:destination="@id/clientsFragment" />
         <action
             android:id="@+id/action_productsFragment_to_productAddActivity"
             app:destination="@id/productAddActivity" />
         <action
             android:id="@+id/action_productsFragment_to_productDetailsActivity"
             app:destination="@id/productDetailsActivity" />
+        <action
+            android:id="@+id/action_productsFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.listen.to.miskiatty.view.ui.fragments.OrdersFragment"
+        android:name="com.listen.to.miskiatty.view.ui.orders.OrdersFragment"
         android:label="OrdersFragment" >
         <action
             android:id="@+id/action_ordersFragment_to_orderAddActiviy"
@@ -43,17 +43,17 @@
     </fragment>
     <fragment
         android:id="@+id/clientsFragment"
-        android:name="com.listen.to.miskiatty.view.ui.fragments.ClientsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.clients.ClientsFragment"
         android:label="ClientsFragment" >
-        <action
-            android:id="@+id/action_clientsFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment" />
         <action
             android:id="@+id/action_clientsFragment_to_clientsAddActivity"
             app:destination="@id/clientsAddActivity" />
         <action
             android:id="@+id/action_clientsFragment_to_clientDetailsActivity"
             app:destination="@id/clientDetailsActivity" />
+        <action
+            android:id="@+id/action_clientsFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
     </fragment>
     <activity
         android:id="@+id/statisticDetailsActivity"

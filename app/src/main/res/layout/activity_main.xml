@@ -14,7 +14,7 @@
 
         <fragment
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:id="@+id/fr_forAllFragments_main"
+            android:id="@+id/fr_navHost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

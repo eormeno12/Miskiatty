@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         configNav()
     }
 
-    fun configNav(){
-        NavigationUI.setupWithNavController(
-                binding.bnvMain,
-                Navigation.findNavController(
-                        this,
-                        R.id.fr_forAllFragments_main))
+    private fun configNav(){
+        NavigationUI.setupWithNavController(binding.bnvMain, Navigation.
+        findNavController(
+                this,
+                R.id.fr_navHost)
+        )
     }
 }
