@@ -29,8 +29,13 @@ class PinLoginActivity : AppCompatActivity() {
     }
 
     private fun setupBinding(){
-        val activityPinLoginBinding: ActivityPinLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_pin_login)
-        pinLoginViewModel = ViewModelProvider(this).get(PinLoginViewModel::class.java)
+        val activityPinLoginBinding: ActivityPinLoginBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_pin_login)
+
+        pinLoginViewModel =  ViewModelProvider
+                .NewInstanceFactory()
+                .create(PinLoginViewModel::class.java)
         activityPinLoginBinding.pinLoginViewModel = pinLoginViewModel
     }
 }

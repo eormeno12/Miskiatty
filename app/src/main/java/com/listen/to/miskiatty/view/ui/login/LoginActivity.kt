@@ -38,8 +38,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupBinding(){
-        val activityLoginBinding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        val activityLoginBinding: ActivityLoginBinding = DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_login)
+
+        loginViewModel = ViewModelProvider
+                .NewInstanceFactory()
+                .create(LoginViewModel::class.java)
         activityLoginBinding.loginViewModel = loginViewModel
     }
 }

@@ -29,6 +29,7 @@ class ProductsFragment : Fragment() {
                         R.layout.fragment_products,
                         container,
                         false)
+
         productViewModel = ViewModelProvider
                 .NewInstanceFactory()
                 .create(ProductViewModel::class.java)
