@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/statisticsFragment">
+
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.fragments.StatisticsFragment"
+        android:label="StatisticsFragment" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_statisticDetailsActivity"
+            app:destination="@id/statisticDetailsActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.fragments.ProductsFragment"
+        android:label="ProductsFragment" >
+        <action
+            android:id="@+id/action_productsFragment_to_clientsFragment"
+            app:destination="@id/clientsFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_productAddActivity"
+            app:destination="@id/productAddActivity" />
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailsActivity"
+            app:destination="@id/productDetailsActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.listen.to.miskiatty.view.ui.fragments.OrdersFragment"
+        android:label="OrdersFragment" >
+        <action
+            android:id="@+id/action_ordersFragment_to_orderAddActiviy"
+            app:destination="@id/orderAddActiviy" />
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsDialogFragment"
+            app:destination="@id/orderDetailsDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientsFragment"
+        android:name="com.listen.to.miskiatty.view.ui.fragments.ClientsFragment"
+        android:label="ClientsFragment" >
+        <action
+            android:id="@+id/action_clientsFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+        <action
+            android:id="@+id/action_clientsFragment_to_clientsAddActivity"
+            app:destination="@id/clientsAddActivity" />
+        <action
+            android:id="@+id/action_clientsFragment_to_clientDetailsActivity"
+            app:destination="@id/clientDetailsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/statisticDetailsActivity"
+        android:name="com.listen.to.miskiatty.view.ui.statistics.StatisticDetailsActivity"
+        android:label="activity_statistic_details"
+        tools:layout="@layout/activity_statistic_details" />
+    <activity
+        android:id="@+id/productAddActivity"
+        android:name="com.listen.to.miskiatty.view.ui.products.ProductAddActivity"
+        android:label="activity_product_add"
+        tools:layout="@layout/activity_product_add" />
+    <activity
+        android:id="@+id/productDetailsActivity"
+        android:name="com.listen.to.miskiatty.view.ui.products.ProductDetailsActivity"
+        android:label="activity_product_details"
+        tools:layout="@layout/activity_product_details" />
+    <activity
+        android:id="@+id/clientDetailsActivity"
+        android:name="com.listen.to.miskiatty.view.ui.clients.ClientDetailsActivity"
+        android:label="activity_client_details"
+        tools:layout="@layout/activity_client_details" />
+    <activity
+        android:id="@+id/clientsAddActivity"
+        android:name="com.listen.to.miskiatty.view.ui.clients.ClientsAddActivity"
+        android:label="activity_clients_add"
+        tools:layout="@layout/activity_clients_add" />
+    <dialog
+        android:id="@+id/orderDetailsDialogFragment"
+        android:name="com.listen.to.miskiatty.view.ui.orders.OrderDetailsDialogFragment"
+        android:label="OrderDetailsDialogFragment" />
+    <activity
+        android:id="@+id/orderAddActiviy"
+        android:name="com.listen.to.miskiatty.view.ui.orders.OrderAddActiviy"
+        android:label="activity_order_add_activiy"
+        tools:layout="@layout/activity_order_add_activiy" />
+</navigation>
