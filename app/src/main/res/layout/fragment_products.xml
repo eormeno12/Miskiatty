@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:setAdapter="@{productViewModel}" />
+                app:setAdapter="@{productViewModel.recyclerProductsAdapter}" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </FrameLayout>
