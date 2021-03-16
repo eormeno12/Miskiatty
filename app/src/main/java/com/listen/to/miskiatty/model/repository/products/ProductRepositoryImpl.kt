@@ -9,7 +9,9 @@ class ProductRepositoryImpl: ProductRepository {
     private var products = MutableLiveData<List<Product>>()
 
     override fun callProductsROOM() {
-        products.value = listOf(Product(R.drawable.ic_logo_miskiatty, "KEKE", 20F, 15f, "1. DFSF"))
+        val product = Product(R.drawable.ic_logo_miskiatty, "KEKE", 20F, 15f, "1. DFSF")
+        val list = listOf(product, product, product, product)
+        products.value = list
     }
 
     override fun getProducts(): MutableLiveData<List<Product>> {

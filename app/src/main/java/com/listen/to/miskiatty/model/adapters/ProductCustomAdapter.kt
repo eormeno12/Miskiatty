@@ -13,10 +13,12 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
                            var resource: Int):
         RecyclerView.Adapter<ProductCustomAdapter.ViewHolder>() {
 
-    var products: List<Product>? = null
+    private var productsList = ArrayList<Product>()
 
     fun setProductsList(products: List<Product>){
-        this.products = products
+        productsList.clear()
+        productsList.addAll(products)
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
@@ -33,13 +35,15 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
         holder.setDataCard(productViewModel, position)
     }
 
-    override fun getItemCount(): Int = products?.size ?: 0
-
-    override fun getItemViewType(position: Int): Int {
-        return getLayoutIDForPosition()
+    override fun getItemCount(): Int {
+        return productsList.count()
     }
 
-    fun getLayoutIDForPosition(): Int{
+    override fun getItemViewType(position: Int): Int {
+        return getLayoutIDForPosition(position)
+    }
+
+    fun getLayoutIDForPosition(position: Int): Int{
         return resource
     }
 
@@ -53,6 +57,7 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
         fun setDataCard(productViewModel: ProductViewModel, position: Int){
             binding?.setVariable(BR.productViewModel, productViewModel)
             binding?.setVariable(BR.position, position)
+            binding?.executePendingBindings()
         }
 
     }

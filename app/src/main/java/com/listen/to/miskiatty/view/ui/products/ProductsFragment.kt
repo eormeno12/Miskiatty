@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentProductsBinding
 import com.listen.to.miskiatty.model.Product
@@ -19,23 +19,24 @@ import com.listen.to.miskiatty.viewmodel.ProductViewModel
 class ProductsFragment : Fragment() {
 
     private var productViewModel: ProductViewModel? = null
-    lateinit var fragmentProductBinding: FragmentProductsBinding
+    lateinit var binding: FragmentProductsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setupBinding(inflater, container)
-        return  fragmentProductBinding.root
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setRecyclerProductsAdapter()
         setUpListUpdate()
     }
 
     fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
-        fragmentProductBinding = DataBindingUtil
+        binding = DataBindingUtil
             .inflate(
                 inflater,
                 R.layout.fragment_products,
@@ -46,13 +47,19 @@ class ProductsFragment : Fragment() {
         productViewModel = ViewModelProvider
             .NewInstanceFactory()
             .create(ProductViewModel::class.java)
-        fragmentProductBinding.productViewModel = productViewModel
+        binding.productViewModel = productViewModel
     }
+
+    fun setRecyclerProductsAdapter(){
+        productViewModel?.setRecyclerProductsAdapter()
+    }
+
 
     fun setUpListUpdate(){
         productViewModel?.callProducts()
-        productViewModel?.getProducts()?.observe(viewLifecycleOwner, Observer {
+        productViewModel?.getProducts()?.observe(viewLifecycleOwner, Observer<List<Product>>  {
             products: List<Product> ->
+            Log.d("products", products.toString())
             productViewModel?.setProductsInRecyclerAdapter(products)
         })
     }

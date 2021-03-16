@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Miskiatty">
-        <activity android:name=".view.ui.login.SetPinLoginActivity"></activity>
+        <activity android:name=".view.ui.login.SetPinLoginActivity" />
         <activity android:name=".view.ui.login.PinLoginActivity" />
         <activity android:name=".view.ui.orders.OrderAddSummaryActivity" />
         <activity android:name=".view.ui.orders.OrderAddActiviy" />

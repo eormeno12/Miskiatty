@@ -37,11 +37,12 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_products"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:setAdapter="@{productViewModel.recyclerProductsAdapter}" />
+                app:setAdapter="@{productViewModel.recyclerProductsAdapter}"/>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </FrameLayout>
