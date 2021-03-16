@@ -7,19 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentProductsBinding
-import com.listen.to.miskiatty.model.Product
-import com.listen.to.miskiatty.model.adapters.ProductCustomAdapter
+import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.ProductViewModel
 
 class ProductsFragment : Fragment() {
 
     private var productViewModel: ProductViewModel? = null
-    lateinit var binding: FragmentProductsBinding
+    private lateinit var binding: FragmentProductsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +32,7 @@ class ProductsFragment : Fragment() {
         setUpListUpdate()
     }
 
-    fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
+    private fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil
             .inflate(
                 inflater,
@@ -50,14 +47,17 @@ class ProductsFragment : Fragment() {
         binding.productViewModel = productViewModel
     }
 
-    fun setRecyclerProductsAdapter(){
+    private fun setRecyclerProductsAdapter(){
         productViewModel?.setRecyclerProductsAdapter()
     }
 
 
-    fun setUpListUpdate(){
-        productViewModel?.callProducts()
-        productViewModel?.getProducts()?.observe(viewLifecycleOwner, Observer<List<Product>>  {
+    private fun setUpListUpdate(){
+        this.context?.let {
+            productViewModel?.callProducts(it, lifecycle)
+        }
+
+        productViewModel?.getProducts()?.observe(viewLifecycleOwner, {
             products: List<Product> ->
             Log.d("products", products.toString())
             productViewModel?.setProductsInRecyclerAdapter(products)

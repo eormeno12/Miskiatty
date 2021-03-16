@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.listen.to.miskiatty.model.Product
+import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.ProductViewModel
 
 class ProductCustomAdapter(var productViewModel: ProductViewModel,

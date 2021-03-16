@@ -1,10 +1,11 @@
 package com.listen.to.miskiatty.viewmodel
 
-import androidx.lifecycle.LiveData
+import android.content.Context
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
-import com.listen.to.miskiatty.model.Product
+import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.adapters.ProductCustomAdapter
 import com.listen.to.miskiatty.model.repository.products.ProductObservable
 
@@ -23,8 +24,8 @@ class ProductViewModel: ViewModel() {
                 R.layout.template_product)
     }
 
-    fun callProducts(){
-        productObservable.callProductsROOM()
+    fun callProducts(appContext: Context, lifecycle: Lifecycle){
+        productObservable.callProductsROOM(appContext, lifecycle)
     }
 
     fun getProducts(): MutableLiveData<List<Product>> = productObservable.getProducts()
