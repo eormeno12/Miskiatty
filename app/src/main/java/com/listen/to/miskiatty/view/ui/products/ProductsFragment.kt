@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentProductsBinding
 import com.listen.to.miskiatty.model.database.Product
@@ -28,6 +30,7 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbarItemClickListener()
         setRecyclerProductsAdapter()
         setUpListUpdate()
     }
@@ -47,10 +50,26 @@ class ProductsFragment : Fragment() {
         binding.productViewModel = productViewModel
     }
 
+    private fun toolbarItemClickListener(){
+        binding.toolbarProducts.setOnMenuItemClickListener { menu ->
+            when(menu.itemId){
+                R.id.search_product -> {
+                    true
+                }
+
+                R.id.add_product -> {
+                    findNavController().navigate(R.id.productAddActivity)
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
     private fun setRecyclerProductsAdapter(){
         productViewModel?.setRecyclerProductsAdapter()
     }
-
 
     private fun setUpListUpdate(){
         this.context?.let {

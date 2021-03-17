@@ -18,11 +18,13 @@
             android:layout_height="wrap_content"
             android:elevation="8dp">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_product_details"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
                 app:title="Producto"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
                 app:menu="@menu/menu_product_details" />
 
