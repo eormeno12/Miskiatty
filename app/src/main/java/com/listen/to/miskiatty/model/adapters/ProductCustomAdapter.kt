@@ -10,7 +10,8 @@ import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.ProductViewModel
 
 class ProductCustomAdapter(var productViewModel: ProductViewModel,
-                           var resource: Int):
+                           var resource: Int,
+                           var productsListener: ProductsListener):
         RecyclerView.Adapter<ProductCustomAdapter.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
@@ -32,6 +33,10 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            productsListener.onClickListenerProduct(position)
+        }
+
         holder.setDataCard(productViewModel, position)
     }
 
@@ -40,10 +45,10 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
     }
 
     override fun getItemViewType(position: Int): Int {
-        return getLayoutIDForPosition(position)
+        return getLayoutIdByPosition(position)
     }
 
-    fun getLayoutIDForPosition(position: Int): Int{
+    private fun getLayoutIdByPosition(position: Int): Int{
         return resource
     }
 

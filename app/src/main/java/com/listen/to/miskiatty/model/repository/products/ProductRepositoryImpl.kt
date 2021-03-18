@@ -16,14 +16,6 @@ class ProductRepositoryImpl: ProductRepository {
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {
-            val product = Product(
-                    image = 10,
-                    name = "KEKE",
-                    price = 30f,
-                    cost = 10f,
-                    recipe = "1. Cernir la harina")
-            db.productDao().addProducts(listOf(product))
-
             val productsRoom = db.productDao().getAllProducts()
             products.value = productsRoom
         }

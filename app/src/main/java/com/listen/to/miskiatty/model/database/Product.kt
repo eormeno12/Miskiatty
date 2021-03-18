@@ -2,6 +2,7 @@ package com.listen.to.miskiatty.model.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Product(
@@ -12,3 +13,4 @@ data class Product(
         val price: Float,
         val cost: Float,
         val recipe: String)
+        : Serializable

@@ -2,12 +2,12 @@ package com.listen.to.miskiatty.view.ui.products
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.listen.to.miskiatty.R
@@ -24,7 +24,7 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setupBinding(inflater, container)
+        setUpBinding(inflater, container)
         return  binding.root
     }
 
@@ -33,9 +33,15 @@ class ProductsFragment : Fragment() {
         toolbarItemClickListener()
         setRecyclerProductsAdapter()
         setUpListUpdate()
+        setUpOnClickProduct()
     }
 
-    private fun setupBinding(inflater: LayoutInflater, container: ViewGroup?) {
+    override fun onStart() {
+        super.onStart()
+        callProducts()
+    }
+
+    private fun setUpBinding(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil
             .inflate(
                 inflater,
@@ -72,14 +78,23 @@ class ProductsFragment : Fragment() {
     }
 
     private fun setUpListUpdate(){
-        this.context?.let {
-            productViewModel?.callProducts(it, lifecycle)
-        }
-
         productViewModel?.getProducts()?.observe(viewLifecycleOwner, {
             products: List<Product> ->
             Log.d("products", products.toString())
             productViewModel?.setProductsInRecyclerAdapter(products)
+        })
+    }
+
+    private fun callProducts(){
+        this.context?.let {
+            productViewModel?.callProducts(it, lifecycle)
+        }
+    }
+
+    private fun setUpOnClickProduct(){
+        productViewModel?.productClicked?.observe(viewLifecycleOwner, {
+            val bundle = bundleOf("product" to it)
+            findNavController().navigate(R.id.productDetailsActivity, bundle)
         })
     }
 }

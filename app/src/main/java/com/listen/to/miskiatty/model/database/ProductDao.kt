@@ -14,7 +14,7 @@ interface ProductDao {
     suspend fun updateProduct(product: Product)
 
     @Insert
-    suspend fun addProducts(product: List<Product>)
+    suspend fun addProducts(product: Product)
 
     @Delete
     suspend fun deleteProduct(product: Product)

@@ -12,6 +12,7 @@ class ProductObservable: BaseObservable() {
     fun callProductsROOM(appContext: Context, lifecycle: Lifecycle) {
         productRepository.callProductsROOM(appContext, lifecycle)
     }
+
     fun getProducts(): MutableLiveData<List<Product>>{
         return productRepository.getProducts()
     }

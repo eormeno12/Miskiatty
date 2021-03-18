@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.view.ui.products
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
@@ -34,7 +35,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.edit_product -> {
-                    onBackPressed()
+                    startActivity(Intent(this, ProductAddActivity::class.java))
                     true
                 }
 
