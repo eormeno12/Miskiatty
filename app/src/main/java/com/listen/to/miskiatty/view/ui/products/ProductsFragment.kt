@@ -1,11 +1,11 @@
 package com.listen.to.miskiatty.view.ui.products
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -93,8 +93,12 @@ class ProductsFragment : Fragment() {
 
     private fun setUpOnClickProduct(){
         productViewModel?.productClicked?.observe(viewLifecycleOwner, {
-            val bundle = bundleOf("product" to it)
-            findNavController().navigate(R.id.productDetailsActivity, bundle)
+            startActivity(Intent(
+                    this.activity?.applicationContext,
+                    ProductDetailsActivity::class.java)
+                    .apply {
+                        putExtra("com.listen.to.miskiatty.view.ui.products.ID", it.id)
+                    })
         })
     }
 }

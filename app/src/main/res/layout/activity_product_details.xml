@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="productDetailsViewModel"
+            type="com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel" />
 
     </data>
 
@@ -59,23 +62,26 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Producto"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginStart="56sp" />
+                    android:gravity="start|center"
+                    android:layout_marginTop="24sp"
+                    android:layout_marginStart="16sp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_cake_24"
+                    app:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="16dp"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Keke"
-                    android:textSize="24sp"
-                    app:drawableLeftCompat="@drawable/ic_baseline_cake_24"
-                    android:layout_marginStart="16dp"
-                    android:drawablePadding="16dp" />
+                    android:text="@{productDetailsViewModel.product.name}"
+                    android:textSize="20sp"
+                    android:layout_marginStart="56dp" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -89,16 +95,26 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Precio"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="14sp"
-                            android:layout_marginStart="56sp" />
+                            android:gravity="start|center"
+                            android:layout_marginStart="16sp"
+                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawablePadding="16dp"/>
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Costo"
+                            android:textColor="@color/colorPrimary"
                             android:textSize="14sp"
-                            android:layout_marginStart="56sp" />
+                            android:gravity="start|center"
+                            android:layout_marginStart="16sp"
+                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawablePadding="16dp"/>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -112,21 +128,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:text="20"
-                            android:textSize="24sp"
-                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
-                            android:layout_marginStart="16dp"
-                            android:drawablePadding="16dp" />
+                            android:text='@{"S/" + productDetailsViewModel.product.price}'
+                            android:textSize="20sp"
+                            android:layout_marginStart="56dp"/>
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            tools:text="15"
-                            android:textSize="24sp"
-                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
-                            android:layout_marginStart="16dp"
-                            android:drawablePadding="16dp" />
+                            tools:text='@{"S/" + productDetailsViewModel.product.cost}'
+                            android:textSize="20sp"
+                            android:layout_marginStart="56dp" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -137,19 +149,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Receta"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp"
+                    android:gravity="start|center"
                     android:layout_marginTop="24dp"
-                    android:layout_marginStart="56sp" />
+                    android:layout_marginStart="16dp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_list_24"
+                    app:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="16dp"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    tools:text="1."
-                    android:textSize="24sp"
-                    app:drawableLeftCompat="@drawable/ic_baseline_list_24"
-                    android:layout_marginStart="16dp"
-                    android:drawablePadding="16dp" />
+                    android:layout_marginStart="56sp"
+                    tools:text="@{productDetailsViewModel.product.recipe}"
+                    android:textSize="20sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
