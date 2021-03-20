@@ -12,10 +12,10 @@ class ProductDetailsViewModel: ViewModel() {
     private val productDetailsObservable: ProductDetailsObservable = ProductDetailsObservable()
 
     fun callProduct(activity: AppCompatActivity, lifecycle: Lifecycle) =
-            productDetailsObservable.callProductSerializable(activity, lifecycle)
+            productDetailsObservable.callProductRoom(activity, lifecycle)
 
 
     fun getProduct(): LiveData<Product> =
-            productDetailsObservable.getProductSerializable()
+            productDetailsObservable.getProduct()
 
 }

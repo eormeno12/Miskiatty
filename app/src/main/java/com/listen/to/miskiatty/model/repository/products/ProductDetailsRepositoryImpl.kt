@@ -12,7 +12,7 @@ class ProductDetailsRepositoryImpl: ProductDetailsRepository {
 
     private val product = MutableLiveData<Product>()
 
-    override fun callProduct(activity: AppCompatActivity, lifecycle: Lifecycle) {
+    override fun callProductRoom(activity: AppCompatActivity, lifecycle: Lifecycle) {
         val id = activity.intent
                 .getIntExtra(
                         "com.listen.to.miskiatty.view.ui.products.ID",

@@ -14,6 +14,7 @@ import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.LoginViewModel
 import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
 import com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel
+import java.io.Serializable
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -64,7 +65,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.edit_product -> {
-                    startActivity(Intent(this, ProductAddActivity::class.java))
+                    startActivity(Intent(this, ProductAddActivity::class.java).apply {
+                        val product = productDetailsViewModel?.getProduct()?.value
+                        putExtra("com.listen.to.miskiatty.view.ui.products.DETAILS",
+                                product)
+                    })
+
                     true
                 }
 

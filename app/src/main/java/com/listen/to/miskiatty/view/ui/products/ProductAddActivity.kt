@@ -21,6 +21,7 @@ import com.listen.to.miskiatty.viewmodel.ProductViewModel
 class ProductAddActivity : AppCompatActivity() {
 
     private var productViewModel: ProductAddViewModel? = null
+    private var navigationComesFromProductDetails: Boolean = false
     private lateinit var binding: ActivityProductAddBinding
     private lateinit var toolbar: Toolbar
 
@@ -31,6 +32,23 @@ class ProductAddActivity : AppCompatActivity() {
 
         setUpProductViewModel()
         setUpToolbar()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        navigationComesFromProductDetails =
+                productViewModel?.intentHasData(this) == true
+
+        if (navigationComesFromProductDetails){
+            productViewModel?.callProduct(this)
+
+            productViewModel?.getProduct()?.observe(this, { product ->
+                binding.product.editText?.setText(product.name)
+                binding.price.editText?.setText(product.price.toString())
+                binding.cost.editText?.setText(product.cost.toString())
+                binding.recipe.editText?.setText(product.recipe)
+            })
+        }
     }
 
     private fun setUpProductViewModel() {
@@ -55,9 +73,17 @@ class ProductAddActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.confirm_product -> {
-                    productViewModel?.addProductRoom(applicationContext,
-                            lifecycle,
-                            buildProduct())
+
+                    if (navigationComesFromProductDetails){
+                        productViewModel?.updateProductRoom(applicationContext,
+                                lifecycle,
+                                buildProduct())
+
+                    } else {
+                        productViewModel?.addProductRoom(applicationContext,
+                                lifecycle,
+                                buildProduct())
+                    }
 
                     onBackPressed()
                     true

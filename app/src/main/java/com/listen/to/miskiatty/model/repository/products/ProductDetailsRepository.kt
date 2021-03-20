@@ -6,6 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.listen.to.miskiatty.model.database.Product
 
 interface ProductDetailsRepository {
-    fun callProduct(activity: AppCompatActivity, lifecycle: Lifecycle)
+    fun callProductRoom(activity: AppCompatActivity, lifecycle: Lifecycle)
     fun getProduct(): MutableLiveData<Product>
 }

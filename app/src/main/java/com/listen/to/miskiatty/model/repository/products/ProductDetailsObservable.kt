@@ -9,10 +9,10 @@ import com.listen.to.miskiatty.model.database.Product
 class ProductDetailsObservable: BaseObservable() {
     private val productDetailsRepository = ProductDetailsRepositoryImpl()
 
-    fun callProductSerializable(activity: AppCompatActivity, lifecycle: Lifecycle) =
-            productDetailsRepository.callProduct(activity, lifecycle)
+    fun callProductRoom(activity: AppCompatActivity, lifecycle: Lifecycle) =
+            productDetailsRepository.callProductRoom(activity, lifecycle)
 
-    fun getProductSerializable(): MutableLiveData<Product> =
+    fun getProduct(): MutableLiveData<Product> =
             productDetailsRepository.getProduct()
 
 }
