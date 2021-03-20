@@ -49,4 +49,8 @@ class ProductViewModel: ViewModel() {
         return products?.get(position)
     }
 
+    fun searchProduct(str: String){
+        productsAdapter?.search(str)
+    }
+
 }

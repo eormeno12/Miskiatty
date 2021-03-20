@@ -1,11 +1,13 @@
 package com.listen.to.miskiatty.view.ui.products
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,10 +32,11 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbarItemClickListener()
+
         setRecyclerProductsAdapter()
         setUpListUpdate()
         setUpOnClickProduct()
+        setUpToolbar()
     }
 
     override fun onStart() {
@@ -56,12 +59,9 @@ class ProductsFragment : Fragment() {
         binding.productViewModel = productViewModel
     }
 
-    private fun toolbarItemClickListener(){
+    private fun setUpToolbar(){
         binding.toolbarProducts.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
-                R.id.search_product -> {
-                    true
-                }
 
                 R.id.add_product -> {
                     findNavController().navigate(R.id.productAddActivity)
@@ -72,6 +72,28 @@ class ProductsFragment : Fragment() {
             }
         }
     }
+
+    /*override fun onCreateOptionsMenu(menu: Menu, infater: MenuInflater) {
+        activity?.menuInflater?.inflate(R.menu.menu_products, menu)
+
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItem = menu.findItem(R.id.search_product)
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView.queryHint = "Buscar producto"
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(product: String?): Boolean {
+                if (product != null) productViewModel?.searchProduct(product)
+                return true
+            }
+        })
+    }*/
 
     private fun setRecyclerProductsAdapter(){
         productViewModel?.setRecyclerProductsAdapter()

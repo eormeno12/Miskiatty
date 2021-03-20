@@ -8,6 +8,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.ProductViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ProductCustomAdapter(var productViewModel: ProductViewModel,
                            var resource: Int,
@@ -15,10 +17,12 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
         RecyclerView.Adapter<ProductCustomAdapter.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
+    private var copyProductList: ArrayList<Product>? = null
 
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)
+        copyProductList = productsList
         this.notifyDataSetChanged()
     }
 
@@ -50,6 +54,28 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
 
     private fun getLayoutIdByPosition(position: Int): Int{
         return resource
+    }
+
+    fun search(str: String){
+        productsList.clear()
+
+        if(copyProductList != null){
+            if(str.isEmpty()) {
+                productsList = ArrayList(copyProductList)
+                notifyDataSetChanged()
+                return
+            }
+
+            val search = str.toLowerCase(Locale.ROOT)
+
+            for(product in copyProductList!!){
+                val name = product.name.toLowerCase(Locale.ROOT)
+
+                if(name.contains(search)) productsList.add(product)
+            }
+
+            notifyDataSetChanged()
+        }
     }
 
     class ViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
