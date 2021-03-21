@@ -22,9 +22,11 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)
-        copyProductList = productsList
-        this.notifyDataSetChanged()
+        copyProductList = ArrayList(productsList)
+        notifyDataSetChanged()
     }
+
+    fun getProductList(): List<Product> = productsList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -57,9 +59,9 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
     }
 
     fun search(str: String){
-        productsList.clear()
-
         if(copyProductList != null){
+            productsList.clear()
+
             if(str.isEmpty()) {
                 productsList = ArrayList(copyProductList)
                 notifyDataSetChanged()
@@ -73,9 +75,9 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
 
                 if(name.contains(search)) productsList.add(product)
             }
-
-            notifyDataSetChanged()
         }
+
+        notifyDataSetChanged()
     }
 
     class ViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){

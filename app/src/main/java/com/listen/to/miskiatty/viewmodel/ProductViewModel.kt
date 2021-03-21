@@ -44,10 +44,8 @@ class ProductViewModel: ViewModel() {
         }
     }
 
-    fun getProductAt(position: Int): Product?{
-        val products: List<Product>? = productObservable.getProducts().value
-        return products?.get(position)
-    }
+    fun getProductAt(position: Int): Product? =
+            productsAdapter?.getProductList()?.get(position)
 
     fun searchProduct(str: String){
         productsAdapter?.search(str)

@@ -30,13 +30,17 @@ class ProductsFragment : Fragment() {
         return  binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerProductsAdapter()
         setUpListUpdate()
         setUpOnClickProduct()
-        setUpToolbar()
     }
 
     override fun onStart() {
@@ -59,21 +63,17 @@ class ProductsFragment : Fragment() {
         binding.productViewModel = productViewModel
     }
 
-    private fun setUpToolbar(){
-        binding.toolbarProducts.setOnMenuItemClickListener { menu ->
-            when(menu.itemId){
 
-                R.id.add_product -> {
-                    findNavController().navigate(R.id.productAddActivity)
-                    true
-                }
-
-                else -> false
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.add_product -> {
+                findNavController().navigate(R.id.productAddActivity)
             }
         }
+        return super.onOptionsItemSelected(item)
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu, infater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, infater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.menu_products, menu)
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -93,7 +93,7 @@ class ProductsFragment : Fragment() {
                 return true
             }
         })
-    }*/
+    }
 
     private fun setRecyclerProductsAdapter(){
         productViewModel?.setRecyclerProductsAdapter()
