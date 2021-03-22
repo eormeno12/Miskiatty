@@ -1,9 +1,8 @@
 package com.listen.to.miskiatty.model.database.room
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.listen.to.miskiatty.model.converters.ImageConverters
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.database.ProductDao
 
@@ -11,6 +10,7 @@ import com.listen.to.miskiatty.model.database.ProductDao
     entities = [Product::class],
     version = 1
 )
+@TypeConverters(ImageConverters::class)
 
 abstract class RoomDb: RoomDatabase() {
 

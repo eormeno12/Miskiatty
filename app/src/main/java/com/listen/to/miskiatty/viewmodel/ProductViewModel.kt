@@ -1,6 +1,9 @@
 package com.listen.to.miskiatty.viewmodel
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -50,5 +53,9 @@ class ProductViewModel: ViewModel() {
     fun searchProduct(str: String){
         productsAdapter?.search(str)
     }
+}
 
+@BindingAdapter("srcBitmap")
+fun loadImageBitmap(imageView: ImageView, bitmap: Bitmap?){
+    bitmap?.let { imageView.setImageBitmap(it) }
 }

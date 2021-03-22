@@ -43,19 +43,15 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="8dp"
-                    android:elevation="@dimen/cardview_default_elevation">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background" />
-
-                </androidx.cardview.widget.CardView>
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:id="@+id/btImage"
+                     android:layout_width="match_parent"
+                     android:layout_height="200dp"
+                     android:layout_margin="2dp"
+                     srcBitmap="@{productDetailsViewModel.product.image}"
+                     android:background="@drawable/sp_rounded_rectangle"
+                     android:elevation="@dimen/cardview_default_elevation"
+                     android:scaleType="centerCrop" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"

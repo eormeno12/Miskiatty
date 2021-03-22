@@ -24,8 +24,9 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_details)
         setUpBinding()
+        setContentView(binding.root)
+
         setUpToolbar()
     }
 
