@@ -21,14 +21,13 @@ class ProductCustomAdapter(): RecyclerView.Adapter<ProductCustomAdapter.ViewHold
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.set
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        
+    }
     override fun getItemCount(): Int = products?.size ?: 0
 
     class ViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
         fun setDataCard(){
-            binding.setVariable(BR.)
         }
 
     }
