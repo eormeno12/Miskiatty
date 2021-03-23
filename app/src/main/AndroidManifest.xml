@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.listen.to.miskiatty">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Miskiatty">
-        <activity android:name=".view.ui.login.SetPinLoginActivity"></activity>
+        <activity android:name=".view.ui.login.SetPinLoginActivity" />
         <activity android:name=".view.ui.login.PinLoginActivity" />
         <activity android:name=".view.ui.orders.OrderAddSummaryActivity" />
         <activity android:name=".view.ui.orders.OrderAddActiviy" />

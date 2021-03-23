@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.listen.to.miskiatty.view.ui.statistics.StatisticsFragment"
-        android:label="StatisticsFragment" >
+        android:label="Estadística">
         <action
             android:id="@+id/action_statisticsFragment_to_statisticDetailsActivity"
             app:destination="@id/statisticDetailsActivity" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.listen.to.miskiatty.view.ui.products.ProductsFragment"
-        android:label="ProductsFragment" >
+        android:label="Productos">
         <action
             android:id="@+id/action_productsFragment_to_productAddActivity"
             app:destination="@id/productAddActivity" />
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.listen.to.miskiatty.view.ui.orders.OrdersFragment"
-        android:label="OrdersFragment" >
+        android:label="Pedidos">
         <action
             android:id="@+id/action_ordersFragment_to_orderAddActiviy"
             app:destination="@id/orderAddActiviy" />
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/clientsFragment"
         android:name="com.listen.to.miskiatty.view.ui.clients.ClientsFragment"
-        android:label="ClientsFragment" >
+        android:label="Clientes">
         <action
             android:id="@+id/action_clientsFragment_to_clientsAddActivity"
             app:destination="@id/clientsAddActivity" />

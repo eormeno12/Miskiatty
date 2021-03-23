@@ -1,9 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ui.products.ProductDetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="productDetailsViewModel"
+            type="com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ui.products.ProductAddActivity"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_product_details"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:title="Producto"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+                app:menu="@menu/menu_product_details" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                 <androidx.appcompat.widget.AppCompatImageView
+                     android:id="@+id/btImage"
+                     android:layout_width="match_parent"
+                     android:layout_height="200dp"
+                     android:layout_margin="2dp"
+                     srcBitmap="@{productDetailsViewModel.product.image}"
+                     android:background="@drawable/sp_rounded_rectangle"
+                     android:elevation="@dimen/cardview_default_elevation"
+                     android:scaleType="centerCrop" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Producto"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:gravity="start|center"
+                    android:layout_marginTop="24sp"
+                    android:layout_marginStart="16sp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_cake_24"
+                    app:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="16dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{productDetailsViewModel.product.name}"
+                    android:textSize="20sp"
+                    android:layout_marginStart="56dp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Precio"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:gravity="start|center"
+                            android:layout_marginStart="16sp"
+                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawablePadding="16dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Costo"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="14sp"
+                            android:gravity="start|center"
+                            android:layout_marginStart="16sp"
+                            app:drawableLeftCompat="@drawable/ic_baseline_dollar_24"
+                            app:drawableTint="@color/colorPrimary"
+                            android:drawablePadding="16dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text='@{"S/" + productDetailsViewModel.product.price}'
+                            android:textSize="20sp"
+                            android:layout_marginStart="56dp"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text='@{"S/" + productDetailsViewModel.product.cost}'
+                            android:textSize="20sp"
+                            android:layout_marginStart="56dp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Receta"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:gravity="start|center"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_list_24"
+                    app:drawableTint="@color/colorPrimary"
+                    android:drawablePadding="16dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="56sp"
+                    tools:text="@{productDetailsViewModel.product.recipe}"
+                    android:textSize="20sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
