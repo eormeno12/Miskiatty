@@ -6,48 +6,48 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.ProductViewModel
+import com.listen.to.miskiatty.model.database.Client
+import com.listen.to.miskiatty.viewmodel.ClientViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ProductCustomAdapter(var productViewModel: ProductViewModel,
+class AdapterCustomClients(var clientViewModel: ClientViewModel,
                            var resource: Int,
-                           var adapterCustomListener: AdapterCustomListener):
-        RecyclerView.Adapter<ProductCustomAdapter.ViewHolder>() {
+                           var clientsListener: AdapterCustomListener):
+        RecyclerView.Adapter<AdapterCustomClients.ViewHolder>() {
 
-    private var productsList = ArrayList<Product>()
-    private var copyProductList: ArrayList<Product>? = null
+    private var clientsList = ArrayList<Client>()
+    private var copyClientsList: ArrayList<Client>? = null
 
-    fun setProductsList(products: List<Product>){
-        productsList.clear()
-        productsList.addAll(products)
-        copyProductList = ArrayList(productsList)
+    fun setClientsList(products: List<Client>){
+        clientsList.clear()
+        clientsList.addAll(products)
+        copyClientsList = ArrayList(clientsList)
         notifyDataSetChanged()
     }
 
-    fun getProductList(): List<Product> = productsList
+    fun getClientsList(): List<Client> = clientsList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: ViewDataBinding = DataBindingUtil.inflate(
-            layoutInflater,
-            viewType,
-            parent,
-            false)
+                layoutInflater,
+                viewType,
+                parent,
+                false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            adapterCustomListener.onClickListener(position)
+            clientsListener.onClickListener(position)
         }
 
-        holder.setDataCard(productViewModel, position)
+        holder.setDataCard(clientViewModel, position)
     }
 
     override fun getItemCount(): Int {
-        return productsList.count()
+        return clientsList.count()
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -59,21 +59,21 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
     }
 
     fun search(str: String){
-        if(copyProductList != null){
-            productsList.clear()
+        if(copyClientsList != null){
+            clientsList.clear()
 
             if(str.isEmpty()) {
-                productsList = ArrayList(copyProductList)
+                clientsList = ArrayList(copyClientsList)
                 notifyDataSetChanged()
                 return
             }
 
             val search = str.toLowerCase(Locale.ROOT)
 
-            for(product in copyProductList!!){
+            for(product in copyClientsList!!){
                 val name = product.name.toLowerCase(Locale.ROOT)
 
-                if(name.contains(search)) productsList.add(product)
+                if(name.contains(search)) clientsList.add(product)
             }
         }
 
@@ -87,8 +87,8 @@ class ProductCustomAdapter(var productViewModel: ProductViewModel,
             this.binding = binding
         }
 
-        fun setDataCard(productViewModel: ProductViewModel, position: Int){
-            binding?.setVariable(BR.productViewModel, productViewModel)
+        fun setDataCard(clientViewModel: ClientViewModel, position: Int){
+            binding?.setVariable(BR.clientViewModel, clientViewModel)
             binding?.setVariable(BR.position, position)
             binding?.executePendingBindings()
         }

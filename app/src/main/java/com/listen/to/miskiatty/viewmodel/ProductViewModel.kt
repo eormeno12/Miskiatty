@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.adapters.ProductCustomAdapter
-import com.listen.to.miskiatty.model.adapters.ProductsListener
+import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.repository.products.ProductObservable
 
 class ProductViewModel: ViewModel() {
