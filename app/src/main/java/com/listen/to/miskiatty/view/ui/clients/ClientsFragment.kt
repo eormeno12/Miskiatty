@@ -49,7 +49,7 @@ class ClientsFragment : Fragment() {
         binding = DataBindingUtil
                 .inflate(
                         inflater,
-                        R.layout.fragment_products,
+                        R.layout.fragment_clients,
                         container,
                         false
                 )

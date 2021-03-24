@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
+import com.listen.to.miskiatty.model.adapters.AdapterCustomClients
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.adapters.AdapterCustomProducts
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
@@ -17,21 +18,21 @@ import com.listen.to.miskiatty.model.repository.products.ProductObservable
 class ProductViewModel: ViewModel() {
 
     private val productObservable: ProductObservable = ProductObservable()
-    var productsAdapter: ProductCustomAdapter? = null
+    var productsAdapter: AdapterCustomProducts? = null
     private var _productClicked = MutableLiveData<Product>()
     val productClicked: LiveData<Product> = _productClicked
 
-    fun getRecyclerProductsAdapter(): ProductCustomAdapter?{
+    fun getRecyclerProductsAdapter(): AdapterCustomProducts?{
         return productsAdapter
     }
 
     fun setRecyclerProductsAdapter(){
-        productsAdapter = ProductCustomAdapter(this, R.layout.template_product,
-                object : ProductsListener{
-                    override fun onClickListenerProduct(position: Int) {
+        productsAdapter = AdapterCustomProducts(this, R.layout.template_product,
+                object : AdapterCustomListener{
+                    override fun onClickListener(position: Int) {
                         _productClicked.value = getProductAt(position)
                     }
-        })
+                })
     }
 
     fun callProducts(appContext: Context, lifecycle: Lifecycle){
