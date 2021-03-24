@@ -42,10 +42,12 @@ class ProductAddViewModel: ViewModel(){
         val activity: Activity = context as Activity
         val externalStorageService = ExternalStorageService(activity)
 
-        if(externalStorageService.validatePermission()){
-            openGallery(activity)
-        }else{
-            externalStorageService.askPermission()
+        with(externalStorageService){
+            if(validatePermission()){
+                openGallery(activity)
+            }else{
+                askPermission()
+            }
         }
 
     }
