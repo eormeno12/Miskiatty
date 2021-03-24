@@ -2,27 +2,29 @@ package com.listen.to.miskiatty.model.permissions
 
 import android.app.Activity
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
-class ExternalStorageService(val activity: Activity) {
+class PermissionsBase(private val activity: Activity,
+                      private val permission: String,
+                      private val REQUEST_KEY: Int){
 
-    private val readExternalStoragePermission = android.Manifest.permission.READ_EXTERNAL_STORAGE
-    private val REQUEST_EXTERNAL_STORAGE = 100
+    companion object{
+        val REQUEST_KEY_READ_EXTERNAL_STORAGE = 100
+        val REQUEST_KEY_READ_CONTACTS = 101
+    }
 
     fun validatePermission(): Boolean{
 
         return ActivityCompat.checkSelfPermission(
                 activity.applicationContext,
-                readExternalStoragePermission
+                permission
         ) == PackageManager.PERMISSION_GRANTED
     }
 
     fun askPermission(){
         val isExtraContextNeeded = ActivityCompat.shouldShowRequestPermissionRationale(
                 activity,
-                readExternalStoragePermission)
+                permission)
 
         if(isExtraContextNeeded){
             requestPermission()
@@ -32,6 +34,6 @@ class ExternalStorageService(val activity: Activity) {
     }
 
     private fun requestPermission(){
-        activity.requestPermissions(arrayOf(readExternalStoragePermission), REQUEST_EXTERNAL_STORAGE)
+        activity.requestPermissions(arrayOf(permission), REQUEST_KEY)
     }
 }
