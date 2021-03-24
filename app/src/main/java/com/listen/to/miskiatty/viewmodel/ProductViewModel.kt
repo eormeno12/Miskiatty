@@ -1,6 +1,8 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -8,12 +10,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomClients
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.adapters.AdapterCustomProducts
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.repository.products.ProductObservable
+import com.listen.to.miskiatty.view.ui.products.ProductAddActivity
 
 class ProductViewModel: ViewModel() {
 
@@ -35,14 +39,14 @@ class ProductViewModel: ViewModel() {
                 })
     }
 
-    fun callProducts(appContext: Context, lifecycle: Lifecycle){
+    fun callProducts(appContext: Context, lifecycle: Lifecycle) {
         productObservable.callProductsROOM(appContext, lifecycle)
     }
 
     fun getProducts(): MutableLiveData<List<Product>> = productObservable.getProducts()
 
-    fun setProductsInRecyclerAdapter(products: List<Product>){
-        if(productsAdapter != null){
+    fun setProductsInRecyclerAdapter(products: List<Product>) {
+        if (productsAdapter != null) {
             productsAdapter?.setProductsList(products)
             productsAdapter?.notifyDataSetChanged()
         }
@@ -51,7 +55,11 @@ class ProductViewModel: ViewModel() {
     fun getProductAt(position: Int): Product? =
             productsAdapter?.getProductList()?.get(position)
 
-    fun searchProduct(str: String){
+    fun searchProduct(str: String) {
         productsAdapter?.search(str)
     }
+
+    fun onClickAddProduct(context: Context) =
+            context.startActivity(Intent(context.applicationContext, ProductAddActivity::class.java))
+
 }

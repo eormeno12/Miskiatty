@@ -62,16 +62,6 @@ class ProductsFragment : Fragment() {
         binding.productViewModel = productViewModel
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.add_product -> {
-                findNavController().navigate(R.id.productAddActivity)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, infater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.menu_products, menu)
 
