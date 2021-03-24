@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.model.adapters.ProductCustomAdapter
+import com.listen.to.miskiatty.model.adapters.AdapterCustomProducts
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.repository.products.ProductObservable
 
@@ -53,9 +53,4 @@ class ProductViewModel: ViewModel() {
     fun searchProduct(str: String){
         productsAdapter?.search(str)
     }
-}
-
-@BindingAdapter("srcBitmap")
-fun loadImageBitmap(imageView: ImageView, bitmap: Bitmap?){
-    bitmap?.let { imageView.setImageBitmap(it) }
 }

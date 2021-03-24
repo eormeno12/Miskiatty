@@ -32,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:setAdapter="@{}"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            <!--app:setAdapter="@{}"-->
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/floating_action_button"

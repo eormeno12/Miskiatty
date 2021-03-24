@@ -4,7 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="position"
+            type="Integer" />
 
+        <variable
+            name="clientViewModel"
+            type="com.listen.to.miskiatty.viewmodel.ClientViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -31,7 +37,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     tools:src="@drawable/ic_baseline_person_24"
-                    srcBitmap="@{ }"
+                    srcBitmap="@{clientViewModel.getClientAt(position).image}"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -47,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center|start"
                 tools:text="Cliente"
-                android:text="@{}"
+                android:text="@{clientViewModel.getClientAt(position).name}"
                 android:textSize="20sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

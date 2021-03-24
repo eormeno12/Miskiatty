@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.database
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
@@ -8,7 +9,8 @@ import java.io.Serializable
 data class Client (
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
+        val image: Bitmap,
         val name: String,
         val number: Int,
         val address: String,
-        val orders: ArrayList<Order>) : Serializable
+        val orders: List<Order>) : Serializable

@@ -1,15 +1,13 @@
 package com.listen.to.miskiatty.model.database
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
+@Dao
 interface ClientDao {
     @Query("SELECT * FROM Client")
     suspend fun getAllClients(): List<Client>
 
-    @Query("SELECT * FROM Client ORDER BY COUNT(orders) DESC")
+    @Query("SELECT * FROM Client")
     suspend fun getTopClients(): List<Client>
 
     @Query("SELECT * FROM Client WHERE id = :id")

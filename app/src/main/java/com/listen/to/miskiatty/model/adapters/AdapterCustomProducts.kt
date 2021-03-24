@@ -11,10 +11,10 @@ import com.listen.to.miskiatty.viewmodel.ProductViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ProductCustomAdapter(var productViewModel: ProductViewModel,
-                           var resource: Int,
-                           var adapterCustomListener: AdapterCustomListener):
-        RecyclerView.Adapter<ProductCustomAdapter.ViewHolder>() {
+class AdapterCustomProducts(var productViewModel: ProductViewModel,
+                            var resource: Int,
+                            var adapterCustomListener: AdapterCustomListener):
+        RecyclerView.Adapter<AdapterCustomProducts.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
     private var copyProductList: ArrayList<Product>? = null
