@@ -20,8 +20,6 @@ class AdapterCustomContacts (var clientsAddViewModel: ClientsAddViewModel,
     private var contactsList = ArrayList<Contact>()
     private var copyContactsList: ArrayList<Contact>? = null
 
-    private var checkedContactsList = ArrayList<Contact>()
-
     fun setContactsList(contacts: List<Contact>){
         contactsList.clear()
         contactsList.addAll(contacts)
@@ -44,21 +42,8 @@ class AdapterCustomContacts (var clientsAddViewModel: ClientsAddViewModel,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder){
             setData(clientsAddViewModel, position)
-
-            setUpCheckBox(contactsList, position, object : AdapterCustomContactsListener {
-                override fun onClickListenerCheckBox(contact: Contact) {
-
-                    if (checkedContactsList.contains(contact))
-                        checkedContactsList.remove(contact)
-                    else
-                        checkedContactsList.add(contact)
-                }
-
-            })
         }
     }
-
-    fun getCheckedContactsList(): List<Contact> = checkedContactsList
 
     override fun getItemCount(): Int {
         return contactsList.count()
@@ -106,17 +91,6 @@ class AdapterCustomContacts (var clientsAddViewModel: ClientsAddViewModel,
             binding?.setVariable(BR.clientsAddViewModel, clientsAddViewModel)
             binding?.setVariable(BR.position, position)
             binding?.executePendingBindings()
-        }
-        
-        fun setUpCheckBox(contacts: List<Contact>, position: Int,
-                          listener: AdapterCustomContactsListener){
-
-            val templateAddClientsBinding = binding as TemplateClientAddBinding
-            val checkbox = templateAddClientsBinding.checkboxContact
-
-            checkbox.setOnClickListener {
-                listener.onClickListenerCheckBox(contacts[position])
-            }
         }
     }
 }

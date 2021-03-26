@@ -16,12 +16,23 @@ class ClientsAddViewModel: ViewModel(){
     private var contactsAdapter: AdapterCustomContacts? = null
     private var clientsAddRepository = ClientsAddRepositoryImpl()
 
+    private var checkedContactsList = ArrayList<Contact>()
+
     fun callContacts(appContext: Context, lifecycle: Lifecycle) =
             clientsAddRepository.callContacts(appContext, lifecycle)
 
     fun getContacts(): MutableLiveData<List<Contact>> = clientsAddRepository.getContacts()
 
-    fun getCheckedContacts(): List<Contact>? = contactsAdapter?.getCheckedContactsList()
+    fun getCheckedContacts(): List<Contact> = checkedContactsList
+
+    fun onClickListenerCheckBox(position: Int){
+        val contact = getContactAt(position)
+
+        if (checkedContactsList.contains(contact))
+            checkedContactsList.remove(contact)
+        else
+            contact?.let { checkedContactsList.add(it) }
+    }
 
     fun getRecyclerContactsAdapter(): AdapterCustomContacts? = contactsAdapter
 
