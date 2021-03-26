@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomContacts
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.repository.clients.ClientsAddRepositoryImpl
 import com.listen.to.miskiatty.model.repository.clients.Contact
 
@@ -49,6 +50,9 @@ class ClientsAddViewModel: ViewModel(){
 
     fun getContactAt(position: Int): Contact? =
             contactsAdapter?.getContactsList()?.get(position)
+
+    fun addClientsRoom(context: Context, lifecycle: Lifecycle, clients: List<Client>) =
+            clientsAddRepository.insertClientsROOM(context, lifecycle, clients)
 
     fun searchContact(str: String){
         contactsAdapter?.search(str)

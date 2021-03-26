@@ -9,8 +9,8 @@ import java.io.Serializable
 data class Client (
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
-        val image: Bitmap?,
+        val image: Bitmap,
         val name: String,
-        val phone: Int,
-        val address: String?,
-        val orders: List<Order>?) : Serializable
+        val phone: String,
+        val address: String,
+        val orders: List<Order>) : Serializable

@@ -5,6 +5,8 @@ import android.provider.ContactsContract
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.coroutineScope
+import com.listen.to.miskiatty.model.database.Client
+import com.listen.to.miskiatty.model.database.room.RoomDb
 import kotlinx.coroutines.launch
 
 class ClientsAddRepositoryImpl: ClientsAddRepository{
@@ -36,5 +38,13 @@ class ClientsAddRepositoryImpl: ClientsAddRepository{
     }
 
     override fun getContacts(): MutableLiveData<List<Contact>> = mutableContacts
+
+    override fun insertClientsROOM(context: Context, lifecycle: Lifecycle, clients: List<Client>) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch{
+            db.clientDao().addClient(clients)
+        }
+    }
 
 }

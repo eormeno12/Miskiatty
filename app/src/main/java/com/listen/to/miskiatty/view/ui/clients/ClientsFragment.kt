@@ -90,9 +90,16 @@ class ClientsFragment : Fragment() {
 
     private fun setUpListsUpdate() {
         clientViewModel?.getTopClients()?.observe(viewLifecycleOwner, { clients: List<Client> ->
+            var topClients = ArrayList<Client>()
+
+            if(clients.count() > 3)
+                topClients = arrayListOf(clients[0], clients[1], clients[2])
+            else
+                topClients.addAll(clients)
+
             clientViewModel?.setClientsInRecyclerAdapter(
                     clientViewModel?.getRecyclerTopClientsAdapter(),
-                    clients)
+                    topClients)
         })
 
         clientViewModel?.getClients()?.observe(viewLifecycleOwner, { clients: List<Client> ->
