@@ -1,7 +1,11 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +14,7 @@ import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomClients
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.database.Client
+import com.listen.to.miskiatty.model.permissions.ReadContactsService
 import com.listen.to.miskiatty.model.repository.clients.ClientRepositoryImpl
 import com.listen.to.miskiatty.view.ui.clients.ClientsAddActivity
 import com.listen.to.miskiatty.view.ui.clients.ClientsFragment
@@ -84,6 +89,16 @@ class ClientViewModel: ViewModel() {
         clientsAdapter?.search(str)
     }
 
-    fun onClickAddClients(context: Context) =
-            context.startActivity(Intent(context, ClientsAddActivity::class.java))
+    fun onClickAddClients(context: Context) {
+        val activity = context as Activity
+        val readContactsService = ReadContactsService(activity)
+
+        with(readContactsService){
+            if(validatePermission()){
+                context.startActivity(Intent(context, ClientsAddActivity::class.java))
+            }else{
+                askPermission()
+            }
+        }
+    }
 }

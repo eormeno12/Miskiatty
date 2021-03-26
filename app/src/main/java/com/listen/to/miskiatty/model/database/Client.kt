@@ -11,6 +11,6 @@ data class Client (
         val id: Int = 0,
         val image: Bitmap,
         val name: String,
-        val number: Int,
+        val phone: String,
         val address: String,
         val orders: List<Order>) : Serializable
