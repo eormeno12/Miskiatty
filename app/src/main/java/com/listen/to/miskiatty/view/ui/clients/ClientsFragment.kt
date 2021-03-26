@@ -69,7 +69,7 @@ class ClientsFragment : Fragment() {
         val searchView = searchItem?.actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-        searchView.queryHint = "Buscar cliente"
+        searchView.queryHint = "Buscar Cliente"
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
