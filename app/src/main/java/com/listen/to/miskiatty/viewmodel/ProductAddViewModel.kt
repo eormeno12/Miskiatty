@@ -32,8 +32,8 @@ class ProductAddViewModel: ViewModel(){
     fun intentHasData(activity: AppCompatActivity) =
             productAddObservable.verifyIntentData(activity)
 
-    fun callProduct(activity: AppCompatActivity) =
-            productAddObservable.callProductExtra(activity)
+    fun callProduct(activity: AppCompatActivity, lifecycle: Lifecycle) =
+            productAddObservable.callProductExtra(activity, lifecycle)
 
     fun getProduct(): LiveData<Product> =
             productAddObservable.getProduct()

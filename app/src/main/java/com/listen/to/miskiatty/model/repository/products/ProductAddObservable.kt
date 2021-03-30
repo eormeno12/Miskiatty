@@ -15,8 +15,8 @@ class ProductAddObservable: BaseObservable(){
     fun verifyIntentData(activity: AppCompatActivity) =
             productAddRepository.verifyIntentData(activity)
 
-    fun callProductExtra(activity: AppCompatActivity) =
-            productAddRepository.callProductExtra(activity)
+    fun callProductExtra(activity: AppCompatActivity, lifecycle: Lifecycle) =
+            productAddRepository.callProductExtra(activity, lifecycle)
 
     fun getProduct(): MutableLiveData<Product> =
             productAddRepository.getProduct()

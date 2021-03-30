@@ -13,20 +13,24 @@ import java.io.Serializable
 class ProductAddRepositoryImpl: ProductAddRepository {
 
     private val product = MutableLiveData<Product>()
-    private var productDetailsSerializable: Serializable? = null
+    private var productDetailsID: Int = 0
 
 
     override fun verifyIntentData(activity: AppCompatActivity): Boolean {
-        productDetailsSerializable = activity.intent
-                .getSerializableExtra(
-                        "com.listen.to.miskiatty.view.ui.products.DETAILS")
+        productDetailsID = activity.intent
+                .getIntExtra(
+                        "com.listen.to.miskiatty.view.ui.products.ID", 0)
 
-        return (productDetailsSerializable != null)
+        return (productDetailsID != 0)
     }
 
-    override fun callProductExtra(activity: AppCompatActivity) {
-        val productDetails: Product = productDetailsSerializable as Product
-        product.value = productDetails
+    override fun callProductExtra(activity: AppCompatActivity, lifecycle: Lifecycle) {
+        val db = RoomDb.getDatabase(activity.applicationContext)
+
+        lifecycle.coroutineScope.launch {
+            val productRoom = db.productDao().getProductById(productDetailsID)
+            product.value = productRoom
+        }
     }
 
     override fun getProduct(): MutableLiveData<Product> = product
