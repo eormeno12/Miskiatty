@@ -8,10 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityClientDetailsBinding
-import com.listen.to.miskiatty.databinding.ActivityProductDetailsBinding
-import com.listen.to.miskiatty.view.ui.products.ProductAddActivity
 import com.listen.to.miskiatty.viewmodel.ClientDetailsViewModel
-import com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel
 
 class ClientDetailsActivity : AppCompatActivity() {
     private var clientDetailsViewModel: ClientDetailsViewModel? = null
@@ -62,10 +59,9 @@ class ClientDetailsActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.edit -> {
-                    startActivity(Intent(this, ProductAddActivity::class.java).apply {
-                        val client = clientDetailsViewModel?.getClient()?.value
-                        putExtra("com.listen.to.miskiatty.view.ui.products.DETAILS",
-                                client)
+                    startActivity(Intent(this, ClientEditActivity::class.java).apply {
+                        val id = clientDetailsViewModel?.getClient()?.value?.id
+                        putExtra("com.listen.to.miskiatty.view.ui.clients.ID", id)
                     })
 
                     true

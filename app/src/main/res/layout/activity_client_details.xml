@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Número del Cliente"
-                    android:text="@{clientDetailsViewModel.client.name}"
+                    android:text='@{clientDetailsViewModel.client.phone}'
                     android:gravity="center"
                     android:textSize="18sp" />
 
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Dirección del Cliente"
-                    android:text="@{clientDetailsViewModel.client.name}"
+                    android:text='@{clientDetailsViewModel.client.address ?? "Dirección"}'
                     android:gravity="center"
                     android:textSize="16sp" />
 
@@ -91,8 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:layout_marginStart="8dp"
-                    tools:text="Pedidos"
-                    android:text="@{clientDetailsViewModel.client.name}"
+                    android:text="Pedidos"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
