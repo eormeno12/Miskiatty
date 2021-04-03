@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
+    <data>
+        <variable
+            name="clientEditViewModel"
+            type="com.listen.to.miskiatty.viewmodel.ClientEditViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="560dp"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="32dp"
-        android:elevation="@dimen/cardview_default_elevation"
-        app:cardCornerRadius="8dp">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -25,14 +25,14 @@
                 android:elevation="8dp">
 
                 <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar_product_details"
+                    android:id="@+id/toolbar_client_edit"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/white"
                     app:title="Información"
                     app:navigationIcon="@drawable/ic_baseline_close_24"
                     style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
-                    app:menu="@menu/menu_clients_add_info" />
+                    app:menu="@menu/menu_clients_edit" />
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.cardview.widget.CardView
@@ -49,12 +49,14 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     tools:src="@drawable/ic_baseline_person_24"
-                    srcBitmap="@{}"
+                    android:onClick="@{() -> clientEditViewModel.onClickPickImage(context)}"
+                    srcBitmap="@{clientEditViewModel.client.image}"
                     android:elevation="@dimen/cardview_default_elevation"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -69,9 +71,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:lines="1" />
+                    android:lines="1"
+                    android:text="@={clientEditViewModel.name}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -84,11 +89,14 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={clientEditViewModel.phone}"
                     android:inputType="phone"
                     android:lines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -101,6 +109,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={clientEditViewModel.address}"
                     android:inputType="text"
                     android:lines="1" />
 
@@ -108,6 +117,5 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </com.google.android.material.card.MaterialCardView>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

@@ -117,12 +117,11 @@ class ClientsFragment : Fragment() {
     }
 
     private fun setUpOnClickProduct() {
-        fun startActivityWithExtra(extra: Int)= Intent(
-                this.activity?.applicationContext,
-                ClientDetailsActivity::class.java)
-                .apply {
-                    putExtra("com.listen.to.miskiatty.view.ui.products.ID", extra)
-                }
+        fun startActivityWithExtra(extra: Int)= startActivity(
+                Intent(this.activity?.applicationContext,
+                        ClientDetailsActivity::class.java).apply {
+                    putExtra("com.listen.to.miskiatty.view.ui.clients.ID", extra)}
+        )
 
         clientViewModel?.topClientClicked?.observe(viewLifecycleOwner, {
            startActivityWithExtra(it.id)

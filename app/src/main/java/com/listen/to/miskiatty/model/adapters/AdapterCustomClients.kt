@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
+import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.viewmodel.ClientViewModel
 import java.util.*
@@ -13,11 +14,12 @@ import kotlin.collections.ArrayList
 
 class AdapterCustomClients(var clientViewModel: ClientViewModel,
                            var resource: Int,
-                           var clientsListener: AdapterCustomListener):
+                           var clientsListener: AdapterCustomListener, val withBgColor: Boolean):
         RecyclerView.Adapter<AdapterCustomClients.ViewHolder>() {
 
     private var clientsList = ArrayList<Client>()
     private var copyClientsList: ArrayList<Client>? = null
+    private val colors: ArrayList<Int> = ArrayList()
 
     fun setClientsList(products: List<Client>){
         clientsList.clear()
@@ -35,6 +37,11 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
                 viewType,
                 parent,
                 false)
+
+        colors.add(R.color.colorPrimaryDark)
+        colors.add(R.color.colorPrimary)
+        colors.add(R.color.colorAccent)
+
         return ViewHolder(binding)
     }
 
@@ -43,7 +50,10 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
             clientsListener.onClickListener(position)
         }
 
-        holder.setDataCard(clientViewModel, position)
+        if(withBgColor)
+            holder.setDataCardWithBg(clientViewModel, position, colors[position])
+        else
+            holder.setDataCard(clientViewModel, position)
     }
 
     override fun getItemCount(): Int {
@@ -93,5 +103,11 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
             binding?.executePendingBindings()
         }
 
+        fun setDataCardWithBg(clientViewModel: ClientViewModel, position: Int, color: Int){
+            binding?.setVariable(BR.clientViewModel, clientViewModel)
+            binding?.setVariable(BR.position, position)
+            binding?.setVariable(BR.bgColor, binding?.root?.context?.applicationContext?.resources?.getColor(color))
+            binding?.executePendingBindings()
+        }
     }
 }

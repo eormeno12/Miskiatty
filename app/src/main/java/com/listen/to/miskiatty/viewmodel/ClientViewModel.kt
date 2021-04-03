@@ -43,7 +43,7 @@ class ClientViewModel: ViewModel() {
                     override fun onClickListener(position: Int) {
                         _clientClicked.value = getClientAt(position)
                     }
-                })
+                }, false)
     }
 
     fun callClients(appContext: Context, lifecycle: Lifecycle) =
@@ -66,7 +66,7 @@ class ClientViewModel: ViewModel() {
                     override fun onClickListener(position: Int) {
                         _topClientClicked.value = getTopClientAt(position)
                     }
-                })
+                }, true)
     }
 
     fun callTopClients(appContext: Context, lifecycle: Lifecycle) =

@@ -20,6 +20,7 @@
         <activity android:name=".view.ui.products.ProductAddActivity" />
         <activity android:name=".view.ui.clients.ClientsAddActivity" />
         <activity android:name=".view.ui.clients.ClientDetailsActivity" />
+        <activity android:name=".view.ui.clients.ClientEditActivity" />
         <activity android:name=".view.ui.statistics.StatisticDetailsActivity" />
         <activity android:name=".view.ui.login.LoginActivity" />
         <activity
