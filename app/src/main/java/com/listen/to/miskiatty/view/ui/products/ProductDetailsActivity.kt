@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityProductDetailsBinding
 import com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel
@@ -61,11 +62,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             when(menu.itemId){
                 R.id.edit -> {
                     startActivity(Intent(this, ProductAddActivity::class.java).apply {
-                        val product = productDetailsViewModel?.getProduct()?.value
-                        putExtra("com.listen.to.miskiatty.view.ui.products.DETAILS",
-                                product)
+                        putExtra("com.listen.to.miskiatty.view.ui.products.ID",
+                                productDetailsViewModel?.getProduct()?.value?.id)
                     })
-
                     true
                 }
 

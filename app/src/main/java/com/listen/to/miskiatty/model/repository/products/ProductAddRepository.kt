@@ -8,7 +8,7 @@ import com.listen.to.miskiatty.model.database.Product
 
 interface ProductAddRepository {
     fun verifyIntentData(activity: AppCompatActivity): Boolean
-    fun callProductExtra(activity: AppCompatActivity)
+    fun callProductExtra(activity: AppCompatActivity, lifecycle: Lifecycle)
     fun getProduct(): MutableLiveData<Product>
     fun insertProductRoom(context: Context, lifecycle: Lifecycle, product: Product)
     fun updateProductRoom(context: Context, lifecycle: Lifecycle, product: Product)

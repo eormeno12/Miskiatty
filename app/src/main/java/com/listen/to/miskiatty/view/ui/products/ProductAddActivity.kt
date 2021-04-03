@@ -31,6 +31,7 @@ class ProductAddActivity : AppCompatActivity() {
     private var navigationComesFromProductDetails: Boolean = false
     private lateinit var binding: ActivityProductAddBinding
     private lateinit var toolbar: Toolbar
+    private var productId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +39,25 @@ class ProductAddActivity : AppCompatActivity() {
 
         setupBinding()
         setUpToolbar()
-    }
 
-    override fun onStart() {
-        super.onStart()
         navigationComesFromProductDetails =
                 productAddViewModel?.intentHasData(this) == true
 
         if (navigationComesFromProductDetails){
-            productAddViewModel?.callProduct(this)
+            productAddViewModel?.callProduct(this, lifecycle)
 
             productAddViewModel?.getProduct()?.observe(this, { product ->
+                productId = product.id
                 binding.product.editText?.setText(product.name)
                 binding.price.editText?.setText(product.price.toString())
                 binding.cost.editText?.setText(product.cost.toString())
                 binding.recipe.editText?.setText(product.recipe)
+
+                imageBitmap = product.image
+                binding.btImage.apply {
+                    setImageBitmap(imageBitmap)
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                }
             })
         }
     }
@@ -101,17 +106,14 @@ class ProductAddActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.confirm_product -> {
-
-                    if (navigationComesFromProductDetails){
+                    if (navigationComesFromProductDetails)
                         productAddViewModel?.updateProductRoom(applicationContext,
                                 lifecycle,
-                                buildProduct())
-
-                    } else {
+                                buildProductForUpdate())
+                    else
                         productAddViewModel?.addProductRoom(applicationContext,
                                 lifecycle,
                                 buildProduct())
-                    }
 
                     onBackPressed()
                     true
@@ -125,6 +127,17 @@ class ProductAddActivity : AppCompatActivity() {
 
     private fun buildProduct(): Product{
         return Product(
+                image = imageBitmap!!,
+                name = binding.product.editText?.text.toString(),
+                price = binding.price.editText?.text.toString().toFloat(),
+                cost = binding.cost.editText?.text.toString().toFloat(),
+                recipe = binding.recipe.editText?.text.toString()
+        )
+    }
+
+    private fun buildProductForUpdate(): Product{
+        return Product(
+                id = productId!!,
                 image = imageBitmap!!,
                 name = binding.product.editText?.text.toString(),
                 price = binding.price.editText?.text.toString().toFloat(),

@@ -24,8 +24,8 @@ class ProductAddViewModel: ViewModel(){
     fun intentHasData(activity: AppCompatActivity) =
             productAddObservable.verifyIntentData(activity)
 
-    fun callProduct(activity: AppCompatActivity) =
-            productAddObservable.callProductExtra(activity)
+    fun callProduct(activity: AppCompatActivity, lifecycle: Lifecycle) =
+            productAddObservable.callProductExtra(activity, lifecycle)
 
     fun getProduct(): LiveData<Product> =
             productAddObservable.getProduct()
@@ -34,10 +34,12 @@ class ProductAddViewModel: ViewModel(){
         val activity: Activity = context as Activity
         val externalStorageService = ReadExternalStorageService(activity)
 
-        if(externalStorageService.validatePermission()){
-            openGallery(activity)
-        }else{
-            externalStorageService.askPermission()
+        with(externalStorageService){
+            if(validatePermission()){
+                openGallery(activity)
+            }else{
+                askPermission()
+            }
         }
 
     }
