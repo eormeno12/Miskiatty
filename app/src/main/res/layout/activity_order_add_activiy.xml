@@ -143,7 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Productos"
-                        android:text="@{clientDetailsViewModel.client.name}"
+                        android:text="@{}"
                         android:textSize="20sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -170,7 +170,7 @@
             android:src="@drawable/ic_baseline_add_24"
             android:text="Siguiente"
             android:contentDescription="Añadir Clientes"
-            android:onClick="@{() -> }" />
+            android:onClick="@{}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

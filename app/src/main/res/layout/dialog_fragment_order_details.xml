@@ -79,7 +79,7 @@
                             android:layout_height="wrap_content"
                             tools:text="Estado"
                             android:textStyle="bold"
-                            android:text="@{clientDetailsViewModel.client.name}"
+                            android:text="@{}"
                             android:textSize="20sp" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,7 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="position"
+            type="Integer" />
 
+        <variable
+            name="orderViewModel"
+            type="com.listen.to.miskiatty.viewmodel.OrderViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -31,7 +37,7 @@
                     tools:text="Pedido de Ernesto"
                     android:maxLines="2"
                     android:gravity="center"
-                    android:text="@{}"
+                    android:text='@{"Pedido de " + orderViewModel.getOrderAt(position).client.name}'
                     android:textSize="26sp" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -40,14 +46,13 @@
                     tools:text="27/03/20"
                     android:maxLines="1"
                     android:gravity="center"
-                    android:text="@{}"
+                    android:text="@{orderViewModel.getOrderAt(position).deliveryDate.toString()}"
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Resumen"
-                    android:text="@{clientDetailsViewModel.client.name}"
+                    android:text="Resumen"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -55,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="5"
                     tools:text=" - \n - \n - \n -\n -"
-                    android:text="@{}"
+                    android:text="@{orderViewModel.getProductList(position)}"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -65,7 +70,7 @@
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:gravity="end"
-                    android:text="@{}"
+                    android:text='@{"S/" + orderViewModel.getOrderAt(position).totalPrice}'
                     android:textSize="28sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

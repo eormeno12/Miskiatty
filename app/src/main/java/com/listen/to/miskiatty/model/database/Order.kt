@@ -11,6 +11,7 @@ data class Order(
         val id: Int = 0,
         val client: Client,
         val address: String,
-        val deliveryDate: DateFormat,
+        val deliveryDate: String,
         val state: String,
-        val products: ArrayList<Product>) : Serializable
+        val products: List<Product>,
+        val totalPrice: Int) : Serializable
