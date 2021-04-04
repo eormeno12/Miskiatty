@@ -14,4 +14,5 @@ data class Order(
         val deliveryDate: String,
         val state: String,
         val products: List<Product>,
-        val totalPrice: Int) : Serializable
+        val productsQuantity: List<Int>,
+        val totalPrice: Float) : Serializable

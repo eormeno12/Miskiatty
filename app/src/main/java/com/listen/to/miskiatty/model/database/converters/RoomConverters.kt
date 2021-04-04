@@ -3,16 +3,12 @@ package com.listen.to.miskiatty.model.database.converters
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 import java.io.ByteArrayOutputStream
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RoomConverters {
 
@@ -49,6 +45,7 @@ class RoomConverters {
     fun fromProductsListToJson(products: List<Product>): String{
         val gson = Gson()
         val type = object: TypeToken<List<Product>>() {}.type
+
         return gson.toJson(products, type)
     }
 
@@ -56,6 +53,24 @@ class RoomConverters {
     fun fromJsonToProductsList(json: String): List<Product>{
         val gson = Gson()
         val type = object: TypeToken<List<Product>>() {}.type
+
+        return gson.fromJson(json, type)
+    }
+
+    //List<Int> - Json
+    @TypeConverter
+    fun fromIntListToJson(products: List<Int>): String{
+        val gson = Gson()
+        val type = object: TypeToken<List<Int>>() {}.type
+
+        return gson.toJson(products, type)
+    }
+
+    @TypeConverter
+    fun fromJsonToIntList(json: String): List<Int>{
+        val gson = Gson()
+        val type = object: TypeToken<List<Int>>() {}.type
+
         return gson.fromJson(json, type)
     }
 

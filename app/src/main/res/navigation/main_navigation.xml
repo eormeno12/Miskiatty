@@ -82,7 +82,7 @@
         tools:layout="@layout/activity_clients_add" />
     <dialog
         android:id="@+id/orderDetailsDialogFragment"
-        android:name="com.listen.to.miskiatty.view.ui.orders.OrderDetailsDialogFragment"
+        android:name="com.listen.to.miskiatty.view.ui.orders.OrderDetailsActivity"
         android:label="OrderDetailsDialogFragment" />
     <activity
         android:id="@+id/orderAddActiviy"

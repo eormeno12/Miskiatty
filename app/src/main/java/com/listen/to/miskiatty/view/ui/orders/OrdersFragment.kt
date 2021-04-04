@@ -105,7 +105,7 @@ class OrdersFragment : Fragment() {
         orderViewModel?.orderClicked?.observe(viewLifecycleOwner, {
             startActivity(Intent(
                     this.activity?.applicationContext,
-                    OrderDetailsDialogFragment::class.java)
+                    OrderDetailsActivity::class.java)
                     .apply {
                         putExtra("com.listen.to.miskiatty.view.ui.orders.ID", it.id)
                     })
