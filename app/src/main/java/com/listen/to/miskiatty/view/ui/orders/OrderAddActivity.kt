@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderAddBinding
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.OrderAddViewModel
 
@@ -78,13 +79,21 @@ class OrderAddActivity : AppCompatActivity() {
                     callOrder(this@OrderAddActivity)
 
                     getOrder().observe(this@OrderAddActivity, { order ->
-                        it.getClientById(order.client)?.let{ client ->
-                            it.client = client
-                            binding.clientName.editText?.setText(client.name)
-                            binding.address.editText?.setText(order.address)
-                            binding.deliveryDate.editText?.setText(order.deliveryDate)
-                            binding.state.editText?.setText(order.state)
-                        }
+                        callClients(this@OrderAddActivity, lifecycle)
+                        getClients().observe(this@OrderAddActivity, { clients ->
+                            var orderClient: Client? = null
+
+                            for (client in clients)
+                                if (client.id == order.client) orderClient = client
+
+                            orderClient?.let{ client ->
+                                it.client = client
+                                binding.clientName.editText?.setText(client.name)
+                                binding.address.editText?.setText(order.address)
+                                binding.deliveryDate.editText?.setText(order.deliveryDate)
+                                binding.state.editText?.setText(order.state)
+                            }
+                        })
                     })
                 }
 

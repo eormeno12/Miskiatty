@@ -35,16 +35,6 @@ class OrderAddViewModel: ViewModel() {
     fun intentHasData(activity: AppCompatActivity) =
         orderAddRepository.verifyIntentData(activity)
 
-    fun getClientById(id: Int): Client? {
-        val clients = getClients().value
-        clients?.let {
-            for (client in it)
-                if (client.id == id) return client
-        }
-
-        return null
-    }
-
     fun callOrder(activity: AppCompatActivity) =
         orderAddRepository.callOrderExtra(activity)
 
