@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="orderDetailsViewModel"
-            type="com.listen.to.miskiatty.viewmodel.OrderDetailsViewModel" />
+            name="orderAddSummaryViewModel"
+            type="com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel" />
 
         <variable
             name="position"
@@ -33,8 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textStyle="bold"
                 tools:text="Producto"
-                android:text="@{orderDetailsViewModel.getProductAt(position).name}"
+                android:text="@{orderAddSummaryViewModel.getProductAt(position).name}"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -54,9 +55,10 @@
                 android:layout_height="match_parent"
                 android:padding="8dp"
                 tools:text="#"
-                android:text="@{orderDetailsViewModel.order.productsQuantity.get(position).toString()}"
+                android:text="@{orderAddSummaryViewModel.order.productsQuantity.get(position).toString()}"
                 android:textSize="20sp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -73,8 +75,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:textStyle="bold"
                 tools:text="S/"
-                android:text='@{"S/" + (orderDetailsViewModel.getProductAt(position).price * orderDetailsViewModel.order.productsQuantity.get(position))}'
+                android:text='@{"S/" + (orderAddSummaryViewModel.getProductAt(position).price * orderAddSummaryViewModel.order.productsQuantity.get(position))}'
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

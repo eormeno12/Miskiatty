@@ -10,26 +10,40 @@ import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.database.room.RoomDb
 import kotlinx.coroutines.launch
+import java.io.Serializable
 
-class OrderDetailsRepositoryImpl: OrderDetailsRepository{
-
+class OrderAddSummaryRepositoryImpl: OrderAddSummaryRepository {
     private val order = MutableLiveData<Order>()
 
-    override fun callOrderRoom(activity: AppCompatActivity, lifecycle: Lifecycle) {
-        val id = activity.intent
-                .getIntExtra(
-                        "com.listen.to.miskiatty.view.ui.orders.ID",
-                        0)
+    override fun verifyIfIsAnUpdate(activity: AppCompatActivity): Boolean =
+        activity.intent.getBooleanExtra(
+                "com.listen.to.miskiatty.view.ui.orders.UPDATE", false)
 
-        val db = RoomDb.getDatabase(activity.applicationContext)
+    override fun callOrderExtra(activity: AppCompatActivity) {
+        val orderDetails = activity.intent
+            .getSerializableExtra(
+                "com.listen.to.miskiatty.view.ui.orders.DETAILS") as Order
 
-        lifecycle.coroutineScope.launch {
-            val orderRoom = db.orderDao().getOrderById(id)
-            order.value = orderRoom
-        }
+        order.value = orderDetails
     }
 
     override fun getOrder(): MutableLiveData<Order> = order
+
+    override fun insertOrderRoom(context: Context, lifecycle: Lifecycle, order: Order) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch{
+            db.orderDao().addOrder(order)
+        }
+    }
+
+    override fun updateOrderRoom(context: Context, lifecycle: Lifecycle, order: Order) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch{
+            db.orderDao().updateOrder(order)
+        }
+    }
 
     private val client = MutableLiveData<Client>()
 

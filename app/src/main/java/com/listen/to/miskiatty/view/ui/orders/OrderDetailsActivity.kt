@@ -22,6 +22,7 @@ class OrderDetailsActivity : AppCompatActivity() {
         setUpBinding()
         setContentView(binding.root)
 
+        callData()
         setUpToolbar()
         setRecyclerProductsAdapter()
         setUpListUpdate()
@@ -30,7 +31,6 @@ class OrderDetailsActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         binding.lifecycleOwner = this
-        callOrder()
     }
 
     private fun setRecyclerProductsAdapter(){
@@ -38,14 +38,24 @@ class OrderDetailsActivity : AppCompatActivity() {
     }
 
     private fun setUpListUpdate(){
-        orderDetailsViewModel?.getOrder()?.observe(this, {
-            val products = ArrayList<Product>()
+        orderDetailsViewModel?.let {
+            with(it){
+                callOrder(this@OrderDetailsActivity, lifecycle)
+                getOrder().observe(this@OrderDetailsActivity, {order ->
+                    val productsId = order.products
+                    val productsList = ArrayList<Product>()
 
-            for(product in it.products)
-                products.add(product)
+                    callProducts(this@OrderDetailsActivity, lifecycle)
+                    getProducts().observe(this@OrderDetailsActivity, { products ->
+                         for (id in productsId)
+                             for (product in products)
+                                 if (product.id == id) productsList.add(product)
+                    })
 
-            orderDetailsViewModel?.setProductsInRecyclerAdapter(products)
-        })
+                    orderDetailsViewModel?.setProductsInRecyclerAdapter(productsList)
+                })
+            }
+        }
     }
 
     private fun setUpBinding() {
@@ -58,8 +68,12 @@ class OrderDetailsActivity : AppCompatActivity() {
         binding.orderDetailsViewModel = orderDetailsViewModel
     }
 
-    private fun callOrder(){
-        orderDetailsViewModel?.callOrder(this, lifecycle)
+    private fun callData(){
+        orderDetailsViewModel?.let{
+            it.getOrder().observe(this, { order ->
+                it.callClientById(this, lifecycle, order.id)
+            })
+        }
     }
 
     private fun setUpToolbar(){
@@ -78,7 +92,7 @@ class OrderDetailsActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.edit -> {
-                    startActivity(Intent(this, OrderAddActiviy::class.java).apply {
+                    startActivity(Intent(this, OrderAddActivity::class.java).apply {
                         val order = orderDetailsViewModel?.getOrder()?.value
                         putExtra("com.listen.to.miskiatty.view.ui.orders.DETAILS",
                                 order)

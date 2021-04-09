@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="orderAddSummaryViewModel"
+            type="com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -19,11 +21,11 @@
             android:elevation="8dp">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_product_add"
+                android:id="@+id/toolbar_product_add_summary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                app:title="Resumen Pedido"
+                app:title="Resumen del Pedido"
                 app:menu="@menu/menu_order_add"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
@@ -65,9 +67,8 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Estado"
+                    android:text="Estado"
                     android:textStyle="bold"
-                    android:text="@{}"
                     android:textSize="20sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -82,28 +83,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Ernesto"
-                    android:text="@{}"
+                    android:text="@{orderAddSummaryViewModel.clientById.name}"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Lima, Perú"
-                    android:text="@{}"
+                    android:text="@{orderAddSummaryViewModel.order.address}"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="12 / 04 / 20"
-                    android:text="@{}"
+                    android:text="@{orderAddSummaryViewModel.order.deliveryDate}"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Preparando"
-                    android:text="@{}"
+                    android:text="@{orderAddSummaryViewModel.order.state}"
                     android:textSize="20sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -123,7 +124,7 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
-        <!--app:setAdapter="@{}"-->
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:setAdapter="@{orderAddSummaryViewModel.recyclerOrdersProductsAdapter}"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

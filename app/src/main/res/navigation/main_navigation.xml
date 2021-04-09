@@ -86,7 +86,7 @@
         android:label="OrderDetailsDialogFragment" />
     <activity
         android:id="@+id/orderAddActiviy"
-        android:name="com.listen.to.miskiatty.view.ui.orders.OrderAddActiviy"
+        android:name="com.listen.to.miskiatty.view.ui.orders.OrderAddActivity"
         android:label="activity_order_add_activiy"
-        tools:layout="@layout/activity_order_add_activiy" />
+        tools:layout="@layout/activity_order_add" />
 </navigation>

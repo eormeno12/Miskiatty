@@ -29,7 +29,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/white"
                     tools:title="Pedido de ..."
-                    app:title='@{"Pedido de " + orderDetailsViewModel.order.client.name}'
+                    app:title='@{"Pedido de " + orderDetailsViewModel.clientById.name}'
                     app:navigationIcon="@drawable/ic_baseline_close_24"
                     style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
                     app:menu="@menu/menu_details" />
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Ernesto"
-                        android:text="@{orderDetailsViewModel.order.client.name.toString()}"
+                        android:text="@{orderDetailsViewModel.clientById.name}"
                         android:textSize="20sp" />
 
                     <com.google.android.material.textview.MaterialTextView

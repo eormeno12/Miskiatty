@@ -2,6 +2,7 @@ package com.listen.to.miskiatty.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,10 +10,12 @@ import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.adapters.AdapterCustomOrders
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Order
+import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.repository.orders.OrdersRepository
 import com.listen.to.miskiatty.model.repository.orders.OrdersRepositoryImpl
-import com.listen.to.miskiatty.view.ui.orders.OrderAddActiviy
+import com.listen.to.miskiatty.view.ui.orders.OrderAddActivity
 
 class OrderViewModel: ViewModel() {
     private val ordersRepository: OrdersRepository = OrdersRepositoryImpl()
@@ -49,15 +52,21 @@ class OrderViewModel: ViewModel() {
     fun getOrderAt(position: Int): Order? =
             ordersAdapter?.getOrdersList()?.get(position)
 
+    fun callProducts(appContext: Context, lifecycle: Lifecycle) =
+        ordersRepository.callProductsRoom(appContext, lifecycle)
+
+    fun getProducts(): MutableLiveData<List<Product>> = ordersRepository.getProducts()
+
     fun getProductList(position: Int): String{
-        val productsList = getOrderAt(position)?.products
+        val allProducts = getProducts().value
+        val productsId = getOrderAt(position)?.products
         var productsNameList = ""
 
-        productsList?.let {
-            for(product in it){
-                productsNameList += "- ${product.name} \n"
-            }
-        }
+        if(productsId != null && allProducts != null)
+            for (id in productsId)
+                for (product in allProducts)
+                    if(product.id == id)
+                        productsNameList += "- ${product.name} \n"
 
         return productsNameList
     }
@@ -67,6 +76,12 @@ class OrderViewModel: ViewModel() {
     }
 
     fun onClickAddOrder(context: Context) =
-            context.startActivity(Intent(context.applicationContext, OrderAddActiviy::class.java))
+            context.startActivity(Intent(context.applicationContext, OrderAddActivity::class.java))
+
+    fun callClients(context: Context, lifecycle: Lifecycle) =
+            ordersRepository.callClientsRoom(context, lifecycle)
+
+    fun getClientById(id: Int): LiveData<Client> =
+            ordersRepository.getClient(id)
 
 }

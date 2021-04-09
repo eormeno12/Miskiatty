@@ -2,6 +2,7 @@ package com.listen.to.miskiatty.model.repository.orders
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.coroutineScope
@@ -46,4 +47,39 @@ class OrdersRepositoryImpl: OrdersRepository {
     }
 
     override fun getOrders(): MutableLiveData<List<Order>> = orders
+
+    private val clients = MutableLiveData<List<Client>>()
+
+    override fun callClientsRoom(context: Context, lifecycle: Lifecycle) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            val clientsRoom = db.clientDao().getAllClients()
+            clients.value = clientsRoom
+        }
+    }
+
+    override fun getClient(id: Int): MutableLiveData<Client>{
+        val clientLiveData = MutableLiveData<Client>()
+
+        clients.value?.let {
+            for (client in it)
+                if(client.id == id) clientLiveData.value = client
+        }
+
+        return clientLiveData
+    }
+
+    private val products = MutableLiveData<List<Product>>()
+
+    override fun callProductsRoom(context: Context, lifecycle: Lifecycle) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            val productsRoom = db.productDao().getAllProducts()
+            products.value = productsRoom
+        }
+    }
+
+    override fun getProducts(): MutableLiveData<List<Product>> = products
 }

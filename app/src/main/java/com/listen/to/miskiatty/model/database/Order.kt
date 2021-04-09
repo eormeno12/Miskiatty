@@ -9,10 +9,10 @@ import java.text.DateFormat
 data class Order(
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
-        val client: Client,
+        val client: Int,
         val address: String,
         val deliveryDate: String,
         val state: String,
-        val products: List<Product>,
+        val products: List<Int>,
         val productsQuantity: List<Int>,
         val totalPrice: Float) : Serializable

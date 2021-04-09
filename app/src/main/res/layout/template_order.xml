@@ -37,7 +37,7 @@
                     tools:text="Pedido de Ernesto"
                     android:maxLines="2"
                     android:gravity="center"
-                    android:text='@{"Pedido de " + orderViewModel.getOrderAt(position).client.name}'
+                    android:text='@{"Pedido de " + orderViewModel.getClientById(orderViewModel.getOrderAt(position).client).name}'
                     android:textSize="26sp" />
 
                 <com.google.android.material.textview.MaterialTextView

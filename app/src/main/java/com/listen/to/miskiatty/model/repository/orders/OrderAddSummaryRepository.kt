@@ -8,11 +8,14 @@ import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 
-interface OrdersRepository {
-    fun getOrders(): MutableLiveData<List<Order>>
-    fun callOrdersROOM(context: Context, lifecycle: Lifecycle)
-    fun callClientsRoom(context: Context, lifecycle: Lifecycle)
-    fun getClient(id: Int): MutableLiveData<Client>
+interface OrderAddSummaryRepository {
+    fun verifyIfIsAnUpdate(activity: AppCompatActivity): Boolean
+    fun callOrderExtra(activity: AppCompatActivity)
+    fun getOrder(): MutableLiveData<Order>
+    fun insertOrderRoom(context: Context, lifecycle: Lifecycle, order: Order)
+    fun updateOrderRoom(context: Context, lifecycle: Lifecycle, order: Order)
+    fun callClientByIdRoom(context: Context, lifecycle: Lifecycle, id: Int)
+    fun getClient(): MutableLiveData<Client>
     fun callProductsRoom(context: Context, lifecycle: Lifecycle)
     fun getProducts(): MutableLiveData<List<Product>>
 }

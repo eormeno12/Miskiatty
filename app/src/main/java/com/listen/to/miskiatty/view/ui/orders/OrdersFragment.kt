@@ -36,14 +36,10 @@ class OrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        callData()
         setRecyclerProductsAdapter()
         setUpListUpdate()
         setUpOnClickProduct()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        callProducts()
     }
 
     private fun setUpBinding(inflater: LayoutInflater, container: ViewGroup?) {
@@ -88,6 +84,7 @@ class OrdersFragment : Fragment() {
     }
 
     private fun setUpListUpdate(){
+        orderViewModel?.callOrders(context?.applicationContext!!, lifecycle)
         orderViewModel?.getOrders()?.observe(viewLifecycleOwner, {
             orders: List<Order> ->
             Log.d("products", orders.toString())
@@ -95,9 +92,10 @@ class OrdersFragment : Fragment() {
         })
     }
 
-    private fun callProducts(){
+    private fun callData(){
         this.context?.let {
-            orderViewModel?.callOrders(it, lifecycle)
+            orderViewModel?.callProducts(it, lifecycle)
+            orderViewModel?.callClients(it, lifecycle)
         }
     }
 

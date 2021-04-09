@@ -1,11 +1,14 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomOrderProducts
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.repository.orders.OrderDetailsRepositoryImpl
@@ -30,6 +33,12 @@ class OrderDetailsViewModel: ViewModel() {
         }
     }
 
+    fun callProducts(appContext: Context, lifecycle: Lifecycle) =
+            orderDetailsRepository.callProductsRoom(appContext, lifecycle)
+
+
+    fun getProducts(): MutableLiveData<List<Product>> = orderDetailsRepository.getProducts()
+
     fun getProductAt(position: Int): Product? =
             orderOrderProductsAdapter?.getProductsList()?.get(position)
 
@@ -38,4 +47,10 @@ class OrderDetailsViewModel: ViewModel() {
 
     fun getOrder(): LiveData<Order> =
             orderDetailsRepository.getOrder()
+
+    fun callClientById(context: Context, lifecycle: Lifecycle, id: Int) =
+            orderDetailsRepository.callClientByIdRoom(context, lifecycle, id)
+
+    fun getClientById(): LiveData<Client> =
+            orderDetailsRepository.getClient()
 }
