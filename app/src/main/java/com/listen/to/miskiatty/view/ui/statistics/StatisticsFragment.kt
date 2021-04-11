@@ -1,19 +1,211 @@
 package com.listen.to.miskiatty.view.ui.statistics
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.anychart.APIlib
+import com.anychart.AnyChart
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.enums.Position
+import com.anychart.graphics.vector.Anchor
+import com.anychart.palettes.RangeColors
 import com.listen.to.miskiatty.R
+import com.listen.to.miskiatty.databinding.FragmentStatisticsBinding
+import com.listen.to.miskiatty.viewmodel.StatisticsViewModel
 
 class StatisticsFragment : Fragment() {
 
+    private var statisticsViewModel: StatisticsViewModel? = null
+    private lateinit var binding: FragmentStatisticsBinding
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics, container, false)
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
+        setUpBinding(inflater, container)
+        return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setWeekEarnings()
+        setUpDailyEarningsChart()
+        setUpMostSoldProductsChart()
+        setUpClientsRetentionChart()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        callData()
+    }
+
+    private fun callData(){
+        statisticsViewModel?.let{ vm ->
+            context?.applicationContext?.let {
+                vm.callOrders(it, lifecycle)
+                vm.callProducts(it, lifecycle)
+                vm.callClients(it, lifecycle)
+            }
+        }
+    }
+
+    private fun setWeekEarnings(){
+        statisticsViewModel?.getOrders()?.observe(viewLifecycleOwner, { orders ->
+            var weekEarnings = 0.0
+            for (order in orders)
+                weekEarnings += order.totalPrice
+
+            binding.tvWeekEarnings.text = "S/.$weekEarnings"
+            binding.executePendingBindings()
+        })
+    }
+
+    private fun setUpDailyEarningsChart() {
+        statisticsViewModel?.getOrders()?.observe(viewLifecycleOwner, { orders ->
+            val chart = binding.dailyEarningsChart
+            APIlib.getInstance().setActiveAnyChartView(chart)
+            chart.setProgressBar(binding.dailyEarningsChartBar)
+
+            val cartesian = AnyChart.column()
+            val dataEntries: ArrayList<DataEntry> = ArrayList()
+
+            for (order in orders)
+                dataEntries.add(ValueDataEntry(order.deliveryDate, order.totalPrice))
+
+            cartesian.data(dataEntries)
+
+            val column = cartesian.column(dataEntries)
+
+            column.tooltip()
+                    .titleFormat("{%X}")
+                    .position(Position.CENTER_BOTTOM)
+                    .anchor(Anchor.CENTER_BOTTOM.toString())
+                    .offsetX(0.0)
+                    .offsetY(5.0)
+                    .format("\${%Value}{groupsSeparator: }")
+
+            val palette = RangeColors.instantiate()
+            palette.items("#f48fb1", "#ffc1e3")
+            palette.count(10)
+
+            cartesian.apply {
+                animation(true)
+                title("Ganancias Diarias")
+                data(dataEntries)
+                xAxis(0).title("Fecha")
+                yAxis(0).title("Monto")
+                palette(palette)
+            }
+
+            Log.d("Chart", cartesian.toString())
+            chart.setChart(cartesian)
+            binding.executePendingBindings()
+        })
+    }
+
+    private fun setUpMostSoldProductsChart() {
+        statisticsViewModel?.getOrders()?.observe(viewLifecycleOwner, { orders ->
+            val chart = binding.mostSoldProductsChart
+            APIlib.getInstance().setActiveAnyChartView(chart)
+            chart.setProgressBar(binding.mostSoldProductsChartBar)
+
+            val pie = AnyChart.pie()
+            val dataEntries: ArrayList<DataEntry> = ArrayList()
+
+            val productHashMap = HashMap<String, Int>()
+            statisticsViewModel?.getProducts()?.observe(viewLifecycleOwner, { products ->
+                for (order in orders)
+                    for (productPosition in 0 until order.products.count())
+                        for (product in products)
+                            if (product.id == order.products[productPosition]) {
+                                productHashMap[product.name] = 0
+                                productHashMap[product.name] = productHashMap[product.name]!! + order.productsQuantity[productPosition]
+                            }
+
+                for (product in productHashMap)
+                    dataEntries.add(ValueDataEntry(product.key, product.value))
+
+                val palette = RangeColors.instantiate()
+                palette.items("#f48fb1", "#ffc1e3")
+                palette.count(10)
+
+                pie.apply {
+                    animation(true)
+                    title("Productos Más Vendidos")
+                    data(dataEntries)
+                    palette(palette)
+                }
+
+                pie.data(dataEntries)
+                chart.setChart(pie)
+                binding.executePendingBindings()
+            })
+        })
+    }
+
+    private fun setUpClientsRetentionChart() {
+        statisticsViewModel?.getClients()?.observe(viewLifecycleOwner, { clients ->
+            val chart = binding.clientsRetentionChart
+            APIlib.getInstance().setActiveAnyChartView(chart)
+            chart.setProgressBar(binding.clientsRetentionChartBar)
+
+            val cartesian = AnyChart.column()
+            val dataEntries: ArrayList<DataEntry> = ArrayList()
+
+            for (client in clients)
+                dataEntries.add(ValueDataEntry(client.name, client.orders.count()))
+
+            cartesian.data(dataEntries)
+
+            val column = cartesian.column(dataEntries)
+
+            column.tooltip()
+                    .titleFormat("{%X}")
+                    .position(Position.CENTER_BOTTOM)
+                    .anchor(Anchor.CENTER_BOTTOM.toString())
+                    .offsetX(0.0)
+                    .offsetY(5.0)
+                    .format("\${%Value}{groupsSeparator: }")
+
+            val palette = RangeColors.instantiate()
+            palette.items("#f48fb1", "#ffc1e3")
+            palette.count(10)
+
+            cartesian.apply {
+                animation(true)
+                title("Retención de Clientes")
+                data(dataEntries)
+                xAxis(0).title("Cliente")
+                yAxis(0).title("# de Pedidos")
+                palette(palette)
+            }
+
+            chart.setChart(cartesian)
+            binding.executePendingBindings()
+        })
+    }
+
+    private fun setUpBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = DataBindingUtil
+            .inflate(
+                    inflater,
+                    R.layout.fragment_statistics,
+                    container,
+                    false
+            )
+
+        statisticsViewModel = ViewModelProvider
+            .NewInstanceFactory()
+            .create(StatisticsViewModel::class.java)
+        binding.statisticsViewModel = statisticsViewModel
     }
 }
