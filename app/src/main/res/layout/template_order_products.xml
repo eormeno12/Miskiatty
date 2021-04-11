@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="orderDetailsViewModel"
+            type="com.listen.to.miskiatty.viewmodel.OrderDetailsViewModel" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                tools:text="Producto"
+                android:text="@{orderDetailsViewModel.getProductAt(position).name}"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                tools:text="#"
+                android:text="@{orderDetailsViewModel.order.productsQuantity.get(position).toString()}"
+                android:textSize="20sp"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                tools:text="S/"
+                android:text='@{"S/" + (orderDetailsViewModel.getProductAt(position).price * orderDetailsViewModel.order.productsQuantity.get(position))}'
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

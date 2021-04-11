@@ -2,15 +2,13 @@ package com.listen.to.miskiatty.model.database.room
 
 import android.content.Context
 import androidx.room.*
+import com.listen.to.miskiatty.model.database.*
 import com.listen.to.miskiatty.model.database.converters.RoomConverters
-import com.listen.to.miskiatty.model.database.Client
-import com.listen.to.miskiatty.model.database.ClientDao
-import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.model.database.ProductDao
 
 @Database(
     entities = [Product::class,
-               Client::class],
+               Client::class,
+               Order::class],
     version = 1,
     exportSchema = false
 )
@@ -37,4 +35,5 @@ abstract class RoomDb: RoomDatabase() {
 
     abstract fun productDao(): ProductDao
     abstract fun clientDao(): ClientDao
+    abstract fun orderDao(): OrderDao
 }

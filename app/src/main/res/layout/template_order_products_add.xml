@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="orderAddViewModel"
+            type="com.listen.to.miskiatty.viewmodel.OrderAddViewModel" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkboxContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:onClick="@{() -> orderAddViewModel.onClickListenerCheckBox(position, productQuantity)}"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:gravity="center"
+                tools:text="Producto"
+                android:text="@{orderAddViewModel.getProductAt(position).name}"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="#">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/productQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:text="1"
+                    android:inputType="number"
+                    android:lines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_weight="2"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="@dimen/cardview_default_elevation">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                tools:text="S/"
+                android:text='@{"S/" + orderAddViewModel.getProductAt(position).price}'
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
