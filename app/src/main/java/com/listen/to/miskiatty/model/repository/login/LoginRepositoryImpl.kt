@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.android.material.textfield.TextInputLayout
 import com.listen.to.miskiatty.model.enum.ErrorsEnum
 import com.listen.to.miskiatty.model.provider.ErrorsStringProvider
+import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.model.validation.DataValidation
 import java.util.regex.Pattern
 
@@ -52,7 +53,4 @@ class LoginRepositoryImpl(): LoginRepository {
 
     override fun passwordValidation(tl_password: TextInputLayout): Boolean =
         DataValidation().validatePassword(tl_password)
-
-
-
 }

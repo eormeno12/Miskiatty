@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1031706921799",
+    "project_id": "miskiatty",
+    "storage_bucket": "miskiatty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031706921799:android:e1ead7632cfa1502ec9a62",
+        "android_client_info": {
+          "package_name": "com.listen.to.miskiatty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031706921799-qvnf5s06lhdvkogd48cb72s9hqkuevqq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.listen.to.miskiatty",
+            "certificate_hash": "c6f59ab48e4812248d93a131cdc16a1f1484b1c1"
+          }
+        },
+        {
+          "client_id": "1031706921799-tnqi6v2qrbm929q0sucurq3h6i9mvt7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfz1mDpj47ifzza10iobqAC79fbqOsTZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031706921799-tnqi6v2qrbm929q0sucurq3h6i9mvt7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

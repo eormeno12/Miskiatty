@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityProductDetailsBinding
 import com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel

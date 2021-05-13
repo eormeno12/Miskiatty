@@ -3,6 +3,7 @@ package com.listen.to.miskiatty.model.repository.login
 import android.content.Context
 import androidx.databinding.BaseObservable
 import com.google.android.material.textfield.TextInputLayout
+import com.listen.to.miskiatty.model.provider.PreferenceProvider
 
 class LoginObservable: BaseObservable(){
 
@@ -16,6 +17,7 @@ class LoginObservable: BaseObservable(){
         tl_email.isErrorEnabled = false
         tl_email.isErrorEnabled = false
 
+        //Implementar el inicio de sesión con firebase
         if (!emailResult) {
             tl_email.isErrorEnabled = true
             tl_email.error = getEmailInputError(

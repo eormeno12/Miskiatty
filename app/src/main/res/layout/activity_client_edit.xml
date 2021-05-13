@@ -50,7 +50,7 @@
                     android:layout_gravity="center"
                     tools:src="@drawable/ic_baseline_person_24"
                     android:onClick="@{() -> clientEditViewModel.onClickPickImage(context)}"
-                    srcBitmap="@{clientEditViewModel.client.image}"
+                    srcUri="@{clientEditViewModel.client.image}"
                     android:elevation="@dimen/cardview_default_elevation"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>

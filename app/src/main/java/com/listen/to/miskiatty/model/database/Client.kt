@@ -9,7 +9,7 @@ import java.io.Serializable
 data class Client (
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
-        val image: Bitmap,
+        val image: String,
         val name: String,
         val phone: String,
         val address: String,

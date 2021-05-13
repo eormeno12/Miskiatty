@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.*
 import com.listen.to.miskiatty.model.database.*
 import com.listen.to.miskiatty.model.database.converters.RoomConverters
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Database(
     entities = [Product::class,
@@ -36,4 +39,11 @@ abstract class RoomDb: RoomDatabase() {
     abstract fun productDao(): ProductDao
     abstract fun clientDao(): ClientDao
     abstract fun orderDao(): OrderDao
+
+    fun clearAllData() {
+        GlobalScope.launch(Dispatchers.IO) {
+            this@RoomDb.clearAllTables()
+        }
+    }
+
 }

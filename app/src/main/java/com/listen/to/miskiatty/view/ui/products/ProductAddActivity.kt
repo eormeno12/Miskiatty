@@ -4,26 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
+import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.widget.AppCompatImageView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
-import com.listen.to.miskiatty.databinding.ActivityLoginBinding
 import com.listen.to.miskiatty.databinding.ActivityProductAddBinding
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.LoginViewModel
 import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
-import com.listen.to.miskiatty.viewmodel.ProductViewModel
-import java.io.InputStream
+import com.squareup.picasso.Picasso
 
 class ProductAddActivity : AppCompatActivity() {
 
@@ -53,11 +47,9 @@ class ProductAddActivity : AppCompatActivity() {
                 binding.cost.editText?.setText(product.cost.toString())
                 binding.recipe.editText?.setText(product.recipe)
 
-                imageBitmap = product.image
-                binding.btImage.apply {
-                    setImageBitmap(imageBitmap)
-                    scaleType = ImageView.ScaleType.CENTER_CROP
-                }
+                imageUri = product.image
+                Picasso.with(this).load(Uri.parse(imageUri)).resize(0, 200).into(binding.btImage)
+                binding.btImage.scaleType = ImageView.ScaleType.CENTER_CROP
             })
         }
     }
@@ -71,21 +63,16 @@ class ProductAddActivity : AppCompatActivity() {
         binding.productAddViewModel = productAddViewModel
     }
 
-    var imageBitmap: Bitmap? = null
+    var imageUri: String? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == productAddViewModel?.REQUEST_IMAGE_GALLERY){
             if(resultCode == Activity.RESULT_OK && data != null){
 
-                val imageUri = data.data!!
-                val inputStream = contentResolver.openInputStream(imageUri)
-                imageBitmap = BitmapFactory.decodeStream(inputStream)
-
-                binding.btImage.apply {
-                    setImageBitmap(imageBitmap)
-                    scaleType = ImageView.ScaleType.CENTER_CROP
-                }
+                imageUri = data.data!!.toString()
+                Picasso.with(this).load(imageUri).resize(0, 200).into( binding.btImage)
+                binding.btImage.scaleType = ImageView.ScaleType.CENTER_CROP
             }
         }
     }
@@ -127,7 +114,7 @@ class ProductAddActivity : AppCompatActivity() {
 
     private fun buildProduct(): Product{
         return Product(
-                image = imageBitmap!!,
+                image = imageUri!!,
                 name = binding.product.editText?.text.toString(),
                 price = binding.price.editText?.text.toString().toFloat(),
                 cost = binding.cost.editText?.text.toString().toFloat(),
@@ -138,7 +125,7 @@ class ProductAddActivity : AppCompatActivity() {
     private fun buildProductForUpdate(): Product{
         return Product(
                 id = productId!!,
-                image = imageBitmap!!,
+                image = imageUri!!,
                 name = binding.product.editText?.text.toString(),
                 price = binding.price.editText?.text.toString().toFloat(),
                 cost = binding.cost.editText?.text.toString().toFloat(),
