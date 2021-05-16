@@ -20,7 +20,6 @@ import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.LoginViewModel
 import com.listen.to.wave.viewmodel.CallbackFireAuth
-import com.listen.to.wave.viewmodel.CallbackFireStore
 import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
@@ -39,11 +38,12 @@ class LoginActivity : AppCompatActivity() {
 
         val preferenceProvider = PreferenceProvider(this)
 
-        loginViewModel?.successLogin?.observe(this, {
+        loginViewModel?.loginClicked?.observe(this, {
             if (it) {
-                val userDataJSON = UserData("", "", "")
                 val email = binding.user.editText?.text.toString()
                 val password = binding.password.editText?.text.toString()
+
+                preferenceProvider.setEmailLogin(email)
 
                 fireAuthService.userLogin(email, password, object: CallbackFireAuth<FirebaseUser> {
                     override fun onSucces(result: FirebaseUser?) {
@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(e: Exception) {
-                        TODO()
+                        loginViewModel!!.getLoginErrors(binding.user, binding.password)
                     }
                 })
             }

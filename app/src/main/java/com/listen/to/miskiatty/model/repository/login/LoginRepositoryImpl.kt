@@ -46,11 +46,4 @@ class LoginRepositoryImpl(): LoginRepository {
                     ErrorsEnum.INCORRECT_PASSWORD)
         }
     }
-
-    override fun emailValidation(tl_email: TextInputLayout): Boolean =
-        DataValidation().validateEmail(tl_email)
-
-
-    override fun passwordValidation(tl_password: TextInputLayout): Boolean =
-        DataValidation().validatePassword(tl_password)
 }
