@@ -13,8 +13,8 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        PreferenceProvider(this).setEmailLogin("eormeno12@gmail.com")
-        PreferenceProvider(this).setPasswordLogin("Trompitos1%")
+        PreferenceProvider(this).setEmailLogin("prueba@gmail.com")
+        PreferenceProvider(this).setPasswordLogin("Prueba1#")
 
         val isLogged = PreferenceProvider(this).isLogged()
 
