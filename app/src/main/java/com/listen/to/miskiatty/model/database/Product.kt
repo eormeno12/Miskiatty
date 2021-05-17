@@ -1,6 +1,7 @@
 package com.listen.to.miskiatty.model.database
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
@@ -9,7 +10,7 @@ import java.io.Serializable
 data class Product(
         @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
-        val image: Bitmap,
+        val image: String,
         val name: String,
         val price: Float,
         val cost: Float,

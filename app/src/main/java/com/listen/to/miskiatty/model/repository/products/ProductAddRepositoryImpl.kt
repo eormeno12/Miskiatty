@@ -8,7 +8,6 @@ import androidx.lifecycle.coroutineScope
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.database.room.RoomDb
 import kotlinx.coroutines.launch
-import java.io.Serializable
 
 class ProductAddRepositoryImpl: ProductAddRepository {
 
@@ -39,7 +38,7 @@ class ProductAddRepositoryImpl: ProductAddRepository {
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch{
-            db.productDao().addProducts(product)
+            db.productDao().addProduct(product)
         }
     }
 

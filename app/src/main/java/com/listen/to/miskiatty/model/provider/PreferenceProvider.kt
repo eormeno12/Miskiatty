@@ -54,11 +54,6 @@ class PreferenceProvider(context: Context) {
         }
     }
 
-    fun getPasswordLogin(): String?{
-        return loginCredentialsPreferences.getString("password", null)
-    }
-
-
     fun setPinLogin(pin: String){
         loginCredentialsPreferences.edit(){
             putString("pin", pin)

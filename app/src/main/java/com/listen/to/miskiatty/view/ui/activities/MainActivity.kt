@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityMainBinding
+import com.listen.to.miskiatty.model.database.room.FirebaseBackup
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         configBottomNav()
         configUpNav()
         configDrawerLayout()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val firebaseBackup = FirebaseBackup(this, lifecycle)
+        firebaseBackup.uploadBackup()
     }
 
     private fun setUpActionBar(){

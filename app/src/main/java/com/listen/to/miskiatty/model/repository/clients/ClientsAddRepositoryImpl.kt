@@ -43,7 +43,7 @@ class ClientsAddRepositoryImpl: ClientsAddRepository{
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch{
-            db.clientDao().addClient(clients)
+            db.clientDao().addClientsList(clients)
         }
     }
 

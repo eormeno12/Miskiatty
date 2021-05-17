@@ -48,7 +48,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="200dp"
                      android:layout_margin="2dp"
-                     srcBitmap="@{productDetailsViewModel.product.image}"
+                     srcUri="@{productDetailsViewModel.product.image}"
                      android:background="@drawable/sp_rounded_rectangle"
                      android:elevation="@dimen/cardview_default_elevation"
                      android:scaleType="centerCrop" />

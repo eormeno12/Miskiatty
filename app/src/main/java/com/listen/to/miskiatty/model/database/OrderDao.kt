@@ -16,6 +16,9 @@ interface OrderDao {
     @Insert
     suspend fun addOrder(order: Order)
 
+    @Insert
+    suspend fun addOrdersList(orders: List<Order>)
+
     @Delete
     suspend fun deleteOrder(order: Order)
 }

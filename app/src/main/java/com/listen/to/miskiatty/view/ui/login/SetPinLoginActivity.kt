@@ -21,9 +21,12 @@ class SetPinLoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_set_pin_login)
         setupBinding()
 
+        val preferenceProvider = PreferenceProvider(this)
+
         setPinLoginViewModel?.validPin?.observe(this, Observer {
             if(it){
-                PreferenceProvider(this).setPinLogin(setPinLoginViewModel?.PIN!!)
+                preferenceProvider.setPinLogin(setPinLoginViewModel?.PIN!!)
+                preferenceProvider.saveLogin()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }

@@ -8,11 +8,15 @@ import com.listen.to.miskiatty.model.repository.login.LoginObservable
 
 class LoginViewModel: ViewModel() {
 
-    private var _successLogin = MutableLiveData<Boolean>()
-    val successLogin: LiveData<Boolean> = _successLogin
+    private var loginObservable = LoginObservable()
+    private var _loginClicked = MutableLiveData<Boolean>()
+    val loginClicked: LiveData<Boolean> = _loginClicked
 
     fun onClickLoginListener(tl_email: TextInputLayout, tl_password: TextInputLayout){
-        _successLogin.value = LoginObservable().loginValidation(tl_email, tl_password)
+        _loginClicked.value = true
     }
 
+    fun getLoginErrors(tl_email: TextInputLayout, tl_password: TextInputLayout){
+        loginObservable.loginErrors(tl_email, tl_password)
+    }
 }

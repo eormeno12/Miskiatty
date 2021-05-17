@@ -33,7 +33,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             tools:src="@drawable/ic_baseline_person_24"
-            srcBitmap="@{clientViewModel.getClientAt(position).image}"
+            srcUri="@{clientViewModel.getClientAt(position).image}"
             android:scaleType="centerCrop" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,17 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityClientEditBinding
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.ClientEditViewModel
+import com.squareup.picasso.Picasso
 
 class ClientEditActivity : AppCompatActivity() {
 
@@ -72,18 +74,16 @@ class ClientEditActivity : AppCompatActivity() {
 
     }
 
-    private var imageBitmap: Bitmap? = null
+    private var imageUri: String? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == clientEditViewModel?.REQUEST_IMAGE_GALLERY){
             if(resultCode == Activity.RESULT_OK && data != null){
 
-                val imageUri = data.data!!
-                val inputStream = contentResolver?.openInputStream(imageUri)
-                imageBitmap = BitmapFactory.decodeStream(inputStream)
-
-                binding.btImage.setImageBitmap(imageBitmap)
+                imageUri = data.data!!.toString()
+                Picasso.with(this).load(imageUri).resize(0, 200).into( binding.btImage)
+                binding.btImage.scaleType = ImageView.ScaleType.CENTER_CROP
             }
         }
     }
@@ -103,7 +103,7 @@ class ClientEditActivity : AppCompatActivity() {
                         this?.let {
                             Client(
                                     id = getClient().value?.id!!,
-                                    image = imageBitmap ?: getClient().value?.image!!,
+                                    image = imageUri ?: getClient().value?.image!!,
                                     name = name,
                                     phone = phone,
                                     address = address,
