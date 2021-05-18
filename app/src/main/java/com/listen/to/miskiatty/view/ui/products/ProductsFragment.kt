@@ -40,6 +40,7 @@ class ProductsFragment : Fragment() {
         setRecyclerProductsAdapter()
         setUpListUpdate()
         setUpOnClickProduct()
+        setUpRefresh()
     }
 
     override fun onStart() {
@@ -93,12 +94,26 @@ class ProductsFragment : Fragment() {
             products: List<Product> ->
             Log.d("products", products.toString())
             productViewModel?.setProductsInRecyclerAdapter(products)
+            binding.rvRefresh.isRefreshing = false
         })
     }
 
     private fun callProducts(){
         this.context?.let {
             productViewModel?.callProducts(it, lifecycle)
+        }
+    }
+
+    private fun setUpRefresh(){
+        binding.rvRefresh.apply {
+            setColorSchemeResources(
+                    R.color.colorPrimary,
+                    R.color.colorAccent,
+                    R.color.colorPrimaryDark)
+
+            setOnRefreshListener {
+                callProducts()
+            }
         }
     }
 

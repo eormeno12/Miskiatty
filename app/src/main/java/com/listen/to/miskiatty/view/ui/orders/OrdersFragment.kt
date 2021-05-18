@@ -40,6 +40,7 @@ class OrdersFragment : Fragment() {
         setRecyclerProductsAdapter()
         setUpListUpdate()
         setUpOnClickProduct()
+        setUpRefresh()
     }
 
     private fun setUpBinding(inflater: LayoutInflater, container: ViewGroup?) {
@@ -84,18 +85,32 @@ class OrdersFragment : Fragment() {
     }
 
     private fun setUpListUpdate(){
-        orderViewModel?.callOrders(context?.applicationContext!!, lifecycle)
         orderViewModel?.getOrders()?.observe(viewLifecycleOwner, {
             orders: List<Order> ->
             Log.d("products", orders.toString())
             orderViewModel?.setOrdersInRecyclerAdapter(orders)
+            binding.rvRefresh.isRefreshing = false
         })
     }
 
     private fun callData(){
         this.context?.let {
+            orderViewModel?.callOrders(it, lifecycle)
             orderViewModel?.callProducts(it, lifecycle)
             orderViewModel?.callClients(it, lifecycle)
+        }
+    }
+
+    private fun setUpRefresh(){
+        binding.rvRefresh.apply {
+            setColorSchemeResources(
+                    R.color.colorPrimary,
+                    R.color.colorAccent,
+                    R.color.colorPrimaryDark)
+
+            setOnRefreshListener {
+                callData()
+            }
         }
     }
 

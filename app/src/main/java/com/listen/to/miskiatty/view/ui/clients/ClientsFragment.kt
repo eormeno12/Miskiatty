@@ -38,6 +38,7 @@ class ClientsFragment : Fragment() {
         setRecyclerClientsAdapters()
         setUpListsUpdate()
         setUpOnClickProduct()
+        setUpRefresh()
     }
 
     override fun onStart() {
@@ -106,6 +107,7 @@ class ClientsFragment : Fragment() {
             clientViewModel?.setClientsInRecyclerAdapter(
                     clientViewModel?.getRecyclerClientsAdapter(),
                     clients)
+            binding.rvRefresh.isRefreshing = false
         })
     }
 
@@ -113,6 +115,19 @@ class ClientsFragment : Fragment() {
         this.context?.let {
             clientViewModel?.callTopClients(it, lifecycle)
             clientViewModel?.callClients(it, lifecycle)
+        }
+    }
+
+    private fun setUpRefresh(){
+        binding.rvRefresh.apply {
+            setColorSchemeResources(
+                    R.color.colorPrimary,
+                    R.color.colorAccent,
+                    R.color.colorPrimaryDark)
+
+            setOnRefreshListener {
+                callClients()
+            }
         }
     }
 
