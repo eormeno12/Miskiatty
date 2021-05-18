@@ -103,6 +103,7 @@ class ProductAddActivity : AppCompatActivity() {
                                 buildProduct())
 
                     onBackPressed()
+                    finish()
                     true
                 }
 

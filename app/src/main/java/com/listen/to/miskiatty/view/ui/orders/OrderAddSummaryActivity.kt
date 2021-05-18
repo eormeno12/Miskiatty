@@ -14,6 +14,7 @@ import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderAddSummaryBinding
 import com.listen.to.miskiatty.databinding.ActivityProductAddBinding
 import com.listen.to.miskiatty.model.database.Product
+import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel
 import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
 
@@ -109,7 +110,8 @@ class OrderAddSummaryActivity : AppCompatActivity() {
                         }
                     })
 
-                    onBackPressed()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                     true
                 }
 

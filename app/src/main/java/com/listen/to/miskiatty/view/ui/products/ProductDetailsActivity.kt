@@ -64,6 +64,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         putExtra("com.listen.to.miskiatty.view.ui.products.ID",
                                 productDetailsViewModel?.getProduct()?.value?.id)
                     })
+                    finish()
                     true
                 }
 

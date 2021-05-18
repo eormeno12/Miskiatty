@@ -97,7 +97,6 @@ class OrderDetailsActivity : AppCompatActivity() {
                         putExtra("com.listen.to.miskiatty.view.ui.orders.DETAILS",
                                 order)
                     })
-
                     true
                 }
 
