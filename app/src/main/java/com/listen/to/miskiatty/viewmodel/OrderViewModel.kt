@@ -2,6 +2,7 @@ package com.listen.to.miskiatty.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
@@ -51,6 +52,12 @@ class OrderViewModel: ViewModel() {
 
     fun getOrderAt(position: Int): Order? =
             ordersAdapter?.getOrdersList()?.get(position)
+
+    fun getDate(position: Int): String{
+        val text = getOrderAt(position)?.deliveryDate.toString().split(" ")
+        val chunks = text.chunked(2)
+        return chunks[0][0]
+    }
 
     fun callProducts(appContext: Context, lifecycle: Lifecycle) =
         ordersRepository.callProductsRoom(appContext, lifecycle)

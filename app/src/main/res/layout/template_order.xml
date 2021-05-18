@@ -46,7 +46,7 @@
                     tools:text="27/03/20"
                     android:maxLines="1"
                     android:gravity="center"
-                    android:text="@{orderViewModel.getOrderAt(position).deliveryDate.toString()}"
+                    android:text="@{orderViewModel.getDate(position)}"
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView

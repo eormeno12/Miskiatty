@@ -68,6 +68,10 @@ class OrderAddActivity : AppCompatActivity() {
                         orderAddViewModel?.client = clients[position]
                     }
                 })
+
+                val states = arrayListOf("En cola", "Preparando", "Listo", "Entregado")
+                val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, states)
+                binding.clientStateAutoComplete.setAdapter(arrayAdapter)
             }
         }
     }

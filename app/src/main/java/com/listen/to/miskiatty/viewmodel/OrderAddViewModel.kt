@@ -1,5 +1,7 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -10,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.material.textfield.TextInputEditText
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomAddOrderProducts
 import com.listen.to.miskiatty.model.database.Client
@@ -18,6 +21,8 @@ import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepository
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepositoryImpl
 import com.listen.to.miskiatty.view.ui.orders.OrderAddSummaryActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
 class OrderAddViewModel: ViewModel() {
     private val orderAddRepository: OrderAddRepository = OrderAddRepositoryImpl()
@@ -117,5 +122,27 @@ class OrderAddViewModel: ViewModel() {
                 }
             )
         }
+    }
+
+    fun onClickEtDateTime(editText: TextInputEditText, context: Context){
+        val calendar = Calendar.getInstance()
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val month = calendar.get(Calendar.MONTH)
+        val year = calendar.get(Calendar.YEAR)
+
+        val hour = calendar.get(Calendar.HOUR)
+        val minute = calendar.get(Calendar.MINUTE)
+
+
+        val datePickerDialog = DatePickerDialog(context, { datePicker, y, m, d ->
+            editText.setText("$d/$m/$y")
+        }, year, month, day)
+
+        val timePickerDialog = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { timePicker, h, m ->
+            editText.setText("${editText.text} $h:$m")
+        }, hour, minute, true)
+
+        timePickerDialog.show()
+        datePickerDialog.show()
     }
 }
