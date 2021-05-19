@@ -13,4 +13,4 @@ data class Client (
         val name: String,
         val phone: String,
         val address: String,
-        val orders: List<Order>) : Serializable
+        var orders: List<Int>) : Serializable

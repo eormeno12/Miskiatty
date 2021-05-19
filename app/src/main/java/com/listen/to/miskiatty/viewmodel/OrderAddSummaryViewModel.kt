@@ -68,4 +68,7 @@ class OrderAddSummaryViewModel: ViewModel() {
 
     fun updateOrderRoom(context: Context, lifecycle: Lifecycle, order: Order) =
         orderAddSummaryRepository.updateOrderRoom(context, lifecycle, order)
+
+    fun updateClientRoom(context: Context, lifecycle: Lifecycle, client: Int) =
+            orderAddSummaryRepository.updateClientRoom(context, lifecycle, client)
 }

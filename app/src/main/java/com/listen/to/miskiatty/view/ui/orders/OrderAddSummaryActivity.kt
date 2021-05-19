@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -107,6 +108,9 @@ class OrderAddSummaryActivity : AppCompatActivity() {
                         } else {
                             orderAddSummaryViewModel?.addOrderRoom(applicationContext,
                                 lifecycle, it)
+
+                            orderAddSummaryViewModel?.updateClientRoom(applicationContext,
+                                    lifecycle, it.client)
                         }
                     })
 

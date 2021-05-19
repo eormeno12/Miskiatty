@@ -70,4 +70,20 @@ class OrderAddSummaryRepositoryImpl: OrderAddSummaryRepository {
     }
 
     override fun getProducts(): MutableLiveData<List<Product>> = products
+
+    override fun updateClientRoom(context: Context, lifecycle: Lifecycle, id: Int) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch{
+            val client = db.clientDao().getClientById(id)
+            val orders: ArrayList<Int> = ArrayList()
+
+            val lastOrder = db.orderDao().getLastOrder()
+            orders.addAll(client.orders)
+            orders.add(lastOrder.id)
+
+            client.orders = orders
+            db.clientDao().updateClient(client)
+        }
+    }
 }

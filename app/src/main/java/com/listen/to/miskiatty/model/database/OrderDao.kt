@@ -10,6 +10,9 @@ interface OrderDao {
     @Query("SELECT * FROM `ORDER` WHERE id = :id")
     suspend fun getOrderById(id: Int): Order
 
+    @Query("SELECT * FROM `ORDER` ORDER BY id DESC LIMIT 1")
+    suspend fun getLastOrder(): Order
+
     @Update
     suspend fun updateOrder(order: Order)
 

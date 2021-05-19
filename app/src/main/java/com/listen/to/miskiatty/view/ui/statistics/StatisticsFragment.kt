@@ -2,7 +2,9 @@ package com.listen.to.miskiatty.view.ui.statistics
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +18,15 @@ import com.anychart.palettes.RangeColors
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentStatisticsBinding
 import com.listen.to.miskiatty.viewmodel.StatisticsViewModel
+import org.joda.time.DateTime
+import org.joda.time.Days
+import org.joda.time.format.DateTimeFormat
+import java.text.Format
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+
 
 class StatisticsFragment : Fragment() {
 
@@ -61,9 +72,23 @@ class StatisticsFragment : Fragment() {
     private fun setWeekEarnings(){
         statisticsViewModel?.getOrders()?.observe(viewLifecycleOwner, { orders ->
             var weekEarnings = 0.0
-            for (order in orders)
-                weekEarnings += order.totalPrice
+            val dateTime = DateTime.now()
+            val format = DateTimeFormat.forPattern("dd/MM/yyyy");
+            val currentDate = format.parseLocalDate(format.print(dateTime))
 
+            Log.d("date", currentDate.toString())
+            for (order in orders){
+                val orderDate = order.deliveryDate.split(" ").chunked(2)[0][0]
+                val date = format.parseLocalDate(orderDate)
+                Log.d("date", date.toString())
+
+                if(Days.daysBetween(date, currentDate) <= Days.SEVEN){
+                    Log.d("days", Days.daysBetween(currentDate, date).toString())
+                    weekEarnings += order.totalPrice
+                }
+            }
+
+            Log.d("Calendar", Calendar.WEEK_OF_MONTH.toString())
             binding.tvWeekEarnings.text = "S/.$weekEarnings"
             binding.executePendingBindings()
         })
@@ -186,6 +211,7 @@ class StatisticsFragment : Fragment() {
                 data(dataEntries)
                 xAxis(0).title("Cliente")
                 yAxis(0).title("# de Pedidos")
+                yScale().ticks().interval(1)
                 palette(palette)
             }
 
