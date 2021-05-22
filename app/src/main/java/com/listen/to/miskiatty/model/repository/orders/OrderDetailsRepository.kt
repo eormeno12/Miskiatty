@@ -13,6 +13,6 @@ interface OrderDetailsRepository {
     fun getOrder(): MutableLiveData<Order>
     fun callClientByIdRoom(context: Context, lifecycle: Lifecycle, id: Int)
     fun getClient(): MutableLiveData<Client>
-    fun callProductsRoom(context: Context, lifecycle: Lifecycle)
-    fun getProducts(): MutableLiveData<List<Product>>
+    fun callProductById(appContext: Context, lifecycle: Lifecycle, id: Int)
+    fun getProductById(): MutableLiveData<Product>
 }

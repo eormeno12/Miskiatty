@@ -43,7 +43,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:backgroundTint="@color/colorPrimary"
             android:layout_weight="2"
             android:layout_margin="4dp"
@@ -53,6 +53,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:padding="8dp"
                 tools:text="#"
                 android:text="@{orderAddSummaryViewModel.order.productsQuantity.get(position).toString()}"
@@ -64,7 +65,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:backgroundTint="@color/colorAccent"
             android:layout_weight="2"
             android:layout_margin="4dp"
@@ -73,7 +74,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:padding="8dp"
                 android:textStyle="bold"
                 tools:text="S/"

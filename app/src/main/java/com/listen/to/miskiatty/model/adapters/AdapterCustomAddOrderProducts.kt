@@ -15,6 +15,7 @@ class AdapterCustomAddOrderProducts  (var orderAddViewModel: OrderAddViewModel,
 
     private var productsList = ArrayList<Product>()
     private var copyProductsList: ArrayList<Product>? = null
+    private var productsCheckedMap: HashMap<Int, Int> = HashMap()
 
     fun setProductsList(products: List<Product>){
         productsList.clear()
@@ -24,6 +25,15 @@ class AdapterCustomAddOrderProducts  (var orderAddViewModel: OrderAddViewModel,
     }
 
     fun getProductsList(): List<Product> = productsList
+
+    fun setProductsCheckedMap(productsChecked: HashMap<Int, Int>){
+        productsCheckedMap.clear()
+        productsCheckedMap.putAll(productsChecked)
+        notifyDataSetChanged()
+    }
+
+    fun getProductsCheckedMap(): HashMap<Int, Int> = productsCheckedMap
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

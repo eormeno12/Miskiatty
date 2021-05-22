@@ -31,21 +31,24 @@ class OrderAddSummaryActivity : AppCompatActivity() {
 
         setupBinding()
         setUpToolbar()
-        callData()
         setRecyclerProductsAdapter()
         setDataInRecyclerAdapter()
+        setClientUpdate()
     }
 
     override fun onStart() {
         super.onStart()
         isAnUpdate = orderAddSummaryViewModel?.verifyIfIsAnUpdate(this) == true
+        callData()
     }
 
     private fun callData(){
         orderAddSummaryViewModel?.let {
             it.callOrder(this)
+
             it.getOrder().observe(this, { order ->
-                it.callClientById(this, lifecycle, order.id)
+                if (order != null)
+                    it.callClientById(this, lifecycle, order.client)
             })
         }
     }
@@ -75,22 +78,27 @@ class OrderAddSummaryActivity : AppCompatActivity() {
         orderAddSummaryViewModel?.setRecyclerOrdersAdapter()
     }
 
+    private fun setClientUpdate(){
+        orderAddSummaryViewModel?.getClientById()?.observe(this, {
+            if(it != null){
+                binding.tvClient.text = it.name
+            }
+        })
+    }
+
     private fun setDataInRecyclerAdapter(){
         orderAddSummaryViewModel?.let {
             with(it){
-                callOrder(this@OrderAddSummaryActivity)
                 getOrder().observe(this@OrderAddSummaryActivity, {order ->
                     val productsId = order.products
-                    val productsList = ArrayList<Product>()
 
-                    callProducts(this@OrderAddSummaryActivity, lifecycle)
-                    getProducts().observe(this@OrderAddSummaryActivity, { products ->
-                        for (id in productsId)
-                            for (product in products)
-                                if (product.id == id) productsList.add(product)
+                    orderAddSummaryViewModel?.callProductsById(
+                            this@OrderAddSummaryActivity, lifecycle, productsId)
+
+                    orderAddSummaryViewModel?.getProductsById()?.observe(this@OrderAddSummaryActivity, { products ->
+                        if (products != null)
+                            setProductsInRecyclerAdapter(products)
                     })
-
-                    setProductsInRecyclerAdapter(productsList)
                 })
             }
         }

@@ -16,7 +16,7 @@ interface OrderAddSummaryRepository {
     fun updateOrderRoom(context: Context, lifecycle: Lifecycle, order: Order)
     fun callClientByIdRoom(context: Context, lifecycle: Lifecycle, id: Int)
     fun getClient(): MutableLiveData<Client>
-    fun callProductsRoom(context: Context, lifecycle: Lifecycle)
-    fun getProducts(): MutableLiveData<List<Product>>
+    fun callProductsById(context: Context, lifecycle: Lifecycle, id: List<Int>)
+    fun getProductsById(): MutableLiveData<List<Product>>
     fun updateClientRoom(context: Context, lifecycle: Lifecycle, id: Int)
 }

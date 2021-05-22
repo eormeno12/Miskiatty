@@ -80,10 +80,10 @@
                 android:layout_weight="5">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvClient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="Ernesto"
-                    android:text="@{orderAddSummaryViewModel.clientById.name}"
                     android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView

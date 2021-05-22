@@ -18,7 +18,9 @@ class OrderAddRepositoryImpl: OrderAddRepository {
     private var orderDetailsSerializable: Serializable? = null
 
     private val products = MutableLiveData<List<Product>>()
+    private val productsId = MutableLiveData<List<Product>>()
     private val clients = MutableLiveData<List<Client>>()
+    private val client = MutableLiveData<Client>()
 
     override fun verifyIntentData(activity: AppCompatActivity): Boolean {
         orderDetailsSerializable = activity.intent
@@ -56,6 +58,31 @@ class OrderAddRepositoryImpl: OrderAddRepository {
     }
 
     override fun getClients(): MutableLiveData<List<Client>> = clients
+
+    override fun callClientById(context: Context, lifecycle: Lifecycle, id: Int) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            val clientRoom = db.clientDao().getClientById(id)
+            client.value = clientRoom
+        }
+    }
+
+    override fun getClientById(): MutableLiveData<Client> = client
+
+    override fun callProductsByIdROOM(context: Context, lifecycle: Lifecycle, id: List<Int>) {
+        val db = RoomDb.getDatabase(context)
+        val productsRoom = ArrayList<Product>()
+
+        lifecycle.coroutineScope.launch {
+            for(i in id)
+                productsRoom.add(db.productDao().getProductById(i))
+
+            productsId.value = productsRoom
+        }
+    }
+
+    override fun getProductsById(): MutableLiveData<List<Product>> = productsId
 }
 
 

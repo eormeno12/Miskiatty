@@ -8,7 +8,7 @@ import java.text.DateFormat
 @Entity
 data class Order(
         @PrimaryKey(autoGenerate = true)
-        val id: Int = 0,
+        var id: Int = 0,
         val client: Int,
         val address: String,
         val deliveryDate: String,

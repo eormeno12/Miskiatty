@@ -1,21 +1,13 @@
 package com.listen.to.miskiatty.view.ui.orders
 
-import android.content.Context
-import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderAddBinding
-import com.listen.to.miskiatty.model.database.Client
-import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.OrderAddViewModel
 
 class OrderAddActivity : AppCompatActivity() {
@@ -23,6 +15,8 @@ class OrderAddActivity : AppCompatActivity() {
     private var orderAddViewModel: OrderAddViewModel? = null
     private lateinit var binding: ActivityOrderAddBinding
     private lateinit var toolbar: Toolbar
+    lateinit var nameArrayAdapter: ArrayAdapter<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +32,7 @@ class OrderAddActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         binding.lifecycleOwner = this
+        callData()
     }
 
     private fun setUpBinding() {
@@ -50,18 +45,26 @@ class OrderAddActivity : AppCompatActivity() {
         binding.orderAddViewModel = orderAddViewModel
     }
 
+    private fun callData(){
+        orderAddViewModel?.let {
+            it.callClients(this@OrderAddActivity, lifecycle)
+            it.callProducts(this@OrderAddActivity, lifecycle)
+        }
+    }
+
     private fun setUpDropDownMenu(){
+        nameArrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item)
+
         with(orderAddViewModel){
             this?.let {
-                callClients(this@OrderAddActivity, lifecycle)
                 getClients().observe(this@OrderAddActivity, { clients ->
                     val clientsNames = ArrayList<String>()
 
-                    for (client in clients)
-                        clientsNames.add(client.name)
+                    for (c in clients)
+                        clientsNames.add(c.name)
 
-                    val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, clientsNames)
-                    binding.clientNameAutoComplete.setAdapter(arrayAdapter)
+                    nameArrayAdapter.addAll(clientsNames)
+                    binding.clientNameAutoComplete.setAdapter(nameArrayAdapter)
 
                     binding.clientNameAutoComplete.setOnItemClickListener { p0, p1, position, p3 ->
                         binding.address.editText?.setText(clients[position].address)
@@ -70,8 +73,8 @@ class OrderAddActivity : AppCompatActivity() {
                 })
 
                 val states = arrayListOf("En cola", "Preparando", "Listo", "Entregado")
-                val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, states)
-                binding.clientStateAutoComplete.setAdapter(arrayAdapter)
+                val statesArrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, states)
+                binding.clientStateAutoComplete.setAdapter(statesArrayAdapter)
             }
         }
     }
@@ -79,32 +82,28 @@ class OrderAddActivity : AppCompatActivity() {
     private fun setUpDataUpdate(){
         with(orderAddViewModel){
             this?.let {
-                if(intentHasData(this@OrderAddActivity)){
-                    callOrder(this@OrderAddActivity)
-
-                    getOrder().observe(this@OrderAddActivity, { order ->
-                        callClients(this@OrderAddActivity, lifecycle)
-                        getClients().observe(this@OrderAddActivity, { clients ->
-                            var orderClient: Client? = null
-
-                            for (client in clients)
-                                if (client.id == order.client) orderClient = client
-
-                            orderClient?.let{ client ->
-                                it.client = client
-                                binding.clientName.editText?.setText(client.name)
-                                binding.address.editText?.setText(order.address)
-                                binding.deliveryDate.editText?.setText(order.deliveryDate)
-                                binding.state.editText?.setText(order.state)
-                            }
-                        })
-                    })
-                }
-
-                callProducts(this@OrderAddActivity, lifecycle)
                 getProducts().observe(this@OrderAddActivity, { products ->
                     setProductsInRecyclerAdapter(products)
                 })
+
+                if(intentHasData(this@OrderAddActivity)){
+                    callOrder(this@OrderAddActivity)
+                    getOrder().observe(this@OrderAddActivity, { order ->
+                        callClientById(this@OrderAddActivity, lifecycle, order.client)
+                        getClientById().observe(this@OrderAddActivity, { client ->
+                            it.client = client
+                            nameArrayAdapter.clear()
+                            nameArrayAdapter.add(client.name)
+
+                            binding.clientName.editText?.setText(client.name)
+                            binding.address.editText?.setText(order.address)
+                            binding.deliveryDate.editText?.setText(order.deliveryDate)
+                            binding.state.editText?.setText(order.state)
+
+                            setCheckedProducts(this@OrderAddActivity, lifecycle, order)
+                        })
+                    })
+                }
             }
         }
     }

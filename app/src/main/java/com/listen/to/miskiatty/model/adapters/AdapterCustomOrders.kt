@@ -73,8 +73,11 @@ class AdapterCustomOrders (var orderViewModel: OrderViewModel,
             for(order in copyOrdersList!!){
                 orderViewModel.getClientById(order.client).value?.let {
                     val clientName = it.name.toLowerCase(Locale.ROOT)
+                    val orderDate = order.deliveryDate
 
-                    if(clientName.contains(search)) ordersList.add(order)                }
+                    if(clientName.contains(search) || orderDate.contains(search))
+                        ordersList.add(order)
+                }
             }
         }
 

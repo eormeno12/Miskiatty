@@ -40,19 +40,17 @@ class OrderDetailsActivity : AppCompatActivity() {
     private fun setUpListUpdate(){
         orderDetailsViewModel?.let {
             with(it){
-                callOrder(this@OrderDetailsActivity, lifecycle)
                 getOrder().observe(this@OrderDetailsActivity, {order ->
                     val productsId = order.products
                     val productsList = ArrayList<Product>()
 
-                    callProducts(this@OrderDetailsActivity, lifecycle)
-                    getProducts().observe(this@OrderDetailsActivity, { products ->
-                         for (id in productsId)
-                             for (product in products)
-                                 if (product.id == id) productsList.add(product)
-                    })
+                    for (id in productsId)
+                        callProductById(this@OrderDetailsActivity, lifecycle, id)
 
-                    orderDetailsViewModel?.setProductsInRecyclerAdapter(productsList)
+                    getProductById().observe(this@OrderDetailsActivity, { product ->
+                        productsList.add(product)
+                        orderDetailsViewModel?.setProductsInRecyclerAdapter(productsList)
+                    })
                 })
             }
         }
@@ -70,8 +68,10 @@ class OrderDetailsActivity : AppCompatActivity() {
 
     private fun callData(){
         orderDetailsViewModel?.let{
+            it.callOrder(this, lifecycle)
+
             it.getOrder().observe(this, { order ->
-                it.callClientById(this, lifecycle, order.id)
+                it.callClientById(this, lifecycle, order.client)
             })
         }
     }

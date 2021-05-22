@@ -8,11 +8,15 @@ import android.graphics.BitmapFactory
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomAddOrderProducts
 import com.listen.to.miskiatty.model.database.Client
@@ -21,6 +25,7 @@ import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepository
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepositoryImpl
 import com.listen.to.miskiatty.view.ui.orders.OrderAddSummaryActivity
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -48,15 +53,24 @@ class OrderAddViewModel: ViewModel() {
 
     fun getProducts(): LiveData<List<Product>> = orderAddRepository.getProducts()
 
-    fun callProducts(appContext: Context, lifecycle: Lifecycle) {
-        orderAddRepository.callProductsROOM(appContext, lifecycle)
-    }
+    fun callProducts(appContext: Context, lifecycle: Lifecycle) =
+            orderAddRepository.callProductsROOM(appContext, lifecycle)
+
+    private fun callProductsById(appContext: Context, lifecycle: Lifecycle, id:List<Int>) =
+            orderAddRepository.callProductsByIdROOM(appContext, lifecycle, id)
+
+    private fun getProductsById(): LiveData<List<Product>> = orderAddRepository.getProductsById()
 
     fun getClients(): MutableLiveData<List<Client>> = orderAddRepository.getClients()
 
-    fun callClients(appContext: Context, lifecycle: Lifecycle) {
-        orderAddRepository.callClientsROOM(appContext, lifecycle)
-    }
+    fun callClients(appContext: Context, lifecycle: Lifecycle) =
+            orderAddRepository.callClientsROOM(appContext, lifecycle)
+
+    fun getClientById(): MutableLiveData<Client> =
+            orderAddRepository.getClientById()
+
+    fun callClientById(context: Context, lifecycle: Lifecycle, id:Int) =
+            orderAddRepository.callClientById(context, lifecycle, id)
 
     fun getRecyclerOrdersProductsAdapter(): AdapterCustomAddOrderProducts?{
         return addOrderProductsAdapter
@@ -77,16 +91,71 @@ class OrderAddViewModel: ViewModel() {
 
     fun onClickListenerCheckBox(position: Int, tv_productQuantity: EditText){
         val productQuantity = tv_productQuantity.text.toString()
-        val contact = getProductAt(position)
+        val product = getProductAt(position)
 
-        if (checkedProductList.contains(contact)){
-            checkedProductQuantityList.remove(checkedProductList.indexOf(contact))
-            checkedProductList.remove(contact)
+        if (checkedProductList.contains(product)){
+            checkedProductQuantityList.removeAt(checkedProductList.indexOf(product))
+            checkedProductList.remove(product)
         }
         else
-            contact?.let {
+            product?.let {
                 checkedProductList.add(it)
-                checkedProductQuantityList.add(productQuantity.toInt())}
+                checkedProductQuantityList.add(productQuantity.toInt())
+
+                tv_productQuantity.addTextChangedListener {
+                    onQuantityChange(position, tv_productQuantity)
+                }
+            }
+    }
+
+    fun setCheckedProducts(activity: AppCompatActivity, lifecycle: Lifecycle, order: Order){
+        val context = activity.applicationContext
+        callProductsById(context, lifecycle, order.products)
+
+        val productQuantities = order.productsQuantity
+
+        getProductsById().observe(activity, { products ->
+            val productsChecked: HashMap<Int, Int> = HashMap()
+
+            for(idx in 0 until products.count()){
+                val product = products[idx]
+                if (checkedProductList.contains(product)){
+                    checkedProductQuantityList.removeAt(checkedProductList.indexOf(product))
+                    checkedProductList.remove(product)
+                }
+                else
+                    product.let {
+                        checkedProductList.add(it)
+                        checkedProductQuantityList.add(productQuantities[idx])
+
+                        addOrderProductsAdapter?.getProductsList()?.indexOf(it)?.let { position ->
+                            productsChecked[position] = productQuantities[idx]
+                        }
+                    }
+            }
+
+            addOrderProductsAdapter?.setProductsCheckedMap(productsChecked)
+        })
+    }
+
+    fun isProductChecked(position: Int): Boolean? =
+            addOrderProductsAdapter?.getProductsCheckedMap()?.keys?.contains(position)
+
+    fun getProductQuantity(position: Int): Int? =
+            try {
+                addOrderProductsAdapter?.getProductsCheckedMap()?.get(position)
+            }catch (e: Exception){
+                1
+            }
+
+    private fun onQuantityChange(position: Int, tv_productQuantity: EditText){
+        val productQuantity = tv_productQuantity.text.toString()
+        val product = getProductAt(position)
+
+        if(checkedProductList.contains(product)  && tv_productQuantity.text.isNotEmpty()){
+            val idx = checkedProductList.indexOf(product)
+            checkedProductQuantityList[idx] = productQuantity.toInt()
+        }
     }
 
     fun getProductAt(position: Int): Product? =
@@ -111,6 +180,10 @@ class OrderAddViewModel: ViewModel() {
             products = checkedProductsIdList,
             productsQuantity = checkedProductQuantityList
         )
+
+        getOrder().value?.id?.let {
+            order.id = it
+        }
 
         with(context){
             startActivity(Intent(
@@ -138,7 +211,7 @@ class OrderAddViewModel: ViewModel() {
             editText.setText("$d/$m/$y")
         }, year, month, day)
 
-        val timePickerDialog = TimePickerDialog(context, TimePickerDialog.OnTimeSetListener { timePicker, h, m ->
+        val timePickerDialog = TimePickerDialog(context, { timePicker, h, m ->
             editText.setText("${editText.text} $h:$m")
         }, hour, minute, true)
 

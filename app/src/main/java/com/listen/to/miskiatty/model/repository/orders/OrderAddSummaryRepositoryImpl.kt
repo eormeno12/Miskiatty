@@ -1,6 +1,7 @@
 package com.listen.to.miskiatty.model.repository.orders
 
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -45,7 +46,7 @@ class OrderAddSummaryRepositoryImpl: OrderAddSummaryRepository {
         }
     }
 
-    private val client = MutableLiveData<Client>()
+    private var client = MutableLiveData<Client>()
 
     override fun callClientByIdRoom(context: Context, lifecycle: Lifecycle, id: Int) {
         val db = RoomDb.getDatabase(context)
@@ -60,16 +61,19 @@ class OrderAddSummaryRepositoryImpl: OrderAddSummaryRepository {
 
     private val products = MutableLiveData<List<Product>>()
 
-    override fun callProductsRoom(context: Context, lifecycle: Lifecycle) {
+    override fun callProductsById(context: Context, lifecycle: Lifecycle, id: List<Int>){
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {
-            val productsRoom = db.productDao().getAllProducts()
+            val productsRoom = ArrayList<Product>()
+            for (i in id)
+                productsRoom.add(db.productDao().getProductById(i))
+
             products.value = productsRoom
         }
     }
 
-    override fun getProducts(): MutableLiveData<List<Product>> = products
+    override fun getProductsById(): MutableLiveData<List<Product>> = products
 
     override fun updateClientRoom(context: Context, lifecycle: Lifecycle, id: Int) {
         val db = RoomDb.getDatabase(context)

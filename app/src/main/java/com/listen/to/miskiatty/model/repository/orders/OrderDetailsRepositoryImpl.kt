@@ -44,16 +44,16 @@ class OrderDetailsRepositoryImpl: OrderDetailsRepository{
 
     override fun getClient(): MutableLiveData<Client> = client
 
-    private val products = MutableLiveData<List<Product>>()
+    private val product = MutableLiveData<Product>()
 
-    override fun callProductsRoom(context: Context, lifecycle: Lifecycle) {
+    override fun callProductById(context: Context, lifecycle: Lifecycle, id: Int){
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {
-            val productsRoom = db.productDao().getAllProducts()
-            products.value = productsRoom
+            val productRoom = db.productDao().getProductById(id)
+            product.value = productRoom
         }
     }
 
-    override fun getProducts(): MutableLiveData<List<Product>> = products
+    override fun getProductById() = product
 }

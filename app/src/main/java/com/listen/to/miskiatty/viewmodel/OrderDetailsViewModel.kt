@@ -33,11 +33,10 @@ class OrderDetailsViewModel: ViewModel() {
         }
     }
 
-    fun callProducts(appContext: Context, lifecycle: Lifecycle) =
-            orderDetailsRepository.callProductsRoom(appContext, lifecycle)
+    fun callProductById(appContext: Context, lifecycle: Lifecycle, id: Int) =
+            orderDetailsRepository.callProductById(appContext, lifecycle, id)
 
-
-    fun getProducts(): MutableLiveData<List<Product>> = orderDetailsRepository.getProducts()
+    fun getProductById(): LiveData<Product> = orderDetailsRepository.getProductById()
 
     fun getProductAt(position: Int): Product? =
             orderOrderProductsAdapter?.getProductsList()?.get(position)

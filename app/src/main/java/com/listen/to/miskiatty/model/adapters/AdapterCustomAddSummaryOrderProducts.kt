@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -14,12 +15,11 @@ class AdapterCustomAddSummaryOrderProducts (var orderAddSummaryViewModel: OrderA
     RecyclerView.Adapter<AdapterCustomAddSummaryOrderProducts.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
-    private var copyProductsList: ArrayList<Product>? = null
 
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)
-        copyProductsList = ArrayList(productsList)
+        Log.d("products order", productsList.toString())
         notifyDataSetChanged()
     }
 
@@ -59,7 +59,7 @@ class AdapterCustomAddSummaryOrderProducts (var orderAddSummaryViewModel: OrderA
         }
 
         fun setDataCard(orderAddSummaryViewModel: OrderAddSummaryViewModel, position: Int){
-            binding?.setVariable(BR.orderDetailsViewModel, orderAddSummaryViewModel)
+            binding?.setVariable(BR.orderAddSummaryViewModel, orderAddSummaryViewModel)
             binding?.setVariable(BR.position, position)
             binding?.executePendingBindings()
         }

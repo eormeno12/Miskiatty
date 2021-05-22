@@ -36,7 +36,8 @@ class ProductViewModel: ViewModel() {
                     override fun onClickListener(position: Int) {
                         _productClicked.value = getProductAt(position)
                     }
-                })
+                }
+        )
     }
 
     fun callProducts(appContext: Context, lifecycle: Lifecycle) {
