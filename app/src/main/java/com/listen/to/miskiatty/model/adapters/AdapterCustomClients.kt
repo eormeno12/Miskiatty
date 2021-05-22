@@ -14,7 +14,7 @@ import kotlin.collections.ArrayList
 
 class AdapterCustomClients(var clientViewModel: ClientViewModel,
                            var resource: Int,
-                           var clientsListener: AdapterCustomListener, val withBgColor: Boolean):
+                           var clientsListener: AdapterCustomListener, private val withBgColor: Boolean):
         RecyclerView.Adapter<AdapterCustomClients.ViewHolder>() {
 
     private var clientsList = ArrayList<Client>()

@@ -30,8 +30,13 @@ class ClientRepositoryImpl: ClientRepository {
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {
-            val topClientsRoom = db.clientDao().getTopClients()
-            topClients.value = topClientsRoom
+            val clientsRoom = db.clientDao().getAllClients()
+            val clientsRoomSorted = clientsRoom.sortedByDescending { it.orders.count() }
+
+            if(clientsRoomSorted.count() > 3)
+                topClients.value = clientsRoomSorted.slice(IntRange(0, 2))
+            else
+                topClients.value = clientsRoomSorted
         }
     }
 

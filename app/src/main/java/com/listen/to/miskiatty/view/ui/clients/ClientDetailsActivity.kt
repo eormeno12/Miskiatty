@@ -21,12 +21,14 @@ class ClientDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpToolbar()
+        setRecyclerProductsAdapter()
+        setUpDataUpdate()
     }
 
     override fun onStart() {
         super.onStart()
         binding.lifecycleOwner = this
-        callProduct()
+        callClient()
     }
 
     private fun setUpBinding() {
@@ -39,7 +41,26 @@ class ClientDetailsActivity : AppCompatActivity() {
         binding.clientDetailsViewModel = clientDetailsViewModel
     }
 
-    private fun callProduct(){
+    private fun setRecyclerProductsAdapter(){
+        clientDetailsViewModel?.setRecyclerOrdersAdapter()
+    }
+
+    private fun setUpDataUpdate(){
+        with(clientDetailsViewModel){
+            this?.let {
+                callProducts(this@ClientDetailsActivity, lifecycle)
+
+                getClient().observe(this@ClientDetailsActivity, { client ->
+                    callOrdersById(this@ClientDetailsActivity, lifecycle, client.orders)
+                    getOrdersById().observe(this@ClientDetailsActivity, { orders ->
+                        setOrdersInRecyclerAdapter(orders)
+                    })
+                })
+            }
+        }
+    }
+
+    private fun callClient(){
         clientDetailsViewModel?.callClient(this, lifecycle)
     }
 

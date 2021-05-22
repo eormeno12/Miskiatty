@@ -61,7 +61,7 @@ class ClientViewModel: ViewModel() {
     }
 
     fun setRecyclerTopClientsAdapter(){
-        topClientsAdapter = AdapterCustomClients(this, R.layout.template_client,
+        topClientsAdapter = AdapterCustomClients(this, R.layout.template_top_client,
                 object : AdapterCustomListener{
                     override fun onClickListener(position: Int) {
                         _topClientClicked.value = getTopClientAt(position)
@@ -75,7 +75,7 @@ class ClientViewModel: ViewModel() {
     fun getTopClients(): MutableLiveData<List<Client>> = clientRepository.getTopClients()
 
     fun getTopClientAt(position: Int): Client? =
-            clientsAdapter?.getClientsList()?.get(position)
+            topClientsAdapter?.getClientsList()?.get(position)
 
 
     fun setClientsInRecyclerAdapter(adapter: AdapterCustomClients?, clients: List<Client>){

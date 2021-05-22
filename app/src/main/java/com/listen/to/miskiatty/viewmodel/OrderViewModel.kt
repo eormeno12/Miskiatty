@@ -66,14 +66,14 @@ class OrderViewModel: ViewModel() {
 
     fun getProductList(position: Int): String{
         val allProducts = getProducts().value
-        val productsId = getOrderAt(position)?.products
+        val order = getOrderAt(position)
         var productsNameList = ""
 
-        if(productsId != null && allProducts != null)
-            for (id in productsId)
-                for (product in allProducts)
-                    if(product.id == id)
-                        productsNameList += "- ${product.name} \n"
+        if(order != null && allProducts != null)
+            for (id in order.products)
+                for(idx in 0 until allProducts.count())
+                    if(allProducts[idx].id == id)
+                        productsNameList += "- ${order.productsQuantity[idx]} ${allProducts[idx].name}\n"
 
         return productsNameList
     }
