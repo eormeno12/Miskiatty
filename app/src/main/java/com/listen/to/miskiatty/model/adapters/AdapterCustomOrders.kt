@@ -101,6 +101,7 @@ class AdapterCustomOrders (var orderViewModel: OrderViewModel,
                 val order = getOrdersList()[position]
                 val appCompat = rv.context as AppCompatActivity
                 orderViewModel.deleteOrderROOM(rv.context, appCompat.lifecycle, order)
+                ordersList.removeAt(position)
                 notifyDataSetChanged()
             }
 

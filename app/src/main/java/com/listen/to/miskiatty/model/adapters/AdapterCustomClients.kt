@@ -110,6 +110,7 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
                 val client = getClientsList()[position]
                 val appCompat = rv.context as AppCompatActivity
                 clientViewModel.deleteClientROOM(rv.context, appCompat.lifecycle, client)
+                clientsList.removeAt(position)
                 notifyDataSetChanged()
             }
 

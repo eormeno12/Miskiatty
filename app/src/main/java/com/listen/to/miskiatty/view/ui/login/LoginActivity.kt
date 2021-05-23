@@ -52,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
 
                         if(preferenceProvider.isPinLoginSaved()){
                             preferenceProvider.saveLogin()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java).addFlags(
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP))
                             finish()
                         }else {
                             startActivity(Intent(this@LoginActivity, SetPinLoginActivity::class.java))

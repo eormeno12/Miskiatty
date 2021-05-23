@@ -122,7 +122,10 @@ class OrderAddSummaryActivity : AppCompatActivity() {
                         }
                     })
 
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java).addFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    )
+
                     finish()
                     true
                 }

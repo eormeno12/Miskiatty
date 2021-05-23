@@ -27,7 +27,8 @@ class SetPinLoginActivity : AppCompatActivity() {
             if(it){
                 preferenceProvider.setPinLogin(setPinLoginViewModel?.PIN!!)
                 preferenceProvider.saveLogin()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java).addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
         })

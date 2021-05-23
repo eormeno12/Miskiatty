@@ -22,7 +22,8 @@ class PinLoginActivity : AppCompatActivity() {
 
         pinLoginViewModel?.pinValid?.observe(this, Observer {
             if (it == true) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java).addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
         })

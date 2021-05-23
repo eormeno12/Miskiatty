@@ -105,38 +105,49 @@ class ClientEditActivity : AppCompatActivity() {
 
                     with(clientEditViewModel){
                         this?.let {
-                            imageUri = if(imageUri != null) imageUri else getClient().value?.image!!
+                            val client = Client(
+                                id = getClient().value?.id!!,
+                                image = "",
+                                name = name,
+                                phone = phone,
+                                address = address,
+                                orders = getClient().value?.orders!!)
 
-                            FireStorageService().uploadFileFromUri(Uri.parse(imageUri),
-                                object: CallbackFireStorage<String> {
-                                    override fun onSucces(result: String?) {
-                                        if(result != null){
-                                            val client = Client(
-                                                id = getClient().value?.id!!,
-                                                image = result,
-                                                name = name,
-                                                phone = phone,
-                                                address = address,
-                                                orders = getClient().value?.orders!!)
+                            if (!imageUri.isNullOrEmpty()){
+                                FireStorageService().uploadFileFromUri(Uri.parse(imageUri),
+                                    object: CallbackFireStorage<String> {
+                                        override fun onSucces(result: String?) {
+                                            if(result != null){
+                                                client.image = result
 
-                                            client.let { clientEditViewModel?.updateClientRoom(this@ClientEditActivity, lifecycle, it)}
-                                            startActivity(Intent(this@ClientEditActivity, MainActivity::class.java))
+                                                client.let { clientEditViewModel?.updateClientRoom(this@ClientEditActivity, lifecycle, it)}
+                                                startActivity(Intent(this@ClientEditActivity, MainActivity::class.java).addFlags(
+                                                    Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                                binding.progressCircular.visibility = View.INVISIBLE
+                                                finish()
+                                            }
+
+                                        }
+
+                                        override fun onProgress(progress: Double) {
+                                            binding.progressCircular.visibility = View.VISIBLE
+                                        }
+
+                                        override fun onFailure(e: Exception) {
                                             binding.progressCircular.visibility = View.INVISIBLE
-                                            finish()
                                         }
 
                                     }
+                                )
+                            }else{
+                                client.image = getClient().value?.image!!
 
-                                    override fun onProgress(progress: Double) {
-                                        binding.progressCircular.visibility = View.VISIBLE
-                                    }
-
-                                    override fun onFailure(e: Exception) {
-                                        binding.progressCircular.visibility = View.INVISIBLE
-                                    }
-
-                                }
-                            )
+                                client.let { clientEditViewModel?.updateClientRoom(this@ClientEditActivity, lifecycle, it)}
+                                startActivity(Intent(this@ClientEditActivity, MainActivity::class.java).addFlags(
+                                    Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                binding.progressCircular.visibility = View.INVISIBLE
+                                finish()
+                            }
                         }
                     }
                     true

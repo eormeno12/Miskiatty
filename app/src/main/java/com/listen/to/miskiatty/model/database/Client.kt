@@ -7,10 +7,10 @@ import java.io.Serializable
 
 @Entity
 data class Client (
-        @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
-        val image: String,
-        val name: String,
-        val phone: String,
-        val address: String,
-        var orders: List<Int>) : Serializable
+    var image: String,
+    val name: String,
+    val phone: String,
+    val address: String,
+    var orders: List<Int>) : Serializable

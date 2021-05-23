@@ -100,6 +100,7 @@ class AdapterCustomProducts(var productViewModel: ProductViewModel,
                 val product = getProductList()[position]
                 val appCompat = rv.context as AppCompatActivity
                 productViewModel.deleteProductROOM(rv.context, appCompat.lifecycle, product)
+                productsList.removeAt(position)
                 notifyDataSetChanged()
             }
 
