@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.coroutineScope
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.database.room.RoomDb
 import kotlinx.coroutines.launch
@@ -18,6 +19,39 @@ class ProductRepositoryImpl: ProductRepository {
         lifecycle.coroutineScope.launch {
             val productsRoom = db.productDao().getAllProducts()
             products.value = productsRoom
+        }
+    }
+
+    override fun deleteClientROOM(context: Context, lifecycle: Lifecycle, product: Product) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            db.productDao().deleteProduct(product)
+        }
+
+        lifecycle.coroutineScope.launch {
+            val orders = db.orderDao().getAllOrders()
+
+            for (order in orders){
+                val products = arrayListOf<Int>()
+                products.addAll(order.products)
+
+                val productsQuantity = arrayListOf<Int>()
+                productsQuantity.addAll(order.productsQuantity)
+
+                for (productOrder in products){
+                    if(productOrder == product.id){
+                        productsQuantity.removeAt(products.indexOf(productOrder))
+                        products.remove(productOrder)
+                    }
+                }
+
+                order.productsQuantity = productsQuantity
+                order.products = products
+                db.orderDao().updateOrder(order)
+            }
+
+            db.productDao().deleteProduct(product)
         }
     }
 

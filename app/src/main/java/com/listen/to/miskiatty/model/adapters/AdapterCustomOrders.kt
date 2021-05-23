@@ -2,9 +2,11 @@ package com.listen.to.miskiatty.model.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.viewmodel.OrderViewModel
@@ -82,6 +84,29 @@ class AdapterCustomOrders (var orderViewModel: OrderViewModel,
         }
 
         notifyDataSetChanged()
+    }
+
+    fun setUpOrderDeleteSwiping(rv: RecyclerView){
+        val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
+                val position = target.adapterPosition
+                val order = getOrdersList()[position]
+                val appCompat = rv.context as AppCompatActivity
+                orderViewModel.deleteOrderROOM(rv.context, appCompat.lifecycle, order)
+                notifyDataSetChanged()
+            }
+
+        })
+
+        itemTouchHelper.attachToRecyclerView(rv)
     }
 
     class ViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){

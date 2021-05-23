@@ -1,13 +1,18 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.database.Client
+import com.listen.to.miskiatty.model.repository.clients.ClientRepository
 import com.listen.to.miskiatty.viewmodel.ClientViewModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -88,6 +93,29 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
         }
 
         notifyDataSetChanged()
+    }
+
+    fun setUpClientDeleteSwiping(rv: RecyclerView){
+        val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
+                val position = target.adapterPosition
+                val client = getClientsList()[position]
+                val appCompat = rv.context as AppCompatActivity
+                clientViewModel.deleteClientROOM(rv.context, appCompat.lifecycle, client)
+                notifyDataSetChanged()
+            }
+
+        })
+
+        itemTouchHelper.attachToRecyclerView(rv)
     }
 
     class ViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){

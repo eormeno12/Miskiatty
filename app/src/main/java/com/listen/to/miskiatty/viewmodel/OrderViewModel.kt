@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.adapters.AdapterCustomOrders
@@ -64,6 +65,9 @@ class OrderViewModel: ViewModel() {
 
     fun getProducts(): MutableLiveData<List<Product>> = ordersRepository.getProducts()
 
+    fun deleteOrderROOM(context: Context, lifecycle: Lifecycle, order: Order) =
+        ordersRepository.deleteOrderROOM(context, lifecycle, order)
+
     fun getProductList(position: Int): String{
         val allProducts = getProducts().value
         val order = getOrderAt(position)
@@ -80,6 +84,10 @@ class OrderViewModel: ViewModel() {
 
     fun searchOrder(str: String) {
         ordersAdapter?.search(str)
+    }
+
+    fun setUpOrderDeleteSwiping(rv: RecyclerView){
+        ordersAdapter?.setUpOrderDeleteSwiping(rv)
     }
 
     fun onClickAddOrder(context: Context) =

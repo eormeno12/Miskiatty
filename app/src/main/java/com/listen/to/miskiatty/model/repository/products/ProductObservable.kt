@@ -16,4 +16,7 @@ class ProductObservable: BaseObservable() {
     fun getProducts(): MutableLiveData<List<Product>>{
         return productRepository.getProducts()
     }
+
+    fun deleteProductROOM(context: Context, lifecycle: Lifecycle, product: Product) =
+        productRepository.deleteClientROOM(context, lifecycle, product)
 }

@@ -15,4 +15,5 @@ interface OrdersRepository {
     fun getClient(id: Int): MutableLiveData<Client>
     fun callProductsRoom(context: Context, lifecycle: Lifecycle)
     fun getProducts(): MutableLiveData<List<Product>>
+    fun deleteOrderROOM(context: Context, lifecycle: Lifecycle, order: Order)
 }

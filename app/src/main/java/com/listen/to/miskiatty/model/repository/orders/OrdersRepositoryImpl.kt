@@ -82,4 +82,28 @@ class OrdersRepositoryImpl: OrdersRepository {
     }
 
     override fun getProducts(): MutableLiveData<List<Product>> = products
+
+    override fun deleteOrderROOM(context: Context, lifecycle: Lifecycle, order: Order) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            val clients = db.clientDao().getAllClients()
+
+            for (client in clients){
+                val orders = arrayListOf<Int>()
+                orders.addAll(client.orders)
+
+                for (clientOrder in orders){
+                    if(clientOrder == order.id){
+                        orders.remove(order.id)
+                    }
+                }
+
+                client.orders = orders
+                db.clientDao().updateClient(client)
+            }
+
+            db.orderDao().deleteOrder(order)
+        }
+    }
 }

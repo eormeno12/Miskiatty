@@ -7,12 +7,12 @@ import java.text.DateFormat
 
 @Entity
 data class Order(
-        @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
         var id: Int = 0,
-        val client: Int,
-        val address: String,
-        val deliveryDate: String,
-        val state: String,
-        val products: List<Int>,
-        val productsQuantity: List<Int>,
-        val totalPrice: Float) : Serializable
+    val client: Int,
+    val address: String,
+    val deliveryDate: String,
+    val state: String,
+    var products: List<Int>,
+    var productsQuantity: List<Int>,
+    val totalPrice: Float) : Serializable

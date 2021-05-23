@@ -87,6 +87,7 @@ class ProductsFragment : Fragment() {
 
     private fun setRecyclerProductsAdapter(){
         productViewModel?.setRecyclerProductsAdapter()
+        productViewModel?.setUpProductDeleteSwiping(binding.rvProducts)
     }
 
     private fun setUpListUpdate(){

@@ -10,4 +10,5 @@ interface ClientRepository {
     fun callClientROOM(context: Context, lifecycle: Lifecycle)
     fun getTopClients(): MutableLiveData<List<Client>>
     fun callTopClientsROOM(context: Context, lifecycle: Lifecycle)
+    fun deleteClientROOM(context: Context, lifecycle: Lifecycle, client: Client)
 }

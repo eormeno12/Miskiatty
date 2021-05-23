@@ -1,11 +1,16 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.viewmodel.ProductViewModel
 import java.util.*
@@ -80,6 +85,28 @@ class AdapterCustomProducts(var productViewModel: ProductViewModel,
         notifyDataSetChanged()
     }
 
+    fun setUpProductDeleteSwiping(rv: RecyclerView){
+        val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
+                val position = target.adapterPosition
+                val product = getProductList()[position]
+                val appCompat = rv.context as AppCompatActivity
+                productViewModel.deleteProductROOM(rv.context, appCompat.lifecycle, product)
+                notifyDataSetChanged()
+            }
+
+        })
+
+        itemTouchHelper.attachToRecyclerView(rv)
+    }
     class ViewHolder(binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
 
         private var binding: ViewDataBinding? = null

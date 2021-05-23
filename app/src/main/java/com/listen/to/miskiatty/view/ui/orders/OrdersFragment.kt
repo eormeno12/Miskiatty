@@ -82,6 +82,7 @@ class OrdersFragment : Fragment() {
 
     private fun setRecyclerProductsAdapter(){
         orderViewModel?.setRecyclerOrdersAdapter()
+        orderViewModel?.setUpOrderDeleteSwiping(binding.rvOrders)
     }
 
     private fun setUpListUpdate(){

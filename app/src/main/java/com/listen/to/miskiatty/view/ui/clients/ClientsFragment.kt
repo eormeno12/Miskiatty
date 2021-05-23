@@ -86,6 +86,7 @@ class ClientsFragment : Fragment() {
     private fun setRecyclerClientsAdapters() {
         clientViewModel?.setRecyclerTopClientsAdapter()
         clientViewModel?.setRecyclerClientsAdapter()
+        clientViewModel?.setUpClientDeleteSwiping(binding.rvClients)
     }
 
     private fun setUpListsUpdate() {

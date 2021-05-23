@@ -41,4 +41,17 @@ class ClientRepositoryImpl: ClientRepository {
     }
 
     override fun getTopClients(): MutableLiveData<List<Client>> = topClients
+
+    override fun deleteClientROOM(context: Context, lifecycle: Lifecycle, client: Client) {
+        val db = RoomDb.getDatabase(context)
+
+        lifecycle.coroutineScope.launch {
+            for (id in client.orders){
+                val order = db.orderDao().getOrderById(id)
+                db.orderDao().deleteOrder(order)
+            }
+
+            db.clientDao().deleteClient(client)
+        }
+    }
 }

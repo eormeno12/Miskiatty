@@ -3,13 +3,11 @@ package com.listen.to.miskiatty.viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomClients
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
@@ -17,7 +15,6 @@ import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.permissions.ReadContactsService
 import com.listen.to.miskiatty.model.repository.clients.ClientRepositoryImpl
 import com.listen.to.miskiatty.view.ui.clients.ClientsAddActivity
-import com.listen.to.miskiatty.view.ui.clients.ClientsFragment
 
 class ClientViewModel: ViewModel() {
 
@@ -44,6 +41,7 @@ class ClientViewModel: ViewModel() {
                         _clientClicked.value = getClientAt(position)
                     }
                 }, false)
+
     }
 
     fun callClients(appContext: Context, lifecycle: Lifecycle) =
@@ -77,6 +75,9 @@ class ClientViewModel: ViewModel() {
     fun getTopClientAt(position: Int): Client? =
             topClientsAdapter?.getClientsList()?.get(position)
 
+    fun deleteClientROOM(context: Context, lifecycle: Lifecycle, client: Client) =
+        clientRepository.deleteClientROOM(context, lifecycle, client)
+
 
     fun setClientsInRecyclerAdapter(adapter: AdapterCustomClients?, clients: List<Client>){
         if(adapter != null){
@@ -87,6 +88,10 @@ class ClientViewModel: ViewModel() {
 
     fun searchClient(str: String){
         clientsAdapter?.search(str)
+    }
+
+    fun setUpClientDeleteSwiping(rv: RecyclerView){
+        clientsAdapter?.setUpClientDeleteSwiping(rv)
     }
 
     fun onClickAddClients(context: Context) {
