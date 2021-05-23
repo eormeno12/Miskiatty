@@ -14,11 +14,11 @@ import com.listen.to.miskiatty.model.repository.statistics.StatisticsRepositoryI
 class StatisticsViewModel: ViewModel() {
     private val statisticsRepository: StatisticsRepository = StatisticsRepositoryImpl()
 
-    fun callProducts(context: Context, lifecycle: Lifecycle) {
-        statisticsRepository.callProductsRoom(context, lifecycle)
+    fun callProductsById(context: Context, lifecycle: Lifecycle, id: List<Int>) {
+        statisticsRepository.callProductsByIdRoom(context, lifecycle, id)
     }
 
-    fun getProducts(): LiveData<List<Product>> = statisticsRepository.getProducts()
+    fun getProductsById(): LiveData<List<Product>> = statisticsRepository.getProductsById()
 
     fun callClients(context: Context, lifecycle: Lifecycle) {
         statisticsRepository.callClientsRoom(context, lifecycle)

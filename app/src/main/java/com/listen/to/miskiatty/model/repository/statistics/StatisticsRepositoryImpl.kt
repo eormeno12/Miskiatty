@@ -16,16 +16,20 @@ class StatisticsRepositoryImpl: StatisticsRepository {
     private val clients = MutableLiveData<List<Client>>()
     private val orders = MutableLiveData<List<Order>>()
 
-    override fun callProductsRoom(context: Context, lifecycle: Lifecycle) {
+    override fun callProductsByIdRoom(context: Context, lifecycle: Lifecycle, id: List<Int>) {
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {
-            val productsRoom = db.productDao().getAllProducts()
+            val productsRoom = ArrayList<Product>()
+
+            for(i in id)
+                productsRoom.add(db.productDao().getProductById(i))
+
             products.value = productsRoom
         }
     }
 
-    override fun getProducts(): MutableLiveData<List<Product>> = products
+    override fun getProductsById(): MutableLiveData<List<Product>> = products
 
     override fun callClientsRoom(context: Context, lifecycle: Lifecycle) {
         val db = RoomDb.getDatabase(context)

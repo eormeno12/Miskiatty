@@ -21,8 +21,6 @@ import com.listen.to.miskiatty.viewmodel.StatisticsViewModel
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.format.DateTimeFormat
-import java.text.Format
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -63,7 +61,6 @@ class StatisticsFragment : Fragment() {
         statisticsViewModel?.let{ vm ->
             context?.applicationContext?.let {
                 vm.callOrders(it, lifecycle)
-                vm.callProducts(it, lifecycle)
                 vm.callClients(it, lifecycle)
             }
         }
@@ -82,7 +79,7 @@ class StatisticsFragment : Fragment() {
                 val date = format.parseLocalDate(orderDate)
                 Log.d("date", date.toString())
 
-                if(Days.daysBetween(date, currentDate) <= Days.SEVEN){
+                if(Days.daysBetween(date, currentDate) <= Days.SEVEN && order.state == "Entregado"){
                     Log.d("days", Days.daysBetween(currentDate, date).toString())
                     weekEarnings += order.totalPrice
                 }
@@ -104,7 +101,11 @@ class StatisticsFragment : Fragment() {
             val dataEntries: ArrayList<DataEntry> = ArrayList()
 
             for (order in orders)
-                dataEntries.add(ValueDataEntry(order.deliveryDate, order.totalPrice))
+                if(order.state == "Entregado"){
+                    val date = order.deliveryDate.split(" ").chunked(2)[0][0]
+                    dataEntries.add(ValueDataEntry(date, order.totalPrice))
+                }
+
 
             cartesian.data(dataEntries)
 
@@ -124,7 +125,7 @@ class StatisticsFragment : Fragment() {
 
             cartesian.apply {
                 animation(true)
-                title("Ganancias Diarias")
+                title("Ingresos Diarios")
                 data(dataEntries)
                 xAxis(0).title("Fecha")
                 yAxis(0).title("Monto")
@@ -146,18 +147,27 @@ class StatisticsFragment : Fragment() {
             val pie = AnyChart.pie()
             val dataEntries: ArrayList<DataEntry> = ArrayList()
 
-            val productHashMap = HashMap<String, Int>()
-            statisticsViewModel?.getProducts()?.observe(viewLifecycleOwner, { products ->
-                for (order in orders)
-                    for (productPosition in 0 until order.products.count())
-                        for (product in products)
-                            if (product.id == order.products[productPosition]) {
-                                productHashMap[product.name] = 0
-                                productHashMap[product.name] = productHashMap[product.name]!! + order.productsQuantity[productPosition]
-                            }
+            val productsIdHashMap = HashMap<Int, Int>()
 
-                for (product in productHashMap)
-                    dataEntries.add(ValueDataEntry(product.key, product.value))
+            for(order in orders)
+                for(id in order.products){
+                    if(productsIdHashMap.containsKey(id))
+                        productsIdHashMap[id] =
+                            productsIdHashMap[id]?.plus(
+                                order.productsQuantity[order.products.indexOf(id)]
+                            )!!.toInt()
+                    else
+                        productsIdHashMap[id] = order.productsQuantity[order.products.indexOf(id)]
+                }
+
+            statisticsViewModel?.callProductsById(this.requireContext(), lifecycle, productsIdHashMap.keys.toList())
+
+            statisticsViewModel?.getProductsById()?.observe(viewLifecycleOwner, { products ->
+                for (product in products)
+                    dataEntries.add(ValueDataEntry(
+                        product.name,
+                        productsIdHashMap[product.id])
+                    )
 
                 val palette = RangeColors.instantiate()
                 palette.items("#f48fb1", "#ffc1e3")

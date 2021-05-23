@@ -8,8 +8,8 @@ import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 
 interface StatisticsRepository {
-    fun callProductsRoom(context: Context, lifecycle: Lifecycle)
-    fun getProducts(): MutableLiveData<List<Product>>
+    fun callProductsByIdRoom(context: Context, lifecycle: Lifecycle, id: List<Int>)
+    fun getProductsById(): MutableLiveData<List<Product>>
     fun callClientsRoom(context: Context, lifecycle: Lifecycle)
     fun getClients(): MutableLiveData<List<Client>>
     fun callOrdersRoom(context: Context, lifecycle: Lifecycle)
