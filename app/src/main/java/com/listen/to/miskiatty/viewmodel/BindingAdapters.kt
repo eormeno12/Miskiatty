@@ -9,12 +9,27 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
+import com.listen.to.miskiatty.R
 import com.squareup.picasso.Picasso
+import java.io.File
 
-@BindingAdapter("srcUri")
-fun loadImageUri(imageView: ImageView, uri: String?){
-    uri?.let {
-        Picasso.with(imageView.context).load(Uri.parse(it)).resize(0, 200).into(imageView)
+@BindingAdapter("srcUriProduct")
+fun loadImageUriProduct(imageView: ImageView, url: String?) = loadImageUri(imageView, url, 200)
+
+@BindingAdapter("srcUriClient")
+fun loadImageUriClient(imageView: ImageView, url: String?) = loadImageUri(imageView, url, 40)
+
+@BindingAdapter("srcUriClientDetails")
+fun loadImageUriClientDetails(imageView: ImageView, url: String?) = loadImageUri(imageView, url, 160)
+
+
+fun loadImageUri(imageView: ImageView, url: String?, height: Int) {
+    url?.let {
+        Picasso
+            .get()
+            .load(url)
+            .resize(0, height)
+            .into(imageView);
     }
 }
 

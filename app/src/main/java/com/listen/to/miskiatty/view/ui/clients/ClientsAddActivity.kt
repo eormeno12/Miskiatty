@@ -2,13 +2,12 @@ package com.listen.to.miskiatty.view.ui.clients
 
 import android.app.SearchManager
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -17,9 +16,11 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityClientsAddBinding
 import com.listen.to.miskiatty.model.database.Client
+import com.listen.to.miskiatty.model.network.storage.FireStorageService
 import com.listen.to.miskiatty.model.repository.clients.Contact
+import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
 import com.listen.to.miskiatty.viewmodel.ClientsAddViewModel
-import java.io.InputStream
+import java.lang.Exception
 
 class ClientsAddActivity : AppCompatActivity() {
 
@@ -112,23 +113,41 @@ class ClientsAddActivity : AppCompatActivity() {
 
                 if (checkedContacts != null && checkedContacts.isNotEmpty()) {
                     val clientsToAdd = ArrayList<Client>()
+                    val imageUri = "android.resource://com.listen.to.miskiatty/drawable/" + R.drawable.default_client_96
 
-                    for (contact in checkedContacts) {
-                        val newClient = Client(
-                            name = contact.name,
-                            phone = contact.phone,
-                            image = "android.resource://com.listen.to.miskiatty/drawable/" + R.drawable.default_client_96,
-                            address = "",
-                            orders = ArrayList()
-                        )
-                        clientsToAdd.add(newClient)
-                    }
+                    FireStorageService().uploadFileFromUri(Uri.parse(imageUri),
+                        object: CallbackFireStorage<String> {
+                            override fun onSucces(result: String?) {
+                                if(result != null){
+                                    for (contact in checkedContacts) {
+                                        val newClient = Client(
+                                            name = contact.name,
+                                            phone = contact.phone,
+                                            image = result,
+                                            address = "",
+                                            orders = ArrayList()
+                                        )
 
-                    clientsAddViewModel?.addClientsRoom(this, lifecycle, clientsToAdd)
+                                        clientsToAdd.add(newClient)
+                                        clientsAddViewModel?.addClientsRoom(this@ClientsAddActivity, lifecycle, clientsToAdd)
+                                        onBackPressed()
+                                        finish()
+                                    }
+
+                                    binding.progressCircular.visibility = View.INVISIBLE
+                                }
+                            }
+
+                            override fun onProgress(progress: Double) {
+                                binding.progressCircular.visibility = View.VISIBLE
+                            }
+
+                            override fun onFailure(e: Exception) {
+                                binding.progressCircular.visibility = View.INVISIBLE
+                            }
+
+                        })
                 }
-
-                Log.d("Contacts", clientsAddViewModel?.getCheckedContacts().toString())
-                onBackPressed()
             }
         }
 

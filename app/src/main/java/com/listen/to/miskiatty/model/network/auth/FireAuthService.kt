@@ -1,4 +1,4 @@
-package com.listen.to.miskiatty.model.network
+package com.listen.to.miskiatty.model.network.auth
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

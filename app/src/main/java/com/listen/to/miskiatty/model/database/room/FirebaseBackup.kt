@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.listen.to.miskiatty.model.database.converters.RoomConverters
-import com.listen.to.miskiatty.model.network.FireStoreService
+import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.network.UserData
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.wave.viewmodel.CallbackFireStore

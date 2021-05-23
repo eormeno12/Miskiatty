@@ -9,6 +9,7 @@
             type="com.listen.to.miskiatty.viewmodel.ClientEditViewModel" />
     </data>
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -50,7 +52,7 @@
                     android:layout_gravity="center"
                     tools:src="@drawable/ic_baseline_person_24"
                     android:onClick="@{() -> clientEditViewModel.onClickPickImage(context)}"
-                    srcUri="@{clientEditViewModel.client.image}"
+                    srcUriClientDetails="@{clientEditViewModel.client.image}"
                     android:elevation="@dimen/cardview_default_elevation"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
@@ -116,6 +118,22 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            android:id="@+id/progress_circular"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:alpha="0.6"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
     </FrameLayout>
 </layout>

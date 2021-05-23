@@ -13,9 +13,8 @@ import com.google.firebase.ktx.Firebase
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityLoginBinding
 import com.listen.to.miskiatty.model.database.room.FirebaseBackup
-import com.listen.to.miskiatty.model.network.FireAuthService
-import com.listen.to.miskiatty.model.network.FireStoreService
-import com.listen.to.miskiatty.model.network.UserData
+import com.listen.to.miskiatty.model.network.auth.FireAuthService
+import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.LoginViewModel

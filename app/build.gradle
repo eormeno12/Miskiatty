@@ -73,7 +73,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
 
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'net.danlew:android.joda:2.10.9.1'
 }
