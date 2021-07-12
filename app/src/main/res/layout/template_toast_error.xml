@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/template_toast_error_background"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/textToast"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Esto es un mensaje de error"
+        android:textAlignment="center"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

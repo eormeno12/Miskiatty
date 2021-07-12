@@ -14,11 +14,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityProductAddBinding
 import com.listen.to.miskiatty.model.database.Product
+import com.listen.to.miskiatty.model.messages.ErrorsEnum
 import com.listen.to.miskiatty.model.network.storage.FireStorageService
 import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
 import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
+import com.listen.to.wave.view.message.ToastFactory
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import java.lang.NullPointerException
 
 class ProductAddActivity : AppCompatActivity() {
 
@@ -95,35 +98,45 @@ class ProductAddActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menu ->
             when(menu.itemId){
                 R.id.confirm_product -> {
-                    FireStorageService().uploadFileFromUri(Uri.parse(imageUri), object: CallbackFireStorage<String>{
-                        override fun onSucces(result: String?) {
-                            if(result != null){
-                                imageUrl = result
+                    try{
+                        FireStorageService().uploadFileFromUri(Uri.parse(imageUri), object: CallbackFireStorage<String>{
+                            override fun onSucces(result: String?) {
+                                if(result != null){
+                                    imageUrl = result
+                                    val productForUpdate = buildProductForUpdate()
+                                    val product = buildProduct()
+                                    if(productForUpdate != null || product != null){
+                                        if (navigationComesFromProductDetails)
+                                            productAddViewModel?.updateProductRoom(applicationContext,
+                                                lifecycle,
+                                                productForUpdate!!)
+                                        else
+                                            productAddViewModel?.addProductRoom(applicationContext,
+                                                lifecycle,
+                                                product!!)
 
-                                if (navigationComesFromProductDetails)
-                                    productAddViewModel?.updateProductRoom(applicationContext,
-                                        lifecycle,
-                                        buildProductForUpdate())
-                                else
-                                    productAddViewModel?.addProductRoom(applicationContext,
-                                        lifecycle,
-                                        buildProduct())
-
-                                onBackPressed()
-                                binding.progressCircular.visibility = View.INVISIBLE
-                                finish()
+                                        onBackPressed()
+                                        binding.progressCircular.visibility = View.INVISIBLE
+                                        finish()
+                                    }else{
+                                        ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.EMPTY_TEXT_FIELD)
+                                    }
+                                }
                             }
-                        }
 
-                        override fun onProgress(progress: Double) {
-                            binding.progressCircular.visibility = View.VISIBLE
-                        }
+                            override fun onProgress(progress: Double) {
+                                binding.progressCircular.visibility = View.VISIBLE
+                            }
 
-                        override fun onFailure(e: Exception) {
-                            binding.progressCircular.visibility = View.INVISIBLE
-                        }
+                            override fun onFailure(e: Exception) {
+                                binding.progressCircular.visibility = View.INVISIBLE
+                                ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.SAVE_ERROR)
+                            }
 
-                    })
+                        })
+                    }catch (e: NullPointerException){
+                        ToastFactory().displayErrorToast(this, ErrorsEnum.EMPTY_TEXT_FIELD)
+                    }
                     true
                 }
 
@@ -133,24 +146,36 @@ class ProductAddActivity : AppCompatActivity() {
     }
 
 
-    private fun buildProduct(): Product{
-        return Product(
+    private fun buildProduct(): Product?{
+        return try {
+            val product = Product(
                 image = imageUrl!!,
                 name = binding.product.editText?.text.toString(),
                 price = binding.price.editText?.text.toString().toFloat(),
                 cost = binding.cost.editText?.text.toString().toFloat(),
                 recipe = binding.recipe.editText?.text.toString()
-        )
+            )
+            product
+        } catch (e: NullPointerException){
+            ToastFactory().displayErrorToast(this, ErrorsEnum.EMPTY_TEXT_FIELD)
+            null
+        }
     }
 
-    private fun buildProductForUpdate(): Product{
-        return Product(
+    private fun buildProductForUpdate(): Product?{
+        return try {
+            val product = Product(
                 id = productId!!,
                 image = imageUrl!!,
                 name = binding.product.editText?.text.toString(),
                 price = binding.price.editText?.text.toString().toFloat(),
                 cost = binding.cost.editText?.text.toString().toFloat(),
                 recipe = binding.recipe.editText?.text.toString()
-        )
+            )
+            product
+        } catch (e: NullPointerException){
+            ToastFactory().displayErrorToast(this, ErrorsEnum.EMPTY_TEXT_FIELD)
+            null
+        }
     }
 }

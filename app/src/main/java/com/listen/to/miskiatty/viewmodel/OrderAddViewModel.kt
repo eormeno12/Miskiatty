@@ -22,10 +22,13 @@ import com.listen.to.miskiatty.model.adapters.AdapterCustomAddOrderProducts
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
+import com.listen.to.miskiatty.model.messages.ErrorsEnum
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepository
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepositoryImpl
 import com.listen.to.miskiatty.view.ui.orders.OrderAddSummaryActivity
+import com.listen.to.wave.view.message.ToastFactory
 import java.lang.Exception
+import java.lang.NullPointerException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -162,38 +165,42 @@ class OrderAddViewModel: ViewModel() {
         addOrderProductsAdapter?.getProductsList()?.get(position)
 
     fun onClickNextToSummary(context: Context){
-        var totalPrice = 0f
+        try {
+            var totalPrice = 0f
 
-        for(i in 0 until checkedProductQuantityList.size)
-            totalPrice += (checkedProductList[i].price * checkedProductQuantityList[i])
+            for(i in 0 until checkedProductQuantityList.size)
+                totalPrice += (checkedProductList[i].price * checkedProductQuantityList[i])
 
-        val checkedProductsIdList = ArrayList<Int>()
-        for (product in checkedProductList)
-            checkedProductsIdList.add(product.id)
+            val checkedProductsIdList = ArrayList<Int>()
+            for (product in checkedProductList)
+                checkedProductsIdList.add(product.id)
 
-        val order = Order(
-            client = client?.id!!,
-            address = address,
-            deliveryDate = deliveryDate,
-            state = state,
-            totalPrice = totalPrice,
-            products = checkedProductsIdList,
-            productsQuantity = checkedProductQuantityList
-        )
-
-        getOrder().value?.id?.let {
-            order.id = it
-        }
-
-        with(context){
-            startActivity(Intent(
-                applicationContext,
-                OrderAddSummaryActivity::class.java)
-                .apply {
-                    putExtra("com.listen.to.miskiatty.view.ui.orders.DETAILS", order)
-                    putExtra("com.listen.to.miskiatty.view.ui.orders.UPDATE", intentHasData(context as AppCompatActivity))
-                }
+            val order = Order(
+                client = client?.id!!,
+                address = address,
+                deliveryDate = deliveryDate,
+                state = state,
+                totalPrice = totalPrice,
+                products = checkedProductsIdList,
+                productsQuantity = checkedProductQuantityList
             )
+
+            getOrder().value?.id?.let {
+                order.id = it
+            }
+
+            with(context){
+                startActivity(Intent(
+                    applicationContext,
+                    OrderAddSummaryActivity::class.java)
+                    .apply {
+                        putExtra("com.listen.to.miskiatty.view.ui.orders.DETAILS", order)
+                        putExtra("com.listen.to.miskiatty.view.ui.orders.UPDATE", intentHasData(context as AppCompatActivity))
+                    }
+                )
+            }
+        }catch (e:NullPointerException){
+            ToastFactory().displayErrorToast(context, ErrorsEnum.EMPTY_TEXT_FIELD)
         }
     }
 

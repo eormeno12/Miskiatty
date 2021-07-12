@@ -13,11 +13,13 @@ import com.google.firebase.ktx.Firebase
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityLoginBinding
 import com.listen.to.miskiatty.model.database.room.FirebaseBackup
+import com.listen.to.miskiatty.model.messages.ErrorsEnum
 import com.listen.to.miskiatty.model.network.auth.FireAuthService
 import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.LoginViewModel
+import com.listen.to.wave.view.message.ToastFactory
 import com.listen.to.wave.viewmodel.CallbackFireAuth
 import java.lang.Exception
 
@@ -42,28 +44,32 @@ class LoginActivity : AppCompatActivity() {
                 val email = binding.user.editText?.text.toString()
                 val password = binding.password.editText?.text.toString()
 
-                preferenceProvider.setEmailLogin(email)
+                if(email.isBlank() || password.isBlank()){
+                    ToastFactory().displayErrorToast(this, ErrorsEnum.EMPTY_TEXT_FIELD)
+                }else{
+                    preferenceProvider.setEmailLogin(email)
 
-                fireAuthService.userLogin(email, password, object: CallbackFireAuth<FirebaseUser> {
-                    override fun onSucces(result: FirebaseUser?) {
+                    fireAuthService.userLogin(email, password, object: CallbackFireAuth<FirebaseUser> {
+                        override fun onSucces(result: FirebaseUser?) {
 
-                        val firebaseBackup = FirebaseBackup(this@LoginActivity, lifecycle)
-                        firebaseBackup.chargeBackup(email)
+                            val firebaseBackup = FirebaseBackup(this@LoginActivity, lifecycle)
+                            firebaseBackup.chargeBackup(email)
 
-                        if(preferenceProvider.isPinLoginSaved()){
-                            preferenceProvider.saveLogin()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java).addFlags(
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                            finish()
-                        }else {
-                            startActivity(Intent(this@LoginActivity, SetPinLoginActivity::class.java))
+                            if(preferenceProvider.isPinLoginSaved()){
+                                preferenceProvider.saveLogin()
+                                startActivity(Intent(this@LoginActivity, MainActivity::class.java).addFlags(
+                                    Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
+                            }else {
+                                startActivity(Intent(this@LoginActivity, SetPinLoginActivity::class.java))
+                            }
                         }
-                    }
 
-                    override fun onFailure(e: Exception) {
-                        loginViewModel!!.getLoginErrors(binding.user, binding.password)
-                    }
-                })
+                        override fun onFailure(e: Exception) {
+                            loginViewModel!!.getLoginErrors(binding.user, binding.password)
+                        }
+                    })
+                }
             }
         })
     }
