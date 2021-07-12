@@ -8,123 +8,176 @@
             name="orderAddSummaryViewModel"
             type="com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel" />
     </data>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".view.ui.orders.OrderAddSummaryActivity">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="8dp">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_product_add_summary"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:title="Resumen del Pedido"
-                app:menu="@menu/menu_order_add"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
-        </com.google.android.material.appbar.AppBarLayout>
-
+        android:fillViewport="true">
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            tools:context=".view.ui.orders.OrderAddSummaryActivity">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="8dp">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar_product_add_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    app:title="Resumen del Pedido"
+                    app:menu="@menu/menu_order_add"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                    style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
+            </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="2">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cliente"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dirección"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cliente"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Entrega"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dirección"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Estado"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Entrega"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="5">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvClient"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Ernesto"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Lima, Perú"
+                        android:text="@{orderAddSummaryViewModel.order.address}"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="12 / 04 / 20"
+                        android:text="@{orderAddSummaryViewModel.order.deliveryDate}"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Preparando"
+                        android:text="@{orderAddSummaryViewModel.order.state}"
+                        android:textSize="20sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:textStyle="bold"
+                android:text="Productos"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_clients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:setAdapter="@{orderAddSummaryViewModel.recyclerOrdersProductsAdapter}"/>
+
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="5">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvClient"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    tools:text="Ernesto"
-                    android:textSize="20sp" />
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:layout_weight="2"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    android:elevation="@dimen/cardview_default_elevation">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Lima, Perú"
-                    android:text="@{orderAddSummaryViewModel.order.address}"
-                    android:textSize="20sp" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:textStyle="bold"
+                        android:text="Total"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="12 / 04 / 20"
-                    android:text="@{orderAddSummaryViewModel.order.deliveryDate}"
-                    android:textSize="20sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Preparando"
-                    android:text="@{orderAddSummaryViewModel.order.state}"
-                    android:textSize="20sp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_weight="2"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="8dp"
+                    android:elevation="@dimen/cardview_default_elevation">
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:textStyle="bold"
+                        tools:text="S/"
+                        android:text='@{"S/" + orderAddSummaryViewModel.order.component8()}'
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.card.MaterialCardView>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:textStyle="bold"
-            android:text="Productos"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_clients"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:setAdapter="@{orderAddSummaryViewModel.recyclerOrdersProductsAdapter}"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </layout>

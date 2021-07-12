@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/template_toast_error_background.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_order_add_summary.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/template_order_products_add_summary.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/template_toast_error.xml" value="0.23333333333333334" />
       </map>
     </option>
