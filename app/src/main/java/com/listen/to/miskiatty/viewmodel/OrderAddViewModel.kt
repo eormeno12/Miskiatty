@@ -167,9 +167,12 @@ class OrderAddViewModel: ViewModel() {
     fun onClickNextToSummary(context: Context){
         try {
             var totalPrice = 0f
+            var totalProfit = 0f
 
-            for(i in 0 until checkedProductQuantityList.size)
+            for(i in 0 until checkedProductQuantityList.size){
                 totalPrice += (checkedProductList[i].price * checkedProductQuantityList[i])
+                totalProfit += (checkedProductList[i].cost * checkedProductQuantityList[i])
+            }
 
             val checkedProductsIdList = ArrayList<Int>()
             for (product in checkedProductList)
@@ -182,7 +185,8 @@ class OrderAddViewModel: ViewModel() {
                 state = state,
                 totalPrice = totalPrice,
                 products = checkedProductsIdList,
-                productsQuantity = checkedProductQuantityList
+                productsQuantity = checkedProductQuantityList,
+                profit = totalProfit
             )
 
             getOrder().value?.id?.let {
@@ -215,7 +219,7 @@ class OrderAddViewModel: ViewModel() {
 
 
         val datePickerDialog = DatePickerDialog(context, { datePicker, y, m, d ->
-            editText.setText("$d/$m/$y")
+            editText.setText("$d/${m+1}/$y")
         }, year, month, day)
 
         val timePickerDialog = TimePickerDialog(context, { timePicker, h, m ->

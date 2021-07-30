@@ -3,7 +3,6 @@ package com.listen.to.miskiatty.model.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.text.DateFormat
 
 @Entity
 data class Order(
@@ -15,4 +14,5 @@ data class Order(
     val state: String,
     var products: List<Int>,
     var productsQuantity: List<Int>,
-    val totalPrice: Float) : Serializable
+    val totalPrice: Float,
+    val profit: Float) : Serializable

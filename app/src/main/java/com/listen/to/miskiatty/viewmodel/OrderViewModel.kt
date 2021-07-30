@@ -75,9 +75,11 @@ class OrderViewModel: ViewModel() {
 
         if(order != null && allProducts != null)
             for (id in order.products)
-                for(idx in 0 until allProducts.count())
-                    if(allProducts[idx].id == id)
-                        productsNameList += "- ${order.productsQuantity[idx]} ${allProducts[idx].name}\n"
+                for(product in allProducts)
+                    if(product.id == id){
+                        productsNameList += "- ${order.productsQuantity[order.products.indexOf(id)]} ${product.name}\n"
+                        break
+                    }
 
         return productsNameList
     }

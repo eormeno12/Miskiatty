@@ -25,8 +25,8 @@ class OrderAddActivity : AppCompatActivity() {
 
         setUpToolbar()
         setRecyclerProductsAdapter()
-        setUpDropDownMenu()
         setUpDataUpdate()
+        setUpDropDownMenu()
     }
 
     override fun onStart() {
@@ -70,11 +70,11 @@ class OrderAddActivity : AppCompatActivity() {
                         binding.address.editText?.setText(clients[position].address)
                         orderAddViewModel?.client = clients[position]
                     }
-                })
 
-                val states = arrayListOf("En cola", "Preparando", "Listo", "Entregado")
-                val statesArrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, states)
-                binding.clientStateAutoComplete.setAdapter(statesArrayAdapter)
+                    val states = arrayListOf("En cola", "Preparando", "Listo", "Entregado")
+                    val statesArrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, states)
+                    binding.clientStateAutoComplete.setAdapter(statesArrayAdapter)
+                })
             }
         }
     }

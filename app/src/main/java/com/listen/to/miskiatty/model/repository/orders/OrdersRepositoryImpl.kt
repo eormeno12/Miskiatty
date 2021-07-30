@@ -17,26 +17,6 @@ class OrdersRepositoryImpl: OrdersRepository {
     private var orders = MutableLiveData<List<Order>>()
 
     override fun callOrdersROOM(context: Context, lifecycle: Lifecycle) {
-        /*val order = Order(
-                client = Client(
-                        image = BitmapFactory.decodeResource(context.resources, R.drawable.default_client_96),
-                        name = "Juan",
-                        phone = "987541990",
-                        address = "Surco",
-                        orders = ArrayList(), ),
-                address = "Surco",
-                deliveryDate = "12/10/2004",
-                state = "Entregado",
-                totalPrice = 80f,
-                products = listOf(Product(
-                        image = BitmapFactory.decodeResource(context.resources, R.drawable.default_client_96),
-                        name = "keke",
-                        price = 20f,
-                        cost = 15f,
-                        recipe = "Ingredientes"
-                )),
-                productsQuantity = listOf(5)
-        )*/
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {

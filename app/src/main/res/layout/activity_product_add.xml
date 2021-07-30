@@ -12,11 +12,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.ui.products.ProductAddActivity"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:context=".view.ui.products.ProductAddActivity">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -25,13 +26,13 @@
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar_product_add"
+                    style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/white"
-                    app:title="Nuevo Producto"
+                    app:menu="@menu/menu_product_add"
                     app:navigationIcon="@drawable/ic_baseline_close_24"
-                    style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
-                    app:menu="@menu/menu_product_add" />
+                    app:title="Nuevo Producto" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,26 +53,32 @@
                         android:layout_margin="2dp"
                         android:background="@drawable/sp_rounded_rectangle"
                         android:elevation="@dimen/cardview_default_elevation"
-                        app:srcCompat="@drawable/ic_baseline_image_60"
+                        android:onClick="@{() -> productAddViewModel.onClickPickImage(context)}"
                         android:scaleType="center"
-                        android:onClick="@{() -> productAddViewModel.onClickPickImage(context)}"/>
+                        app:srcCompat="@drawable/ic_baseline_image_60" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/product"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:hint="Producto"
-                        app:startIconDrawable="@drawable/ic_baseline_cake_24"
                         app:endIconMode="clear_text"
-                        app:errorEnabled="true">
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_baseline_cake_24">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
                             android:lines="1" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.6"
+                            android:background="@color/colorPrimary" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,16 +89,16 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/price"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_weight="1"
                             android:hint="Precio"
-                            app:startIconDrawable="@drawable/ic_baseline_dollar_24"
                             app:endIconMode="clear_text"
-                            app:errorEnabled="true">
+                            app:errorEnabled="true"
+                            app:startIconDrawable="@drawable/ic_baseline_dollar_24">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
@@ -103,16 +110,16 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/cost"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_weight="1"
                             android:hint="Costo"
-                            app:startIconDrawable="@drawable/ic_baseline_dollar_24"
                             app:endIconMode="clear_text"
-                            app:errorEnabled="true">
+                            app:errorEnabled="true"
+                            app:startIconDrawable="@drawable/ic_baseline_dollar_24">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
@@ -126,14 +133,14 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/recipe"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:hint="Receta"
-                        app:startIconDrawable="@drawable/ic_baseline_list_24"
                         app:endIconMode="clear_text"
-                        app:errorEnabled="true">
+                        app:errorEnabled="true"
+                        app:startIconDrawable="@drawable/ic_baseline_list_24">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -153,15 +160,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:alpha="0.6"/>
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true" />
         </RelativeLayout>
     </RelativeLayout>
 

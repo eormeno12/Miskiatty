@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_app_foreground.xml" value="0.21944444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/template_toast_error_background.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/activity_clients_add.xml" value="0.2266970618034448" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/activity_order_add_summary.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_product_add.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.2266970618034448" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/layout/template_order_products_add_summary.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/template_toast_error.xml" value="0.23333333333333334" />
       </map>

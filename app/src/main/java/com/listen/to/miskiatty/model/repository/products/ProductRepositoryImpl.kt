@@ -22,7 +22,7 @@ class ProductRepositoryImpl: ProductRepository {
         }
     }
 
-    override fun deleteClientROOM(context: Context, lifecycle: Lifecycle, product: Product) {
+    override fun deleteProductROOM(context: Context, lifecycle: Lifecycle, product: Product) {
         val db = RoomDb.getDatabase(context)
 
         lifecycle.coroutineScope.launch {

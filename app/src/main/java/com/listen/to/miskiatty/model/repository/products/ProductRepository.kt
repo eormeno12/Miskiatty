@@ -9,5 +9,5 @@ import com.listen.to.miskiatty.model.database.Product
 interface ProductRepository {
     fun getProducts(): MutableLiveData<List<Product>>
     fun callProductsROOM(context: Context, lifecycle: Lifecycle)
-    fun deleteClientROOM(context: Context, lifecycle: Lifecycle, product: Product)
+    fun deleteProductROOM(context: Context, lifecycle: Lifecycle, product: Product)
 }

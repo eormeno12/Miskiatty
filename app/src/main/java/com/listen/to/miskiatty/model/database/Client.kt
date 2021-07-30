@@ -1,6 +1,5 @@
 package com.listen.to.miskiatty.model.database
 
-import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable

@@ -46,7 +46,7 @@ class StatisticsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setWeekEarnings()
+        setWeekProfit()
         setUpDailyEarningsChart()
         setUpMostSoldProductsChart()
         setUpClientsRetentionChart()
@@ -66,10 +66,10 @@ class StatisticsFragment : Fragment() {
         }
     }
 
-    private fun setWeekEarnings(){
+    private fun setWeekProfit(){
         statisticsViewModel?.getOrders()?.observe(viewLifecycleOwner, { orders ->
             if(orders != null){
-                var weekEarnings = 0.0
+                var weekProfit = 0.0
                 val dateTime = DateTime.now()
                 val format = DateTimeFormat.forPattern("dd/MM/yyyy");
                 val currentDate = format.parseLocalDate(format.print(dateTime))
@@ -80,14 +80,14 @@ class StatisticsFragment : Fragment() {
                     val date = format.parseLocalDate(orderDate)
                     Log.d("date", date.toString())
 
+                    Log.d("days", Days.daysBetween(currentDate, date).toString())
                     if(Days.daysBetween(date, currentDate) <= Days.SEVEN && order.state == "Entregado"){
-                        Log.d("days", Days.daysBetween(currentDate, date).toString())
-                        weekEarnings += order.totalPrice
+                        weekProfit += order.profit
                     }
                 }
 
                 Log.d("Calendar", Calendar.WEEK_OF_MONTH.toString())
-                binding.tvWeekEarnings.text = "S/.$weekEarnings"
+                binding.tvWeekEarnings.text = "S/.$weekProfit"
                 binding.executePendingBindings()
             }
         })

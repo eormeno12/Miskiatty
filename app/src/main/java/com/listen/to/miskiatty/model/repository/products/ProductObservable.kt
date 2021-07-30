@@ -18,5 +18,5 @@ class ProductObservable: BaseObservable() {
     }
 
     fun deleteProductROOM(context: Context, lifecycle: Lifecycle, product: Product) =
-        productRepository.deleteClientROOM(context, lifecycle, product)
+        productRepository.deleteProductROOM(context, lifecycle, product)
 }
