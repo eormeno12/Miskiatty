@@ -14,15 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="60dp"
                 android:paddingHorizontal="16dp">
 
                 <com.google.android.material.card.MaterialCardView
@@ -46,9 +45,9 @@
                             android:layout_margin="16dp"
                             android:gravity="center"
                             android:maxLines="2"
-                            android:text="Ganancias de la \n semana"
+                            android:text="@string/tv_gains_title_statistics"
                             android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textSize="@dimen/subtitle2_font_size" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/tv_weekEarnings"
@@ -60,85 +59,98 @@
                             android:maxLines="2"
                             android:text=''
                             android:textColor="@color/white"
-                            android:textSize="32sp"
+                            android:textSize="@dimen/title_font_size"
                             android:textStyle="bold"
                             tools:text="S/800" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
-
                 </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="@dimen/cardview_default_radius"
-                    app:cardElevation="@dimen/cardview_default_elevation">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <com.anychart.AnyChartView
-                            android:id="@+id/dailyEarningsChart"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <ProgressBar
-                            android:id="@+id/dailyEarningsChartBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"/>
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="@dimen/cardview_default_radius"
-                    app:cardElevation="@dimen/cardview_default_elevation">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <com.anychart.AnyChartView
-                            android:id="@+id/mostSoldProductsChart"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <ProgressBar
-                            android:id="@+id/mostSoldProductsChartBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"/>
-                    </RelativeLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="@dimen/cardview_default_radius"
-                    app:cardElevation="@dimen/cardview_default_elevation">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <com.anychart.AnyChartView
-                            android:id="@+id/clientsRetentionChart"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <ProgressBar
-                            android:id="@+id/clientsRetentionChartBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"/>
-                    </RelativeLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </ScrollView>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="60dp"
+                    android:paddingHorizontal="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="@dimen/cardview_default_radius"
+                        app:cardElevation="@dimen/cardview_default_elevation">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.anychart.AnyChartView
+                                android:id="@+id/dailyEarningsChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <ProgressBar
+                                android:id="@+id/dailyEarningsChartBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="@dimen/cardview_default_radius"
+                        app:cardElevation="@dimen/cardview_default_elevation">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.anychart.AnyChartView
+                                android:id="@+id/mostSoldProductsChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <ProgressBar
+                                android:id="@+id/mostSoldProductsChartBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="@dimen/cardview_default_radius"
+                        app:cardElevation="@dimen/cardview_default_elevation">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.anychart.AnyChartView
+                                android:id="@+id/clientsRetentionChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <ProgressBar
+                                android:id="@+id/clientsRetentionChartBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </ScrollView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 </layout>

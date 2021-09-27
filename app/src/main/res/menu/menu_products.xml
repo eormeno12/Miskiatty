@@ -5,7 +5,7 @@
     <item
         android:id="@+id/search_product"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Buscar"
+        android:title="@string/item_search_title"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -58,7 +58,7 @@
                 android:gravity="center|start"
                 tools:text="Cliente"
                 android:text="@{clientViewModel.getTopClientAt(position).name}"
-                android:textSize="20sp"
+                android:textSize="@dimen/body_font_size"
                 android:textColor="@color/white"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/statisticsFragment"
-        android:title="Estadística"
+        android:title="@string/item_statistics_title"
         android:icon="@drawable/ic_round_data_24"/>
 
     <item
         android:id="@+id/clientsFragment"
-        android:title="Clientes"
+        android:title="@string/item_clients_title"
         android:icon="@drawable/ic_baseline_person_24"/>
 
     <item
         android:id="@+id/productsFragment"
-        android:title="Productos"
+        android:title="@string/item_products_title"
         android:icon="@drawable/ic_baseline_cake_24"/>
 
     <item
         android:id="@+id/ordersFragment"
-        android:title="Pedidos"
+        android:title="@string/item_orders_title"
         android:icon="@drawable/ic_baseline_list_24"/>
 
 </menu>

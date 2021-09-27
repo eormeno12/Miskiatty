@@ -4,17 +4,46 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_app_foreground.xml" value="0.21944444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.4287037037037037" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/template_toast_error_background.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/activity_client_details.xml" value="0.2266970618034448" />
+        <entry key="app/src/main/res/layout/activity_client_edit.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/activity_clients_add.xml" value="0.2266970618034448" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23541666666666666" />
+        <entry key="app/src/main/res/layout/activity_order_add.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/activity_order_add_summary.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_order_details.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/activity_pin_login.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/activity_product_add.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/activity_set_pin_login.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.23541666666666666" />
+        <entry key="app/src/main/res/layout/fragment_clients.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.2266970618034448" />
+        <entry key="app/src/main/res/layout/fragment_products.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.27239583333333334" />
+        <entry key="app/src/main/res/layout/template_client.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/template_client_add.xml" value="0.23489583333333333" />
+        <entry key="app/src/main/res/layout/template_order.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/template_order_client.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/template_order_products.xml" value="0.432518115942029" />
+        <entry key="app/src/main/res/layout/template_order_products_add.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/template_order_products_add_summary.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/template_product.xml" value="0.432518115942029" />
         <entry key="app/src/main/res/layout/template_toast_error.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/template_top_client.xml" value="0.23541666666666666" />
+        <entry key="app/src/main/res/menu/menu_clients.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_clients_add.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_clients_edit.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_details.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.23541666666666666" />
+        <entry key="app/src/main/res/menu/menu_order_add.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_orders.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_product_add.xml" value="0.4661458333333333" />
+        <entry key="app/src/main/res/menu/menu_products.xml" value="0.4661458333333333" />
       </map>
     </option>
   </component>

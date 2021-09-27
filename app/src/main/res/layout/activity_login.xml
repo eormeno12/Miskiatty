@@ -65,10 +65,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:gravity="center"
-                        android:text="Iniciar Sesión"
+                        android:text="@string/tv_login_title_login"
                         android:textAllCaps="true"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="28sp" />
+                        android:textSize="@dimen/title_font_size" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/user"
@@ -76,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Usuario"
+                        android:hint="@string/et_user_hint_login"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_person_24">
@@ -94,7 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:hint="Contraseña"
+                        android:hint="@string/et_password_hint_login"
                         app:endIconMode="password_toggle"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_lock_24">
@@ -114,7 +114,7 @@
                         android:layout_marginTop="8dp"
                         android:backgroundTint="@color/colorPrimaryDark"
                         android:onClick="@{() -> loginViewModel.onClickLoginListener(user, password)}"
-                        android:text="Iniciar Sesión" />
+                        android:text="@string/tv_login_title_login" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.cardview.widget.CardView>

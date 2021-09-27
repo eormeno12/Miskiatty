@@ -49,30 +49,30 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cliente"
+                        android:text="@string/tv_client_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dirección"
+                        android:text="@string/tv_address_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Entrega"
+                        android:text="@string/tv_date_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Estado"
+                        android:text="@string/tv_state_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -87,28 +87,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Ernesto"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Lima, Perú"
                         android:text="@{orderAddSummaryViewModel.order.address}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="12 / 04 / 20"
                         android:text="@{orderAddSummaryViewModel.order.deliveryDate}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Preparando"
                         android:text="@{orderAddSummaryViewModel.order.state}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -118,8 +118,8 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
                 android:textStyle="bold"
-                android:text="Productos"
-                android:textSize="20sp" />
+                android:text="@string/item_products_title"
+                android:textSize="@dimen/subtitle_font_size" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_clients"
@@ -150,9 +150,9 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:textStyle="bold"
-                        android:text="Total"
+                        android:text="@string/tv_total_title_orderDetails"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -174,7 +174,7 @@
                         tools:text="S/"
                         android:text='@{"S/" + orderAddSummaryViewModel.order.component8()}'
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </com.google.android.material.card.MaterialCardView>
             </androidx.appcompat.widget.LinearLayoutCompat>

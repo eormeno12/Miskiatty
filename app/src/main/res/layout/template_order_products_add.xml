@@ -44,7 +44,7 @@
                 tools:text="Producto"
                 android:text="@{orderAddViewModel.getProductAt(position).name}"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/body_font_size" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="#">
+                android:hint="@string/et_quantity_hint_orderaddproducts">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/productQuantity"
@@ -96,7 +96,7 @@
                 tools:text="S/"
                 android:text='@{"S/" + orderAddViewModel.getProductAt(position).price}'
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/body_font_size" />
 
         </com.google.android.material.card.MaterialCardView>
     </androidx.appcompat.widget.LinearLayoutCompat>

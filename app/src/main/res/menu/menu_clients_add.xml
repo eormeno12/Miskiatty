@@ -4,13 +4,13 @@
     <item
         android:id="@+id/search_contact"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Buscar"
+        android:title="@string/item_search_title"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/confirm_clients"
-        android:title="Confirmar"
+        android:title="@string/item_confirm_title"
         android:icon="@drawable/ic_baseline_check_24"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toast_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,13 +11,13 @@
 
     <TextView
         android:id="@+id/textToast"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:fontFamily="sans-serif-condensed"
-        android:text="Esto es un mensaje de error"
+        tools:text="Esto es un mensaje de error"
         android:textAlignment="center"
         android:textColor="@color/white"/>
 

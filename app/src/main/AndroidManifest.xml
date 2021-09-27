@@ -23,18 +23,11 @@
         <activity android:name=".view.ui.clients.ClientsAddActivity" />
         <activity android:name=".view.ui.clients.ClientDetailsActivity" />
         <activity android:name=".view.ui.clients.ClientEditActivity" />
-        <activity android:name=".view.ui.statistics.StatisticDetailsActivity" />
         <activity android:name=".view.ui.login.LoginActivity" />
         <activity
             android:name=".view.ui.activities.SplashScreenActivity"
-            android:theme="@style/SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".view.ui.activities.MainActivity">
+            android:theme="@style/SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,5 +35,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

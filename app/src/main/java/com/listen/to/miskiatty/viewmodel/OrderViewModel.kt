@@ -2,8 +2,6 @@ package com.listen.to.miskiatty.viewmodel
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

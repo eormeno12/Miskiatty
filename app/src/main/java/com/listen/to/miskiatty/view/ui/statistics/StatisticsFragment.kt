@@ -186,7 +186,6 @@ class StatisticsFragment : Fragment() {
                             palette(palette)
                         }
 
-                        pie.data(dataEntries)
                         chart.setChart(pie)
                         binding.executePendingBindings()
                     }
@@ -207,8 +206,6 @@ class StatisticsFragment : Fragment() {
 
                 for (client in clients)
                     dataEntries.add(ValueDataEntry(client.name, client.orders.count()))
-
-                cartesian.data(dataEntries)
 
                 val column = cartesian.column(dataEntries)
 

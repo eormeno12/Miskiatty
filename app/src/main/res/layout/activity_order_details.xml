@@ -50,30 +50,30 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cliente"
+                        android:text="@string/tv_client_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dirección"
+                        android:text="@string/tv_address_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Entrega"
+                        android:text="@string/tv_date_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Estado"
+                        android:text="@string/tv_state_title_orderDetails"
                         android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -88,28 +88,28 @@
                         android:layout_height="wrap_content"
                         tools:text="Ernesto"
                         android:text="@{orderDetailsViewModel.clientById.name}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Lima, Perú"
                         android:text="@{orderDetailsViewModel.order.address.toString()}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="12 / 04 / 20"
                         android:text="@{orderDetailsViewModel.order.deliveryDate.toString()}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Preparando"
                         android:text="@{orderDetailsViewModel.order.state.toString()}"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -119,8 +119,8 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
                 android:textStyle="bold"
-                android:text="Productos"
-                android:textSize="20sp" />
+                android:text="@string/item_products_title"
+                android:textSize="@dimen/subtitle_font_size" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_clients"

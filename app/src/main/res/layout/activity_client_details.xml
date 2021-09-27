@@ -68,7 +68,7 @@
                     tools:text="Nombre del Cliente"
                     android:text="@{clientDetailsViewModel.client.name}"
                     android:gravity="center"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/subtitle_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                     tools:text="Número del Cliente"
                     android:text='@{clientDetailsViewModel.client.phone}'
                     android:gravity="center"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/body_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -84,16 +84,16 @@
                     tools:text="Dirección del Cliente"
                     android:text='@{clientDetailsViewModel.client.address ?? "Dirección"}'
                     android:gravity="center"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/body_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:layout_marginStart="8dp"
-                    android:text="Pedidos"
+                    android:text="@string/item_orders_title"
                     android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/subtitle2_font_size" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_clients"

@@ -57,7 +57,7 @@
                         android:layout_marginHorizontal="18dp"
                         app:boxStrokeColor="@color/white"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:hint="Cliente"
+                        android:hint="@string/tv_client_title_orderDetails"
                         app:startIconDrawable="@drawable/ic_baseline_person_24"
                         app:errorEnabled="true">
 
@@ -66,7 +66,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none"
-                            android:lines="1"/>
+                            android:lines="1"
+                            tools:ignore="LabelFor"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +79,7 @@
                         android:layout_marginHorizontal="18dp"
                         app:boxStrokeColor="@color/white"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:hint="Dirección"
+                        android:hint="@string/tv_address_title_orderDetails"
                         app:startIconDrawable="@drawable/ic_baseline_location_on_24"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true">
@@ -105,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:hint="Fecha de Entrega"
+                        android:hint="@string/tv_date2_title_orderDetails"
                         app:startIconDrawable="@drawable/ic_baseline_calendar_24"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true">
@@ -127,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:hint="Estado"
+                        android:hint="@string/tv_state_title_orderDetails"
                         app:startIconDrawable="@drawable/ic_baseline_gps_fixed_24"
                         app:errorEnabled="true">
 
@@ -137,7 +138,8 @@
                             android:layout_height="wrap_content"
                             android:text="@={orderAddViewModel.state}"
                             android:inputType="none"
-                            android:lines="1"/>
+                            android:lines="1"
+                            tools:ignore="LabelFor"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -152,8 +154,8 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Productos"
-                        android:textSize="20sp" />
+                        android:text="@string/item_products_title"
+                        android:textSize="@dimen/subtitle2_font_size" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_clients"
@@ -177,8 +179,8 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="32dp"
             android:src="@drawable/ic_baseline_add_24"
-            android:text="Siguiente"
-            android:contentDescription="Añadir Clientes"
+            android:text="@string/tv_next_title_orderDetails"
+            android:contentDescription="@string/contentDescription_addOrder"
             android:onClick="@{() -> orderAddViewModel.onClickNextToSummary(context)}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

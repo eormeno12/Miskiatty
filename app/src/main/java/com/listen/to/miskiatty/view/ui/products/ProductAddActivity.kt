@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
@@ -51,8 +52,8 @@ class ProductAddActivity : AppCompatActivity() {
                 binding.cost.editText?.setText(product.cost.toString())
                 binding.recipe.editText?.setText(product.recipe)
 
-                imageUri = product.image
-                Picasso.get().load(imageUri).resize(0, 200).into( binding.btImage)
+                imageUrl = product.image
+                Picasso.get().load(imageUrl).resize(0, 200).into( binding.btImage)
                 binding.btImage.scaleType = ImageView.ScaleType.CENTER_CROP
             })
         }
@@ -99,41 +100,50 @@ class ProductAddActivity : AppCompatActivity() {
             when(menu.itemId){
                 R.id.confirm_product -> {
                     try{
-                        FireStorageService().uploadFileFromUri(Uri.parse(imageUri), object: CallbackFireStorage<String>{
-                            override fun onSucces(result: String?) {
-                                if(result != null){
-                                    imageUrl = result
-                                    val productForUpdate = buildProductForUpdate()
-                                    val product = buildProduct()
-                                    if(productForUpdate != null || product != null){
-                                        if (navigationComesFromProductDetails)
-                                            productAddViewModel?.updateProductRoom(applicationContext,
-                                                lifecycle,
-                                                productForUpdate!!)
-                                        else
+                        if(navigationComesFromProductDetails){
+                            val productForUpdate = buildProductForUpdate()
+                            if(productForUpdate != null) {
+                                productAddViewModel?.updateProductRoom(
+                                    applicationContext,
+                                    lifecycle,
+                                    productForUpdate
+                                )
+                                onBackPressed()
+                                finish()
+                            }
+                        }else {
+                            FireStorageService().uploadFileFromUri(Uri.parse(imageUri), object: CallbackFireStorage<String>{
+                                override fun onSucces(result: String?) {
+                                    if(result != null){
+                                        imageUrl = result
+                                        val product = buildProduct()
+                                        if(product != null){
                                             productAddViewModel?.addProductRoom(applicationContext,
                                                 lifecycle,
-                                                product!!)
+                                                product)
 
-                                        onBackPressed()
-                                        binding.progressCircular.visibility = View.INVISIBLE
-                                        finish()
-                                    }else{
-                                        ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.EMPTY_TEXT_FIELD)
+                                            binding.progressCircular.visibility = View.INVISIBLE
+                                            onBackPressed()
+                                            finish()
+                                        }else{
+                                            ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.EMPTY_TEXT_FIELD)
+                                        }
                                     }
                                 }
-                            }
 
-                            override fun onProgress(progress: Double) {
-                                binding.progressCircular.visibility = View.VISIBLE
-                            }
+                                override fun onProgress(progress: Double) {
+                                    binding.progressCircular.visibility = View.VISIBLE
+                                }
 
-                            override fun onFailure(e: Exception) {
-                                binding.progressCircular.visibility = View.INVISIBLE
-                                ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.SAVE_ERROR)
-                            }
+                                override fun onFailure(e: Exception) {
+                                    binding.progressCircular.visibility = View.INVISIBLE
+                                    ToastFactory().displayErrorToast(this@ProductAddActivity, ErrorsEnum.SAVE_ERROR)
+                                    Log.e("onFailureImg", e.toString())
+                                }
 
-                        })
+                            })
+                        }
+
                     }catch (e: NullPointerException){
                         ToastFactory().displayErrorToast(this, ErrorsEnum.EMPTY_TEXT_FIELD)
                     }

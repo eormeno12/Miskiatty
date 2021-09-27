@@ -38,7 +38,7 @@
                     android:maxLines="2"
                     android:gravity="center"
                     android:text='@{"Pedido de " + orderViewModel.getClientById(orderViewModel.getOrderAt(position).client).name}'
-                    android:textSize="26sp" />
+                    android:textSize="@dimen/subtitle_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -47,13 +47,13 @@
                     android:maxLines="1"
                     android:gravity="center"
                     android:text="@{orderViewModel.getDate(position)}"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/body_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resumen"
-                    android:textSize="20sp" />
+                    android:text="@string/tv_resume_title_orders"
+                    android:textSize="@dimen/subtitle2_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:maxLines="5"
                     tools:text=" - \n - \n - \n -\n -"
                     android:text="@{orderViewModel.getProductList(position)}"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/body_font_size" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:maxLines="1"
                     android:gravity="end"
                     android:text='@{"S/" + orderViewModel.getOrderAt(position).totalPrice}'
-                    android:textSize="28sp" />
+                    android:textSize="@dimen/title_font_size" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -2,7 +2,7 @@
     <string name="app_name">Miskiatty</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- ERRORES -->
+    <!-- ERRORS -->
     <string name="EMPTY_FIELD">Este campo no puede estar vacío</string>
     <string name="INVALID_EMAIL">Email no válido</string>
     <string name="INCORRECT_EMAIL">Email incorrecto</string>
@@ -11,4 +11,42 @@
     <string name="INVALID_PIN">PIN no válido</string>
     <string name="INCORRECT_PIN">PIN incorrecto</string>
     <string name="DIFFERENT_PINS">Los PIN deben de ser iguales</string>
+
+    <!-- UI -->
+    <string name="item_search_title">Buscar</string>
+    <string name="item_confirm_title">Confirmar</string>
+    <string name="item_edit_title">Editar</string>
+    <string name="item_statistics_title">Estadística</string>
+    <string name="item_clients_title">Clientes</string>
+    <string name="item_products_title">Productos</string>
+    <string name="item_orders_title">Pedidos</string>
+    <string name="et_quantity_hint_orderaddproducts">#</string>
+    <string name="tv_resume_title_orders">Resumen</string>
+    <string name="tv_gains_title_statistics">Ganancias de la \n semana</string>
+    <string name="contentDescription_addClients">Añadir Clientes</string>
+    <string name="contentDescription_addOrder">Añadir Pedido</string>
+    <string name="contentDescription_addProduct">Añadir Producto</string>
+    <string name="tv_top3_title_clients">Top 3 Clientes</string>
+    <string name="tv_clients_title_clients">Clientes</string>
+    <string name="tv_setPin_title_login">Establezca su PIN</string>
+    <string name="et_pin_hint_login">PIN</string>
+    <string name="et_confirmPin_hint_login">Confirmar PIN</string>
+    <string name="bt_save_title_login">Guardar</string>
+    <string name="tv_product_title_productDetails">Producto</string>
+    <string name="tv_price_title_productDetails">Precio</string>
+    <string name="tv_cost_title_productDetails">Costo</string>
+    <string name="tv_recipe_title_productDetails">Receta</string>
+    <string name="tv_login_title_login">Iniciar Sesión</string>
+    <string name="et_user_hint_login">Usuario</string>
+    <string name="et_password_hint_login">Contraseña</string>
+    <string name="tv_client_title_orderDetails">Cliente</string>
+    <string name="tv_address_title_orderDetails">Dirección</string>
+    <string name="tv_date_title_orderDetails">Entrega</string>
+    <string name="tv_state_title_orderDetails">Estado</string>
+    <string name="tv_total_title_orderDetails">Total</string>
+    <string name="tv_date2_title_orderDetails">Fecha de Entrega</string>
+    <string name="tv_next_title_orderDetails">Siguiente</string>
+    <string name="tv_name_title_clientDetails">Nombre</string>
+    <string name="tv_phone_title_clientDetails">Teléfono</string>
+    <string name="tv_address_title_clientDetails">Dirección</string>
 </resources>

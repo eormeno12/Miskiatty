@@ -34,7 +34,7 @@
 
            </com.google.android.material.appbar.AppBarLayout>
 
-           <fragment
+           <androidx.fragment.app.FragmentContainerView
                android:id="@+id/fr_navHost"
                android:name="androidx.navigation.fragment.NavHostFragment"
                android:layout_width="0dp"
@@ -65,30 +65,6 @@
            android:layout_height="match_parent"
            android:layout_gravity="start"
            app:menu="@menu/menu_main">
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
-
-               <com.google.android.material.textview.MaterialTextView
-                   android:layout_gravity="bottom"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Ajustes"
-                   android:textColor="@color/black"
-                   android:textSize="14sp"
-                   android:textStyle="bold"
-                   android:gravity="start|center"
-                   android:layout_marginBottom="12sp"
-                   android:layout_marginStart="24sp"
-                   app:drawableLeftCompat="@drawable/ic_baseline_settings_24"
-                   app:drawableTint="@color/black"
-                   android:drawablePadding="16dp"
-                   android:clickable="true"
-                   android:focusable="true" />
-
-           </LinearLayout>
        </com.google.android.material.navigation.NavigationView>
 
    </androidx.drawerlayout.widget.DrawerLayout>

@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{productViewModel.getProductAt(position).name}"
                 tools:text="Producto"
-                android:textSize="24sp"
+                android:textSize="@dimen/subtitle_font_size"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_gravity="center"
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="16dp"
                 android:text='@{"S/" + productViewModel.getProductAt(position).price}'
                 tools:text="S/20"
-                android:textSize="24sp"
+                android:textSize="@dimen/subtitle_font_size"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_gravity="bottom"

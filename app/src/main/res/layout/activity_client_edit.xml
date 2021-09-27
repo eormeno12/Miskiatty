@@ -64,7 +64,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginHorizontal="24dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Nombre"
+                android:hint="@string/tv_name_title_clientDetails"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true">
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Teléfono"
+                android:hint="@string/tv_phone_title_clientDetails"
                 app:startIconDrawable="@drawable/ic_baseline_phone_24"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true">
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:hint="Dirección"
+                android:hint="@string/tv_address_title_clientDetails"
                 app:startIconDrawable="@drawable/ic_baseline_location_on_24"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true">
@@ -111,9 +111,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={clientEditViewModel.address}"
                     android:inputType="text"
-                    android:lines="1" />
+                    android:lines="1"
+                    android:text="@={clientEditViewModel.address}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

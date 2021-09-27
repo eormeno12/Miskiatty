@@ -37,7 +37,7 @@
                 tools:text="Producto"
                 android:text="@{orderAddSummaryViewModel.getProductAt(position).name}"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/subtitle2_font_size" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -57,7 +57,7 @@
                 android:padding="8dp"
                 tools:text="#"
                 android:text="@{orderAddSummaryViewModel.order.productsQuantity.get(position).toString()}"
-                android:textSize="20sp"
+                android:textSize="@dimen/subtitle2_font_size"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                 tools:text="S/"
                 android:text='@{"S/" + (orderAddSummaryViewModel.getProductAt(position).price * orderAddSummaryViewModel.order.productsQuantity.get(position))}'
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/subtitle2_font_size" />
 
         </com.google.android.material.card.MaterialCardView>
     </androidx.appcompat.widget.LinearLayoutCompat>

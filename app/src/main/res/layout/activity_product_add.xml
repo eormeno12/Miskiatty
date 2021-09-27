@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:hint="Producto"
+                        android:hint="@string/tv_product_title_productDetails"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_cake_24">
@@ -95,7 +95,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:hint="Precio"
+                            android:hint="@string/tv_price_title_productDetails"
                             app:endIconMode="clear_text"
                             app:errorEnabled="true"
                             app:startIconDrawable="@drawable/ic_baseline_dollar_24">
@@ -116,7 +116,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
-                            android:hint="Costo"
+                            android:hint="@string/tv_cost_title_productDetails"
                             app:endIconMode="clear_text"
                             app:errorEnabled="true"
                             app:startIconDrawable="@drawable/ic_baseline_dollar_24">
@@ -137,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:hint="Receta"
+                        android:hint="@string/tv_recipe_title_productDetails"
                         app:endIconMode="clear_text"
                         app:errorEnabled="true"
                         app:startIconDrawable="@drawable/ic_baseline_list_24">
