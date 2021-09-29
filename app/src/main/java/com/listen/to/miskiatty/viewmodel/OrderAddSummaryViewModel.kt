@@ -1,11 +1,9 @@
 package com.listen.to.miskiatty.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomAddSummaryOrderProducts
@@ -19,7 +17,7 @@ class OrderAddSummaryViewModel: ViewModel() {
     private val orderAddSummaryRepository: OrderAddSummaryRepository =
         OrderAddSummaryRepositoryImpl()
 
-    var orderOrderProductsAdapter: AdapterCustomAddSummaryOrderProducts? = null
+    private var orderOrderProductsAdapter: AdapterCustomAddSummaryOrderProducts? = null
 
     fun verifyIfIsAnUpdate(activity: AppCompatActivity): Boolean =
         orderAddSummaryRepository.verifyIfIsAnUpdate(activity)

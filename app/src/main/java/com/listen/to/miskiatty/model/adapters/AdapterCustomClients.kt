@@ -1,31 +1,30 @@
 package com.listen.to.miskiatty.model.adapters
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.database.Client
-import com.listen.to.miskiatty.model.repository.clients.ClientRepository
-import com.listen.to.miskiatty.viewmodel.ClientViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterCustomClients(var clientViewModel: ClientViewModel,
-                           var resource: Int,
-                           var clientsListener: AdapterCustomListener, private val withBgColor: Boolean):
+                           private var resource: Int,
+                           private var clientsListener: AdapterCustomListener, private val withBgColor: Boolean):
         RecyclerView.Adapter<AdapterCustomClients.ViewHolder>() {
 
     private var clientsList = ArrayList<Client>()
     private var copyClientsList: ArrayList<Client>? = null
     private val colors: ArrayList<Int> = ArrayList()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setClientsList(products: List<Client>){
         clientsList.clear()
         clientsList.addAll(products)
@@ -73,6 +72,7 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
         return resource
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun search(str: String){
         if(copyClientsList != null){
             clientsList.clear()
@@ -105,6 +105,7 @@ class AdapterCustomClients(var clientViewModel: ClientViewModel,
                 return false
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
                 val position = target.adapterPosition
                 val client = getClientsList()[position]

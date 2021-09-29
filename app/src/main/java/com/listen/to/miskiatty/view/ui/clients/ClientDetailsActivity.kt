@@ -1,14 +1,14 @@
 package com.listen.to.miskiatty.view.ui.clients
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityClientDetailsBinding
-import com.listen.to.miskiatty.viewmodel.ClientDetailsViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientDetailsViewModel
 
 class ClientDetailsActivity : AppCompatActivity() {
     private var clientDetailsViewModel: ClientDetailsViewModel? = null

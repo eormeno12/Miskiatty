@@ -10,11 +10,10 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentProductsBinding
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.ProductViewModel
+import com.listen.to.miskiatty.viewmodel.products.ProductViewModel
 
 class ProductsFragment : Fragment() {
 

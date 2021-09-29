@@ -1,4 +1,4 @@
-package com.listen.to.miskiatty.viewmodel
+package com.listen.to.miskiatty.viewmodel.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -11,8 +11,6 @@ class PinLoginViewModel: ViewModel() {
     private var _pinValid = MutableLiveData<Boolean>()
     val pinValid: LiveData<Boolean> = _pinValid
 
-    val pinError = MutableLiveData<String>()
-
     fun onClickPinLoginListener(tl_pin: TextInputLayout){
         _pinValid.value = PinLoginObservable().validatePin(tl_pin)
     }

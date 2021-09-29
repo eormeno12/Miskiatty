@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentOrdersBinding
 import com.listen.to.miskiatty.model.database.Order
-import com.listen.to.miskiatty.viewmodel.OrderViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderViewModel
 
 class OrdersFragment : Fragment() {
 

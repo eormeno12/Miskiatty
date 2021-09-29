@@ -2,10 +2,11 @@ package com.listen.to.miskiatty.model.network.firestore
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.listen.to.miskiatty.model.network.UserData
-import com.listen.to.wave.viewmodel.CallbackFireStore
+import com.listen.to.miskiatty.viewmodel.CallbackFireStore
 
-val COLLECTION_USERS = "users"
-class FireStoreService(val firebaseFirestore: FirebaseFirestore) {
+private const val COLLECTION_USERS = "users"
+
+class FireStoreService(private val firebaseFirestore: FirebaseFirestore) {
     fun updateUser(email: String, field: String, parameter: Any, callbackFireStore: CallbackFireStore<String>){
         firebaseFirestore.collection(COLLECTION_USERS).document(email).update(field, parameter).addOnSuccessListener {
             callbackFireStore.onSucces(null)

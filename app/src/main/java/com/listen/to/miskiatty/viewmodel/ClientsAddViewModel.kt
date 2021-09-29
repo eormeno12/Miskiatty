@@ -1,13 +1,12 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomContacts
-import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.repository.clients.ClientsAddRepositoryImpl
 import com.listen.to.miskiatty.model.repository.clients.Contact
@@ -41,6 +40,7 @@ class ClientsAddViewModel: ViewModel(){
         contactsAdapter = AdapterCustomContacts(this, R.layout.template_client_add)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setContactsInRecyclerAdapter(adapter: AdapterCustomContacts?, contacts: List<Contact>){
         if(adapter != null){
             adapter.setContactsList(contacts)

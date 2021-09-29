@@ -3,7 +3,6 @@ package com.listen.to.miskiatty.model.repository.login
 import android.content.Context
 import androidx.databinding.BaseObservable
 import com.google.android.material.textfield.TextInputLayout
-import com.listen.to.miskiatty.model.provider.PreferenceProvider
 
 class LoginObservable: BaseObservable(){
 

@@ -3,11 +3,8 @@ package com.listen.to.miskiatty.viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import androidx.databinding.InverseBindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.permissions.ReadExternalStorageService

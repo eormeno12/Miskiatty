@@ -9,7 +9,7 @@
 
         <variable
             name="clientsAddViewModel"
-            type="com.listen.to.miskiatty.viewmodel.ClientsAddViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.clients.ClientsAddViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

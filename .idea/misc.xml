@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_app_foreground.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.4287037037037037" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.21944444444444444" />
+        <entry key="app/src/main/res/drawable/ic_logo_miskiatty.xml" value="0.28854166666666664" />
         <entry key="app/src/main/res/drawable/template_toast_error_background.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_client_details.xml" value="0.2266970618034448" />
         <entry key="app/src/main/res/layout/activity_client_edit.xml" value="0.432518115942029" />

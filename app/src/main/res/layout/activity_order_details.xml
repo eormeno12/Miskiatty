@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderDetailsViewModel"
-            type="com.listen.to.miskiatty.viewmodel.OrderDetailsViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.orders.OrderDetailsViewModel" />
     </data>
 
     <FrameLayout

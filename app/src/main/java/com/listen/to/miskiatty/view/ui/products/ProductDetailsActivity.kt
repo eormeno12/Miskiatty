@@ -1,14 +1,14 @@
 package com.listen.to.miskiatty.view.ui.products
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityProductDetailsBinding
-import com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel
+import com.listen.to.miskiatty.viewmodel.products.ProductDetailsViewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
 

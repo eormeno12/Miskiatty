@@ -4,7 +4,6 @@ import android.app.SearchManager
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,8 +18,7 @@ import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.network.storage.FireStorageService
 import com.listen.to.miskiatty.model.repository.clients.Contact
 import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
-import com.listen.to.miskiatty.viewmodel.ClientsAddViewModel
-import java.lang.Exception
+import com.listen.to.miskiatty.viewmodel.clients.ClientsAddViewModel
 
 class ClientsAddActivity : AppCompatActivity() {
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="productDetailsViewModel"
-            type="com.listen.to.miskiatty.viewmodel.ProductDetailsViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.products.ProductDetailsViewModel" />
 
     </data>
 

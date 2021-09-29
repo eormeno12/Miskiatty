@@ -5,12 +5,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
-import com.listen.to.wave.viewmodel.CallbackFireStore
-import java.util.*
 
-class FireStorageService(private val storage: FirebaseStorage = Firebase.storage("gs://miskiatty.appspot.com")) {
-    val storageRef = storage.reference
-    val imagesRef = storageRef.child("images")
+class FireStorageService(storage: FirebaseStorage = Firebase.storage("gs://miskiatty.appspot.com")) {
+    private val storageRef = storage.reference
+    private val imagesRef = storageRef.child("images")
 
     fun uploadFileFromUri(uri: Uri, callbackFireStore: CallbackFireStorage<String>) {
         val ref = System.currentTimeMillis().toString()

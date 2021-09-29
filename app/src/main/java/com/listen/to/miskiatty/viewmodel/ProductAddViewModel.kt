@@ -13,6 +13,7 @@ import com.listen.to.miskiatty.model.repository.products.ProductAddObservable
 
 class ProductAddViewModel: ViewModel(){
     val REQUEST_IMAGE_GALLERY = 100
+    
     private val productAddObservable: ProductAddObservable = ProductAddObservable()
 
     fun addProductRoom(context: Context, lifecycle: Lifecycle, product: Product) =

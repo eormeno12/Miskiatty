@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -9,18 +10,19 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Order
-import com.listen.to.miskiatty.viewmodel.OrderViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterCustomOrders (var orderViewModel: OrderViewModel,
-                           var resource: Int,
-                           var adapterCustomListener: AdapterCustomListener):
+                           private var resource: Int,
+                           private var adapterCustomListener: AdapterCustomListener):
         RecyclerView.Adapter<AdapterCustomOrders.ViewHolder>() {
 
     private var ordersList = ArrayList<Order>()
     private var copyOrdersList: ArrayList<Order>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOrdersList(orders: List<Order>){
         ordersList.clear()
         ordersList.addAll(orders)
@@ -60,6 +62,7 @@ class AdapterCustomOrders (var orderViewModel: OrderViewModel,
         return resource
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun search(str: String){
         if(copyOrdersList != null){
             ordersList.clear()
@@ -96,6 +99,7 @@ class AdapterCustomOrders (var orderViewModel: OrderViewModel,
                 return false
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
                 val position = target.adapterPosition
                 val order = getOrdersList()[position]

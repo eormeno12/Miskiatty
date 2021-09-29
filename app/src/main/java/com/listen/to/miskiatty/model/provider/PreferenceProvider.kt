@@ -48,14 +48,8 @@ class PreferenceProvider(context: Context) {
         return loginCredentialsPreferences.getString("email", null)
     }
 
-    fun setPasswordLogin(password: String){
-        loginCredentialsPreferences.edit {
-            putString("password", password)
-        }
-    }
-
     fun setPinLogin(pin: String){
-        loginCredentialsPreferences.edit(){
+        loginCredentialsPreferences.edit {
             putString("pin", pin)
         }
     }

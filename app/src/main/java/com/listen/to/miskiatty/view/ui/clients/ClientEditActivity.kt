@@ -2,8 +2,6 @@ package com.listen.to.miskiatty.view.ui.clients
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -18,9 +16,8 @@ import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.network.storage.FireStorageService
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
 import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
-import com.listen.to.miskiatty.viewmodel.ClientEditViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientEditViewModel
 import com.squareup.picasso.Picasso
-import java.lang.Exception
 
 class ClientEditActivity : AppCompatActivity() {
 

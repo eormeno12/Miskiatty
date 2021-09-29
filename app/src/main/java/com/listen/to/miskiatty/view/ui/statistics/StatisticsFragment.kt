@@ -17,7 +17,7 @@ import com.anychart.graphics.vector.Anchor
 import com.anychart.palettes.RangeColors
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentStatisticsBinding
-import com.listen.to.miskiatty.viewmodel.StatisticsViewModel
+import com.listen.to.miskiatty.viewmodel.statistics.StatisticsViewModel
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.format.DateTimeFormat
@@ -71,7 +71,7 @@ class StatisticsFragment : Fragment() {
             if(orders != null){
                 var weekProfit = 0.0
                 val dateTime = DateTime.now()
-                val format = DateTimeFormat.forPattern("dd/MM/yyyy");
+                val format = DateTimeFormat.forPattern("dd/MM/yyyy")
                 val currentDate = format.parseLocalDate(format.print(dateTime))
 
                 Log.d("date", currentDate.toString())

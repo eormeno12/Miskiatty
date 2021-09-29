@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderAddSummaryViewModel"
-            type="com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.orders.OrderAddSummaryViewModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"

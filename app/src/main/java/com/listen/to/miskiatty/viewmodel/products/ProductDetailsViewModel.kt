@@ -1,4 +1,4 @@
-package com.listen.to.miskiatty.viewmodel
+package com.listen.to.miskiatty.viewmodel.products
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle

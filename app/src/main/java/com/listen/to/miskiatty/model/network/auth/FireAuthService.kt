@@ -4,23 +4,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.listen.to.wave.viewmodel.CallbackFireAuth
-import java.lang.Exception
+import com.listen.to.miskiatty.viewmodel.CallbackFireAuth
 
-class FireAuthService (var fireAuth: FirebaseAuth){
+class FireAuthService (private var fireAuth: FirebaseAuth){
 
     init {
         fireAuth = Firebase.auth
-    }
-
-    fun verifyIfUserIsSigned(callbackFireAuth: CallbackFireAuth<FirebaseUser>){
-        val user = fireAuth.currentUser
-
-        try {
-            callbackFireAuth.onSucces(user)
-        }catch (e: Exception){
-            callbackFireAuth.onFailure(e)
-        }
     }
 
     fun userLogin(email: String, password: String, callbackFireAuth: CallbackFireAuth<FirebaseUser>){

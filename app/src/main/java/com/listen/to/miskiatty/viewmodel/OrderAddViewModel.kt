@@ -1,22 +1,18 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomAddOrderProducts
 import com.listen.to.miskiatty.model.database.Client
@@ -26,16 +22,14 @@ import com.listen.to.miskiatty.model.messages.ErrorsEnum
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepository
 import com.listen.to.miskiatty.model.repository.orders.OrderAddRepositoryImpl
 import com.listen.to.miskiatty.view.ui.orders.OrderAddSummaryActivity
-import com.listen.to.wave.view.message.ToastFactory
-import java.lang.Exception
-import java.lang.NullPointerException
+import com.listen.to.miskiatty.model.messages.ToastFactory
 import java.util.*
 import kotlin.collections.ArrayList
 
 class OrderAddViewModel: ViewModel() {
     private val orderAddRepository: OrderAddRepository = OrderAddRepositoryImpl()
 
-    var addOrderProductsAdapter: AdapterCustomAddOrderProducts? = null
+    private var addOrderProductsAdapter: AdapterCustomAddOrderProducts? = null
 
     private var checkedProductList = ArrayList<Product>()
     private var checkedProductQuantityList = ArrayList<Int>()
@@ -85,6 +79,7 @@ class OrderAddViewModel: ViewModel() {
             R.layout.template_order_products_add)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsInRecyclerAdapter(products: List<Product>) {
         if (addOrderProductsAdapter != null) {
             addOrderProductsAdapter?.setProductsList(products)
@@ -219,11 +214,11 @@ class OrderAddViewModel: ViewModel() {
 
 
         val datePickerDialog = DatePickerDialog(context, { datePicker, y, m, d ->
-            editText.setText("$d/${m+1}/$y")
+            editText.setText(context.getString(R.string.date_pattern, d,(m+1),y))
         }, year, month, day)
 
         val timePickerDialog = TimePickerDialog(context, { timePicker, h, m ->
-            editText.setText("${editText.text} $h:$m")
+            editText.setText(context.getString(R.string.date_pattern, editText.text, h, m))
         }, hour, minute, true)
 
         timePickerDialog.show()

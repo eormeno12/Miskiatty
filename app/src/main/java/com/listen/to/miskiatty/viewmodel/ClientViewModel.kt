@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -79,6 +80,7 @@ class ClientViewModel: ViewModel() {
         clientRepository.deleteClientROOM(context, lifecycle, client)
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setClientsInRecyclerAdapter(adapter: AdapterCustomClients?, clients: List<Client>){
         if(adapter != null){
             adapter.setClientsList(clients)

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderAddViewModel"
-            type="com.listen.to.miskiatty.viewmodel.OrderAddViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.orders.OrderAddViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

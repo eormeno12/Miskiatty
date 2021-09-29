@@ -5,13 +5,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.listen.to.miskiatty.model.database.converters.RoomConverters
-import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.network.UserData
+import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
-import com.listen.to.wave.viewmodel.CallbackFireStore
-
+import com.listen.to.miskiatty.viewmodel.CallbackFireStore
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class FirebaseBackup(val activity: Activity, val lifecycle: Lifecycle) {
     private val roomConverters = RoomConverters()
@@ -42,7 +40,7 @@ class FirebaseBackup(val activity: Activity, val lifecycle: Lifecycle) {
         val preferenceProvider = PreferenceProvider(activity.applicationContext)
         val email = preferenceProvider.getEmailLogin()
 
-        fireStoreService.updateUser(email!!, field, data, object: CallbackFireStore<String>{
+        fireStoreService.updateUser(email!!, field, data, object: CallbackFireStore<String> {
             override fun onSucces(result: String?) {
                 //TO DO
             }
@@ -54,24 +52,24 @@ class FirebaseBackup(val activity: Activity, val lifecycle: Lifecycle) {
     }
 
     fun chargeBackup(email: String){
-        fireStoreService.findUserByEmail(email, object: CallbackFireStore<UserData>{
+        fireStoreService.findUserByEmail(email, object: CallbackFireStore<UserData> {
             override fun onSucces(result: UserData?) {
                 lifecycle.coroutineScope.launch {
                      if(result != null){
                         db.clearAllData()
 
                         if (result.productsJSON.isNotEmpty()){
-                            val products = roomConverters.fromJsonToProductsList(result.productsJSON!!)
+                            val products = roomConverters.fromJsonToProductsList(result.productsJSON)
                             db.productDao().addProductsList(products)
                         }
 
                         if (result.clientsJSON.isNotEmpty()){
-                            val clients = roomConverters.fromJsonToClientsList(result.clientsJSON!!)
+                            val clients = roomConverters.fromJsonToClientsList(result.clientsJSON)
                             db.clientDao().addClientsList(clients)
                         }
 
                         if (result.ordersJSON.isNotEmpty()){
-                            val orders = roomConverters.fromJsonToOrdersList(result.ordersJSON!!)
+                            val orders = roomConverters.fromJsonToOrdersList(result.ordersJSON)
                             db.orderDao().addOrdersList(orders)
                         }
                     }

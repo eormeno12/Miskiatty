@@ -5,7 +5,7 @@
     <data>
         <variable
             name="productViewModel"
-            type="com.listen.to.miskiatty.viewmodel.ProductViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.products.ProductViewModel" />
     </data>
 
     <FrameLayout

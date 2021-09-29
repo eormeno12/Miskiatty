@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,14 +8,15 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Order
-import com.listen.to.miskiatty.viewmodel.ClientDetailsViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientDetailsViewModel
 
 class AdapterCustomOrdersClient (var clientDetailsViewModel: ClientDetailsViewModel,
-                                            var resource: Int):
+                                 private var resource: Int):
         RecyclerView.Adapter<AdapterCustomOrdersClient.ViewHolder>() {
 
     private var ordersList = ArrayList<Order>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOrdersList(orders: List<Order>){
         ordersList.clear()
         ordersList.addAll(orders)

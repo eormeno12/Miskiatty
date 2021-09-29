@@ -1,4 +1,4 @@
-package com.listen.to.wave.view.message
+package com.listen.to.miskiatty.model.messages
 
 import android.app.Activity
 import android.content.Context
@@ -8,19 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.listen.to.miskiatty.R
-import com.listen.to.miskiatty.model.messages.ErrorsEnum
 
-class ToastFactory() {
-    fun makeSuccessToast(context: Context, successesEnum: SuccessesEnum): Toast{
-        val message: String = when(successesEnum){
-            SuccessesEnum.SIGNIN_SUCCESS -> {
-                "Cuenta creada correctamente."
-            }
-        }
-
-        return Toast.makeText(context, message, Toast.LENGTH_LONG)
-    }
-
+class ToastFactory {
     fun displayErrorToast(context: Context, errorsEnum: ErrorsEnum){
         val message: String = when(errorsEnum){
             ErrorsEnum.EMPTY_TEXT_FIELD -> {

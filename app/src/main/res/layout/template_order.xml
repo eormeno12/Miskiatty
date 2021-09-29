@@ -10,7 +10,7 @@
 
         <variable
             name="orderViewModel"
-            type="com.listen.to.miskiatty.viewmodel.OrderViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.orders.OrderViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

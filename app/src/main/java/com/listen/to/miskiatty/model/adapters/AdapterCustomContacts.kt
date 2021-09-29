@@ -1,25 +1,25 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.listen.to.miskiatty.databinding.ActivityClientsAddBinding
-import com.listen.to.miskiatty.databinding.TemplateClientAddBinding
 import com.listen.to.miskiatty.model.repository.clients.Contact
-import com.listen.to.miskiatty.viewmodel.ClientsAddViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientsAddViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterCustomContacts (var clientsAddViewModel: ClientsAddViewModel,
-                             var resource: Int, ):
+                             private var resource: Int, ):
         RecyclerView.Adapter<AdapterCustomContacts.ViewHolder>() {
 
     private var contactsList = ArrayList<Contact>()
     private var copyContactsList: ArrayList<Contact>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setContactsList(contacts: List<Contact>){
         contactsList.clear()
         contactsList.addAll(contacts)
@@ -57,6 +57,7 @@ class AdapterCustomContacts (var clientsAddViewModel: ClientsAddViewModel,
         return resource
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun search(str: String){
         if(copyContactsList != null){
             contactsList.clear()

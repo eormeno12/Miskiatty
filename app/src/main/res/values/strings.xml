@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Miskiatty</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- ERRORS -->
     <string name="EMPTY_FIELD">Este campo no puede estar vacío</string>

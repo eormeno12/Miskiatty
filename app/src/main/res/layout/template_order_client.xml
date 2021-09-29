@@ -6,7 +6,7 @@
     <data>
         <variable
             name="clientDetailsViewModel"
-            type="com.listen.to.miskiatty.viewmodel.ClientDetailsViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.clients.ClientDetailsViewModel" />
 
         <variable
             name="position"

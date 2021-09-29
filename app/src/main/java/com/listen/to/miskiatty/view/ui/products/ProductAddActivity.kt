@@ -3,13 +3,12 @@ package com.listen.to.miskiatty.view.ui.products
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
@@ -18,11 +17,9 @@ import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.messages.ErrorsEnum
 import com.listen.to.miskiatty.model.network.storage.FireStorageService
 import com.listen.to.miskiatty.viewmodel.CallbackFireStorage
-import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
-import com.listen.to.wave.view.message.ToastFactory
+import com.listen.to.miskiatty.viewmodel.products.ProductAddViewModel
+import com.listen.to.miskiatty.model.messages.ToastFactory
 import com.squareup.picasso.Picasso
-import java.lang.Exception
-import java.lang.NullPointerException
 
 class ProductAddActivity : AppCompatActivity() {
 
@@ -68,7 +65,7 @@ class ProductAddActivity : AppCompatActivity() {
         binding.productAddViewModel = productAddViewModel
     }
 
-    var imageUri: String? = null
+    private var imageUri: String? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

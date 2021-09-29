@@ -2,16 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation"
     app:startDestination="@id/statisticsFragment">
 
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.listen.to.miskiatty.view.ui.statistics.StatisticsFragment"
         android:label="Estadística">
-        <action
-            android:id="@+id/action_statisticsFragment_to_statisticDetailsActivity"
-            app:destination="@id/statisticDetailsActivity" />
         <action
             android:id="@+id/action_statisticsFragment_to_clientsFragment"
             app:destination="@id/clientsFragment" />
@@ -55,11 +51,6 @@
             android:id="@+id/action_clientsFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
     </fragment>
-    <activity
-        android:id="@+id/statisticDetailsActivity"
-        android:name="com.listen.to.miskiatty.view.ui.statistics.StatisticDetailsActivity"
-        android:label="activity_statistic_details"
-        tools:layout="@layout/activity_statistic_details" />
     <activity
         android:id="@+id/productAddActivity"
         android:name="com.listen.to.miskiatty.view.ui.products.ProductAddActivity"

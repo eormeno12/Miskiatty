@@ -1,7 +1,6 @@
 package com.listen.to.miskiatty.model.repository.orders
 
 import android.content.Context
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +10,6 @@ import com.listen.to.miskiatty.model.database.Order
 import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.database.room.RoomDb
 import kotlinx.coroutines.launch
-import java.io.Serializable
 
 class OrderAddSummaryRepositoryImpl: OrderAddSummaryRepository {
     private val order = MutableLiveData<Order>()

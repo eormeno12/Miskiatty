@@ -5,7 +5,7 @@
     <data>
         <variable
             name="pinLoginViewModel"
-            type="com.listen.to.miskiatty.viewmodel.PinLoginViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.login.PinLoginViewModel" />
 
     </data>
 

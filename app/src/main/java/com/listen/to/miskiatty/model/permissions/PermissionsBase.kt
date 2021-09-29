@@ -9,8 +9,8 @@ class PermissionsBase(private val activity: Activity,
                       private val REQUEST_KEY: Int){
 
     companion object{
-        val REQUEST_KEY_READ_EXTERNAL_STORAGE = 100
-        val REQUEST_KEY_READ_CONTACTS = 101
+        const val REQUEST_KEY_READ_EXTERNAL_STORAGE = 100
+        const val REQUEST_KEY_READ_CONTACTS = 101
     }
 
     fun validatePermission(): Boolean{

@@ -3,7 +3,6 @@ package com.listen.to.miskiatty.model.repository.products
 import android.content.Context
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
-import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Product
 
 interface ProductRepository {

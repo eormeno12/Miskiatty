@@ -1,15 +1,9 @@
 package com.listen.to.miskiatty.model.validation
 
 import com.google.android.material.textfield.TextInputLayout
-import com.listen.to.miskiatty.model.enum.ErrorsEnum
-import com.listen.to.miskiatty.model.provider.ErrorsStringProvider
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
-import java.util.regex.Pattern
 
 class DataValidation {
-
-    private val errorsStringProvider = ErrorsStringProvider()
-
     fun validatePin(tl_pin: TextInputLayout): Boolean{
         val appContext = tl_pin.context.applicationContext
         val pin = tl_pin.editText?.text.toString()

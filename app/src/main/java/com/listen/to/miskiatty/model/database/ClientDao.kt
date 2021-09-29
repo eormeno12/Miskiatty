@@ -7,9 +7,6 @@ interface ClientDao {
     @Query("SELECT * FROM Client")
     suspend fun getAllClients(): List<Client>
 
-    @Query("SELECT * FROM Client ORDER by orders ASC")
-    suspend fun getTopClients(): List<Client>
-
     @Query("SELECT * FROM Client WHERE id = :id")
     suspend fun getClientById(id: Int): Client
 

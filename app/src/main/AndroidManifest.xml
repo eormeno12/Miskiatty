@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.listen.to.miskiatty">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -24,14 +25,22 @@
         <activity android:name=".view.ui.clients.ClientDetailsActivity" />
         <activity android:name=".view.ui.clients.ClientEditActivity" />
         <activity android:name=".view.ui.login.LoginActivity" />
+
         <activity
             android:name=".view.ui.activities.SplashScreenActivity"
             android:theme="@style/SplashScreen"
-            android:screenOrientation="portrait">
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".view.ui.activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
     </application>

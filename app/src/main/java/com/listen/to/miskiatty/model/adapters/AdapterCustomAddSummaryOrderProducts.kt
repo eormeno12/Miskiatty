@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,14 +9,15 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderAddSummaryViewModel
 
 class AdapterCustomAddSummaryOrderProducts (var orderAddSummaryViewModel: OrderAddSummaryViewModel,
-                                            var resource: Int):
+                                            private var resource: Int):
     RecyclerView.Adapter<AdapterCustomAddSummaryOrderProducts.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)

@@ -1,29 +1,24 @@
 package com.listen.to.miskiatty.viewmodel
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.R
-import com.listen.to.miskiatty.model.adapters.AdapterCustomClients
-import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.model.adapters.AdapterCustomProducts
 import com.listen.to.miskiatty.model.adapters.AdapterCustomListener
+import com.listen.to.miskiatty.model.adapters.AdapterCustomProducts
+import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.model.repository.products.ProductObservable
 import com.listen.to.miskiatty.view.ui.products.ProductAddActivity
 
 class ProductViewModel: ViewModel() {
 
     private val productObservable: ProductObservable = ProductObservable()
-    var productsAdapter: AdapterCustomProducts? = null
+    private var productsAdapter: AdapterCustomProducts? = null
     private var _productClicked = MutableLiveData<Product>()
     val productClicked: LiveData<Product> = _productClicked
 
@@ -50,6 +45,7 @@ class ProductViewModel: ViewModel() {
     fun deleteProductROOM(context: Context, lifecycle: Lifecycle, product: Product) =
         productObservable.deleteProductROOM(context, lifecycle, product)
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsInRecyclerAdapter(products: List<Product>) {
         if (productsAdapter != null) {
             productsAdapter?.setProductsList(products)

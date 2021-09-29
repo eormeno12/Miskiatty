@@ -1,8 +1,8 @@
 package com.listen.to.miskiatty.view.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.login.LoginActivity

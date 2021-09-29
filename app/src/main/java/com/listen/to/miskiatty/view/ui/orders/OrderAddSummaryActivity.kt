@@ -1,23 +1,15 @@
 package com.listen.to.miskiatty.view.ui.orders
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderAddSummaryBinding
-import com.listen.to.miskiatty.databinding.ActivityProductAddBinding
-import com.listen.to.miskiatty.model.database.Product
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
-import com.listen.to.miskiatty.viewmodel.OrderAddSummaryViewModel
-import com.listen.to.miskiatty.viewmodel.ProductAddViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderAddSummaryViewModel
 
 class OrderAddSummaryActivity : AppCompatActivity() {
     private var orderAddSummaryViewModel: OrderAddSummaryViewModel? = null

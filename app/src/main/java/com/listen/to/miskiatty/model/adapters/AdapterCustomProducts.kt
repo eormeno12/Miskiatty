@@ -1,29 +1,28 @@
 package com.listen.to.miskiatty.model.adapters
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.listen.to.miskiatty.model.database.Client
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.ProductViewModel
+import com.listen.to.miskiatty.viewmodel.products.ProductViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterCustomProducts(var productViewModel: ProductViewModel,
-                            var resource: Int,
-                            var adapterCustomListener: AdapterCustomListener):
+                            private var resource: Int,
+                            private var adapterCustomListener: AdapterCustomListener):
         RecyclerView.Adapter<AdapterCustomProducts.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
     private var copyProductList: ArrayList<Product>? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)
@@ -63,6 +62,7 @@ class AdapterCustomProducts(var productViewModel: ProductViewModel,
         return resource
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun search(str: String){
         if(copyProductList != null){
             productsList.clear()
@@ -95,6 +95,7 @@ class AdapterCustomProducts(var productViewModel: ProductViewModel,
                 return false
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             override fun onSwiped(target: RecyclerView.ViewHolder, direction: Int) {
                 val position = target.adapterPosition
                 val product = getProductList()[position]

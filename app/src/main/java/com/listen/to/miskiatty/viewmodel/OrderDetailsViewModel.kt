@@ -1,10 +1,10 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.model.adapters.AdapterCustomOrderProducts
@@ -16,7 +16,7 @@ import com.listen.to.miskiatty.model.repository.orders.OrderDetailsRepositoryImp
 class OrderDetailsViewModel: ViewModel() {
 
     private val orderDetailsRepository: OrderDetailsRepositoryImpl = OrderDetailsRepositoryImpl()
-    var orderOrderProductsAdapter: AdapterCustomOrderProducts? = null
+    private var orderOrderProductsAdapter: AdapterCustomOrderProducts? = null
 
     fun getRecyclerOrdersProductsAdapter(): AdapterCustomOrderProducts?{
         return orderOrderProductsAdapter
@@ -26,6 +26,7 @@ class OrderDetailsViewModel: ViewModel() {
         orderOrderProductsAdapter = AdapterCustomOrderProducts(this, R.layout.template_order_products)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsInRecyclerAdapter(products: List<Product>) {
         if (orderOrderProductsAdapter != null) {
             orderOrderProductsAdapter?.setProductsList(products)

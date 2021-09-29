@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.model.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,16 +8,17 @@ import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.OrderAddViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderAddViewModel
 
 class AdapterCustomAddOrderProducts  (var orderAddViewModel: OrderAddViewModel,
-                                      var resource: Int):
+                                      private var resource: Int):
     RecyclerView.Adapter<AdapterCustomAddOrderProducts.ViewHolder>() {
 
     private var productsList = ArrayList<Product>()
     private var copyProductsList: ArrayList<Product>? = null
     private var productsCheckedMap: HashMap<Int, Int> = HashMap()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsList(products: List<Product>){
         productsList.clear()
         productsList.addAll(products)
@@ -26,6 +28,7 @@ class AdapterCustomAddOrderProducts  (var orderAddViewModel: OrderAddViewModel,
 
     fun getProductsList(): List<Product> = productsList
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProductsCheckedMap(productsChecked: HashMap<Int, Int>){
         productsCheckedMap.clear()
         productsCheckedMap.putAll(productsChecked)

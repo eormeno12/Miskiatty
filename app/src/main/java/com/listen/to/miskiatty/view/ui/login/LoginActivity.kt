@@ -1,8 +1,8 @@
 package com.listen.to.miskiatty.view.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -18,15 +18,14 @@ import com.listen.to.miskiatty.model.network.auth.FireAuthService
 import com.listen.to.miskiatty.model.network.firestore.FireStoreService
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
-import com.listen.to.miskiatty.viewmodel.LoginViewModel
-import com.listen.to.wave.view.message.ToastFactory
-import com.listen.to.wave.viewmodel.CallbackFireAuth
-import java.lang.Exception
+import com.listen.to.miskiatty.viewmodel.login.LoginViewModel
+import com.listen.to.miskiatty.model.messages.ToastFactory
+import com.listen.to.miskiatty.viewmodel.CallbackFireAuth
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
-    lateinit var fireAuthService: FireAuthService
-    lateinit var fireStoreService: FireStoreService
+    private lateinit var auth: FirebaseAuth
+    private lateinit var fireAuthService: FireAuthService
+    private lateinit var fireStoreService: FireStoreService
 
     private var loginViewModel: LoginViewModel? = null
     lateinit var binding: ActivityLoginBinding
@@ -49,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
                 }else{
                     preferenceProvider.setEmailLogin(email)
 
-                    fireAuthService.userLogin(email, password, object: CallbackFireAuth<FirebaseUser> {
+                    fireAuthService.userLogin(email, password, object:
+                        CallbackFireAuth<FirebaseUser> {
                         override fun onSucces(result: FirebaseUser?) {
 
                             val firebaseBackup = FirebaseBackup(this@LoginActivity, lifecycle)

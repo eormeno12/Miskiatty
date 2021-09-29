@@ -6,7 +6,7 @@
     <data>
         <variable
             name="statisticsViewModel"
-            type="com.listen.to.miskiatty.viewmodel.StatisticsViewModel" />
+            type="com.listen.to.miskiatty.viewmodel.statistics.StatisticsViewModel" />
 
     </data>
 

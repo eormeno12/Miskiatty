@@ -8,14 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderAddBinding
-import com.listen.to.miskiatty.viewmodel.OrderAddViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderAddViewModel
 
 class OrderAddActivity : AppCompatActivity() {
 
     private var orderAddViewModel: OrderAddViewModel? = null
     private lateinit var binding: ActivityOrderAddBinding
     private lateinit var toolbar: Toolbar
-    lateinit var nameArrayAdapter: ArrayAdapter<String>
+    private lateinit var nameArrayAdapter: ArrayAdapter<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

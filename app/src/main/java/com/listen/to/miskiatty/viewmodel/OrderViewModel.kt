@@ -1,5 +1,6 @@
 package com.listen.to.miskiatty.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.Lifecycle
@@ -19,7 +20,7 @@ import com.listen.to.miskiatty.view.ui.orders.OrderAddActivity
 
 class OrderViewModel: ViewModel() {
     private val ordersRepository: OrdersRepository = OrdersRepositoryImpl()
-    var ordersAdapter: AdapterCustomOrders? = null
+    private var ordersAdapter: AdapterCustomOrders? = null
     private var _orderClicked = MutableLiveData<Order>()
     val orderClicked: LiveData<Order> = _orderClicked
 
@@ -42,6 +43,7 @@ class OrderViewModel: ViewModel() {
 
     fun getOrders(): MutableLiveData<List<Order>> = ordersRepository.getOrders()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOrdersInRecyclerAdapter(orders: List<Order>) {
         if (ordersAdapter != null) {
             ordersAdapter?.setOrdersList(orders)

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivityOrderDetailsBinding
 import com.listen.to.miskiatty.model.database.Product
-import com.listen.to.miskiatty.viewmodel.OrderDetailsViewModel
+import com.listen.to.miskiatty.viewmodel.orders.OrderDetailsViewModel
 
 class OrderDetailsActivity : AppCompatActivity() {
 

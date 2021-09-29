@@ -1,16 +1,15 @@
 package com.listen.to.miskiatty.view.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.ActivitySetPinLoginBinding
 import com.listen.to.miskiatty.model.provider.PreferenceProvider
 import com.listen.to.miskiatty.view.ui.activities.MainActivity
-import com.listen.to.miskiatty.viewmodel.SetPinLoginViewModel
+import com.listen.to.miskiatty.viewmodel.login.SetPinLoginViewModel
 
 class SetPinLoginActivity : AppCompatActivity() {
 
@@ -23,9 +22,9 @@ class SetPinLoginActivity : AppCompatActivity() {
 
         val preferenceProvider = PreferenceProvider(this)
 
-        setPinLoginViewModel?.validPin?.observe(this, Observer {
+        setPinLoginViewModel?.validPin?.observe(this, {
             if(it){
-                preferenceProvider.setPinLogin(setPinLoginViewModel?.PIN!!)
+                preferenceProvider.setPinLogin(setPinLoginViewModel?.pin!!)
                 preferenceProvider.saveLogin()
                 startActivity(Intent(this, MainActivity::class.java).addFlags(
                     Intent.FLAG_ACTIVITY_CLEAR_TOP))

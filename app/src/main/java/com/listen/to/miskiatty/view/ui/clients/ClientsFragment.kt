@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.listen.to.miskiatty.R
 import com.listen.to.miskiatty.databinding.FragmentClientsBinding
 import com.listen.to.miskiatty.model.database.Client
-import com.listen.to.miskiatty.viewmodel.ClientViewModel
+import com.listen.to.miskiatty.viewmodel.clients.ClientViewModel
 
 class ClientsFragment : Fragment() {
 

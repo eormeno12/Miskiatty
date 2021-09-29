@@ -33,6 +33,7 @@ class ClientsAddRepositoryImpl: ClientsAddRepository{
                 }
 
                 mutableContacts.value = contacts
+                cursor.close()
             }
         }
     }
